@@ -119,7 +119,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +131,24 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Fonts\Montserrat-Black.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-BlackItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-Bold.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-BoldItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-ExtraBold.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-ExtraLight.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-Italic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-Light.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-LightItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-Medium.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-MediumItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-Regular.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-SemiBold.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-Thin.ttf" />
+    <Content Include="Assets\Fonts\Montserrat-ThinItalic.ttf" />
     <None Include="Uwp.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -145,16 +166,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Font.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Icon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.1.190405004.2</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
