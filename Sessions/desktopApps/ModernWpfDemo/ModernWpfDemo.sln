@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28914.39
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernWpfDemo", "ModernWpfDemo\ModernWpfDemo.csproj", "{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Debug|x64.ActiveCfg = Debug|x64
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Debug|x64.Build.0 = Debug|x64
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Debug|x86.ActiveCfg = Debug|x86
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Debug|x86.Build.0 = Debug|x86
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Release|x64.ActiveCfg = Release|x64
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Release|x64.Build.0 = Release|x64
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Release|x86.ActiveCfg = Release|x86
+		{32FA3FEB-F268-4F4F-96B7-10D31CEB317C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C34933B7-FD13-46B0-8E88-919970CBDA7B}
+	EndGlobalSection
+EndGlobal
