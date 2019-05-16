@@ -32,7 +32,7 @@
                 <Setter Property="MaxAngle" Value="45" />
                 <Setter Property="Unit" Value="Units" />
                 <Setter Property="ScaleBrush" Value="{StaticResource Brush-Gray-1}" />
-                <Setter Property="TrailBrush" Value="{StaticResource Brush-Blue-1}" />
+                <Setter Property="TrailBrush" Value="{StaticResource Brush-Blue-2}" />
                 <Setter Property="TickBrush" Value="Transparent" />
                 <Setter Property="ScaleTickBrush" Value="Transparent" />
                 <Setter Property="Foreground" Value="Transparent" />
@@ -46,6 +46,7 @@
                 <ResourceDictionary Source="Resources/Brush.xaml" />
                 <ResourceDictionary Source="Resources/Font.xaml" />
                 <ResourceDictionary Source="Resources/Icon.xaml" />
+                <ResourceDictionary Source="Resources/RadioButton.xaml" />
                 <ResourceDictionary Source="Resources/NavigationView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

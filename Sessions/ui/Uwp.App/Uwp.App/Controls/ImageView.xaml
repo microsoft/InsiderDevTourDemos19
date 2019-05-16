@@ -69,16 +69,14 @@
                     </winui:ItemsRepeater.Layout>
                     <winui:ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="models:Photo">
-                            <Button Padding="0"
-                                    BorderThickness="1"
-                                    Click="OnThumbnailClicked"
-                                    IsTabStop="True"
-                                    UseSystemFocusVisuals="True">
+                            <RadioButton Click="OnThumbnailClicked"
+                                         GroupName="Thumbnail"
+                                         Style="{StaticResource Style-RadioButton-Thumbnail}"
+                                         Tag="{x:Bind Title}">
                                 <Image x:Name="Thumbnail"
                                        Source="{x:Bind Url}"
-                                       Stretch="UniformToFill"
-                                       Tag="{x:Bind Title}" />
-                            </Button>
+                                       Stretch="UniformToFill" />
+                            </RadioButton>
                         </DataTemplate>
                     </winui:ItemsRepeater.ItemTemplate>
                 </winui:ItemsRepeater>

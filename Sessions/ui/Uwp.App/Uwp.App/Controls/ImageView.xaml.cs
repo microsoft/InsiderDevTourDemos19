@@ -5,25 +5,17 @@ using Uwp.App.Models;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Uwp.App.Controls
 {
     public sealed partial class ImageView : UserControl
     {
         private readonly Compositor _compositor;
-
-        public ImageView()
-        {
-            InitializeComponent();
-
-            _compositor = Window.Current.Compositor;
-            VisualExtensions.GetVisual(RepeaterScroll).Clip = _compositor.CreateInsetClip();
-        }
-
-        public void LoadImages()
-        {
-            var photos = new List<Photo>
+        private readonly List<Photo> _photos = new List<Photo>
             {
                 new Photo("Veil Nebula Supernova Remnant","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/hs-2015-29-a-xlarge_web.jpg" ),
                 new Photo("Hubble Sets Sights on a Galaxy with a Bright Heart","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1843a.jpg" ),
@@ -65,26 +57,40 @@ namespace Uwp.App.Controls
                 new Photo("Hubble Frames an Explosive Galaxy","https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1749a.jpg" ),
             };
 
-            Repeater.ItemsSource = photos;
-            Banner.Source = new BitmapImage(new Uri(photos[0].Url));
-            BannerTitle.Text = photos[0].Title;
+        public ImageView()
+        {
+            InitializeComponent();
+
+            _compositor = Window.Current.Compositor;
+            VisualExtensions.GetVisual(RepeaterScroll).Clip = _compositor.CreateInsetClip();
+        }
+
+        public void LoadImages()
+        {
+            Repeater.ItemsSource = _photos;
+            Banner.Source = new BitmapImage(new Uri(_photos[0].Url));
+            BannerTitle.Text = _photos[0].Title;
             Repeater.Loaded += Repeater_Loaded;
         }
 
-        private void Repeater_Loaded(object sender, RoutedEventArgs e)
+        private async void Repeater_Loaded(object sender, RoutedEventArgs e)
         {
             RepeaterScroll.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
             ScrollToCenterOfViewport(sender);
+
+            await Task.Delay(400);
+            var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).First();
+            first.IsChecked = true;
         }
 
         private void OnThumbnailClicked(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
+            var button = (ButtonBase)sender;
 
             if (button.FindName("Thumbnail") is Image image)
             {
                 Banner.Source = image.Source;
-                BannerTitle.Text = image.Tag.ToString();
+                BannerTitle.Text = button.Tag.ToString();
                 BannerEnter.Begin();
             }
 
