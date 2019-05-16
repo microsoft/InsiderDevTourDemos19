@@ -8,6 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <x:Boolean x:Key="UseSystemFocusVisuals">False</x:Boolean>
+            <Color x:Key="SystemAccentColor">#FF3CBFB6</Color>
 
             <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
                 <animations:OffsetAnimation Duration="0:0:0.6" />

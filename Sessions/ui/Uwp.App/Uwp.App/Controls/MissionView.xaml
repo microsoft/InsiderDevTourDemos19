@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Uwp.App.Controls.MissionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:Uwp.App.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+    <Grid x:Name="Root"
+          Padding="24,40,24,24"
+          BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+          RowSpacing="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="32,0,0,0"
+                   FontFamily="{StaticResource SemiBold}"
+                   FontSize="32"
+                   Foreground="{StaticResource Brush-Gray-3}"
+                   Text="MISSION" />
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Spacing="24">
+                <controls:MissionItem Date="April 24, 1990" Description="LAUNCH FROM SPACE SHUTTLE DISCOVERY" />
+                <controls:MissionItem Date="April 25, 1990" Description="DEPLOYMENT TO SPACE" />
+                <controls:MissionItem Date="May 20, 1990" Description="FIRST IMAGE TAKEN FROM THE HUBBLE" />
+                <controls:MissionItem Date="December 1993" Description="Servicing Mission 1" />
+                <controls:MissionItem Date="February 1997" Description="Servicing Mission 2" />
+                <controls:MissionItem Date="December 1999" Description="Servicing Mission 3A" />
+                <controls:MissionItem Date="February 2002" Description="Servicing Mission 3B" />
+                <controls:MissionItem Date="May 2009" Description="Servicing Mission 4" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
