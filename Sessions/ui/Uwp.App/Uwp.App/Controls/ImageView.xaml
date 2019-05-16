@@ -17,7 +17,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="7*" />
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="4*" />
@@ -25,10 +24,10 @@
 
         <Image x:Name="BackgroundImage"
                Grid.RowSpan="3"
-               Grid.ColumnSpan="4"
+               Grid.ColumnSpan="3"
                Opacity="0.15"
                Stretch="UniformToFill" />
-        <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="4">
+        <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3">
             <Rectangle.Fill>
                 <AcrylicBrush BackgroundSource="Backdrop"
                               FallbackColor="{StaticResource Color-Gray-0}"
@@ -39,7 +38,6 @@
         </Rectangle>
 
         <Grid Grid.RowSpan="2"
-              Grid.Column="1"
               Padding="24,64,24,24"
               BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
               BorderThickness="0,0,0,1"
