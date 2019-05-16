@@ -22,9 +22,7 @@
 
         <controls:MissionView Grid.Row="2" />
 
-        <controls:GaugeView x:Name="TopRightPane"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="2" />
+        <controls:GaugeView Grid.Column="1" Grid.ColumnSpan="2" />
 
         <controls:JournalView x:Name="JournalView"
                               Grid.Row="1"

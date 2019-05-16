@@ -3,7 +3,7 @@
     <!--  The smaller the number is, the darker the color gets.  -->
 
     <Color x:Key="Color-Gray-0">#FF050E0E</Color>
-    <Color x:Key="Color-Gray-1">#FF142525</Color>
+    <Color x:Key="Color-Gray-1">#FF4C5353</Color>
     <Color x:Key="Color-Gray-2">#FF9BA9A9</Color>
     <Color x:Key="Color-Gray-3">#FFDEDEDE</Color>
 

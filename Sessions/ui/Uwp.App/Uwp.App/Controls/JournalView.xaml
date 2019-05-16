@@ -64,6 +64,7 @@
             </toolkit:DataGrid.Resources>
 
             <toolkit:DataGrid.Columns>
+                <toolkit:DataGridTextColumn Width="20" Header="" />
                 <toolkit:DataGridTextColumn Binding="{Binding Year}" Header="YEAR" />
                 <toolkit:DataGridTextColumn Binding="{Binding Event}" Header="EVENT" />
             </toolkit:DataGrid.Columns>

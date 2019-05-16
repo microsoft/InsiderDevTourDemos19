@@ -9,7 +9,7 @@
              mc:Ignorable="d">
 
     <Grid x:Name="Root"
-          Padding="24,40,24,24"
+          Padding="24,40,24,0"
           BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
           RowSpacing="40">
         <Grid.RowDefinitions>

@@ -31,7 +31,7 @@
                 <Setter Property="MinAngle" Value="180" />
                 <Setter Property="MaxAngle" Value="45" />
                 <Setter Property="Unit" Value="Units" />
-                <Setter Property="ScaleBrush" Value="{StaticResource Brush-Gray-3}" />
+                <Setter Property="ScaleBrush" Value="{StaticResource Brush-Gray-1}" />
                 <Setter Property="TrailBrush" Value="{StaticResource Brush-Blue-1}" />
                 <Setter Property="TickBrush" Value="Transparent" />
                 <Setter Property="ScaleTickBrush" Value="Transparent" />
