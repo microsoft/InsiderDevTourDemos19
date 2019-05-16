@@ -17,12 +17,12 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Border Grid.RowSpan="2"
-                Width="16"
-                Height="16"
+        <Border Width="8"
+                Height="8"
+                Margin="8,1,0,0"
                 BorderBrush="{StaticResource Brush-Blue-2}"
                 BorderThickness="1"
-                CornerRadius="10" />
+                CornerRadius="8" />
         <TextBlock Grid.Column="1"
                    FontFamily="{StaticResource Medium}"
                    FontSize="16"

@@ -28,7 +28,7 @@
 
         <toolkit:DataGrid x:Name="DataGrid"
                           Grid.Row="1"
-                          AlternatingRowBackground="{StaticResource SystemControlBackgroundAltHighBrush}"
+                          AlternatingRowBackground="#33000000"
                           AlternatingRowForeground="{StaticResource Brush-Gray-3}"
                           AreRowDetailsFrozen="False"
                           AreRowGroupHeadersFrozen="True"

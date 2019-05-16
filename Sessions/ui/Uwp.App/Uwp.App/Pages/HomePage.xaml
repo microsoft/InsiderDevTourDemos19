@@ -13,21 +13,24 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="7*" />
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
-        <controls:ImageView x:Name="ImageView" Grid.RowSpan="2" />
+        <controls:ImageView x:Name="ImageView"
+                            Grid.RowSpan="3"
+                            Grid.ColumnSpan="4" />
 
-        <controls:MissionView Grid.Row="2" />
+        <controls:MissionView Grid.Row="2" Grid.Column="1" />
 
-        <controls:GaugeView Grid.Column="1" Grid.ColumnSpan="2" />
+        <controls:GaugeView Grid.Column="2" Grid.ColumnSpan="2" />
 
         <controls:JournalView x:Name="JournalView"
                               Grid.Row="1"
                               Grid.RowSpan="2"
-                              Grid.Column="1"
+                              Grid.Column="2"
                               Grid.ColumnSpan="2" />
     </Grid>
 </Page>

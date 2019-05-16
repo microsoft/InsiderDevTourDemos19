@@ -41,7 +41,7 @@
                 </winui:NavigationViewItem>
             </winui:NavigationView.MenuItems>
 
-            <Frame x:Name="ContentFrame" Margin="0,-26,0,0" />
+            <Frame x:Name="ContentFrame" Margin="-100,-26,0,0" />
         </winui:NavigationView>
     </Grid>
 </Page>

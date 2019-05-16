@@ -68,7 +68,7 @@ namespace Uwp.App.Controls
         public void LoadImages()
         {
             Repeater.ItemsSource = _photos;
-            Banner.Source = new BitmapImage(new Uri(_photos[0].Url));
+            Banner.Source = BackgroundImage.Source = new BitmapImage(new Uri(_photos[0].Url));
             BannerTitle.Text = _photos[0].Title;
             Repeater.Loaded += Repeater_Loaded;
         }
@@ -78,7 +78,7 @@ namespace Uwp.App.Controls
             RepeaterScroll.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
             ScrollToCenterOfViewport(sender);
 
-            await Task.Delay(400);
+            await Task.Delay(1200);
             var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).First();
             first.IsChecked = true;
         }
@@ -89,7 +89,7 @@ namespace Uwp.App.Controls
 
             if (button.FindName("Thumbnail") is Image image)
             {
-                Banner.Source = image.Source;
+                Banner.Source = BackgroundImage.Source = image.Source;
                 BannerTitle.Text = button.Tag.ToString();
                 BannerEnter.Begin();
             }

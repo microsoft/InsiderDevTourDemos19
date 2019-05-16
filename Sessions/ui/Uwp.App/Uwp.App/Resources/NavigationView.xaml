@@ -3,6 +3,7 @@
                     xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
                     xmlns:winui="using:Microsoft.UI.Xaml.Controls">
 
+    <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="Transparent" />
     <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource Color-Gray-0}" />
     <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="{StaticResource Color-Blue-1}" />
     <Thickness x:Key="NavigationViewItemBorderThickness">0,1</Thickness>
@@ -101,7 +102,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style TargetType="winui:NavigationViewItem">
         <Setter Property="Foreground" Value="{ThemeResource NavigationViewItemForeground}" />
@@ -232,7 +232,7 @@
     </Style>
 
     <Style TargetType="winui:NavigationView">
-        <Setter Property="Background" Value="{StaticResource Brush-Gray-0}" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="PaneDisplayMode" Value="Left" />
         <Setter Property="CompactModeThresholdWidth" Value="1008" />
         <Setter Property="ExpandedModeThresholdWidth" Value="1007" />
