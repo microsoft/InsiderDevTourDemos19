@@ -4,13 +4,13 @@
 
     <Color x:Key="Color-Gray-0">#FF050E0E</Color>
     <Color x:Key="Color-Gray-1">#FF050E0E</Color>
-    <Color x:Key="Color-Gray-2">#FF050E0E</Color>
-    <Color x:Key="Color-Gray-3">#FF050E0E</Color>
+    <Color x:Key="Color-Gray-2">#FF9BA9A9</Color>
+    <Color x:Key="Color-Gray-3">#FFDEDEDE</Color>
 
     <Color x:Key="Color-Blue-0">#FF3CBFB6</Color>
     <Color x:Key="Color-Blue-1">#FF3CBFB6</Color>
-    <Color x:Key="Color-Blue-2">#FF3CBFB6</Color>
-    <Color x:Key="Color-Blue-3">#FF3CBFB6</Color>
+    <Color x:Key="Color-Blue-2">#FF6ECDCA</Color>
+    <Color x:Key="Color-Blue-3">#FFC1F2F0</Color>
 
     <SolidColorBrush x:Key="Brush-Gray-0" Color="{StaticResource Color-Gray-0}" />
     <SolidColorBrush x:Key="Brush-Gray-1" Color="{StaticResource Color-Gray-1}" />

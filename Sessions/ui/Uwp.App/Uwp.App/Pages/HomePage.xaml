@@ -1,15 +1,173 @@
 ﻿<Page x:Class="Uwp.App.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="using:Uwp.App.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:layouts="using:Uwp.App.Layouts"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:Uwp.App.Models"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
+
+        <Grid x:Name="TopLeftPane"
+              Grid.RowSpan="2"
+              Padding="24,64,24,24"
+              BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+              BorderThickness="0,0,0,1"
+              RowSpacing="24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="32,0,0,0"
+                       FontFamily="{StaticResource SemiBold}"
+                       FontSize="18"
+                       Foreground="{StaticResource Brush-Gray-3}"
+                       Text="HUBBLE SPACE TELESCOPE IMAGES" />
+
+            <Grid Grid.Row="1" RowSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Storyboard x:Name="BannerEnter">
+                        <PopInThemeAnimation FromHorizontalOffset="240"
+                                             Storyboard.TargetName="BannerHost"
+                                             Duration="1200" />
+                    </Storyboard>
+                </Grid.Resources>
+
+                <Grid x:Name="BannerHost"
+                      BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+                      BorderThickness="1">
+                    <Image x:Name="Banner" Stretch="UniformToFill" />
+                    <TextBlock x:Name="BannerTitle"
+                               Margin="40"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Bottom"
+                               FontFamily="{StaticResource Medium}"
+                               FontSize="12"
+                               Foreground="White"
+                               TextLineBounds="Tight" />
+                </Grid>
+                <ScrollViewer x:Name="RepeaterScroll"
+                              Grid.Row="1"
+                              HorizontalScrollBarVisibility="Hidden"
+                              HorizontalScrollMode="Enabled"
+                              VerticalScrollBarVisibility="Disabled"
+                              VerticalScrollMode="Disabled">
+                    <winui:ItemsRepeater x:Name="Repeater"
+                                         HorizontalCacheLength="5"
+                                         VerticalCacheLength="0">
+                        <winui:ItemsRepeater.Layout>
+                            <layouts:VirtualizingUniformCarousalStackLayout x:Name="Layout"
+                                                                            ItemHeight="120"
+                                                                            ItemWidth="200"
+                                                                            Spacing="12" />
+                        </winui:ItemsRepeater.Layout>
+                        <winui:ItemsRepeater.ItemTemplate>
+                            <DataTemplate x:DataType="models:Photo">
+                                <Button Padding="0"
+                                        BorderThickness="1"
+                                        Click="OnThumbnailClicked"
+                                        IsTabStop="True"
+                                        UseSystemFocusVisuals="True">
+                                    <Image x:Name="Thumbnail"
+                                           Source="{x:Bind Url}"
+                                           Stretch="UniformToFill"
+                                           Tag="{x:Bind Title}" />
+                                </Button>
+                            </DataTemplate>
+                        </winui:ItemsRepeater.ItemTemplate>
+                    </winui:ItemsRepeater>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="BottomLeftPane"
+              Grid.Row="2"
+              Padding="24,40,24,24"
+              BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+              RowSpacing="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="32,0,0,0"
+                       FontFamily="{StaticResource SemiBold}"
+                       FontSize="24"
+                       Foreground="{StaticResource Brush-Gray-3}"
+                       Text="MISSION" />
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                <StackPanel Spacing="24">
+                    <controls:MissionItem Date="April 24, 1990" Description="LAUNCH FROM SPACE SHUTTLE DISCOVERY" />
+                    <controls:MissionItem Date="April 25, 1990" Description="DEPLOYMENT TO SPACE" />
+                    <controls:MissionItem Date="May 20, 1990" Description="FIRST IMAGE TAKEN FROM THE HUBBLE" />
+                    <controls:MissionItem Date="December 1993" Description="Servicing Mission 1" />
+                    <controls:MissionItem Date="February 1997" Description="Servicing Mission 2" />
+                    <controls:MissionItem Date="December 1999" Description="Servicing Mission 3A" />
+                    <controls:MissionItem Date="February 2002" Description="Servicing Mission 3B" />
+                    <controls:MissionItem Date="May 2009" Description="Servicing Mission 4" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid x:Name="TopRightPane"
+              Grid.Column="1"
+              Grid.ColumnSpan="2"
+              BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+              BorderThickness="1,0,0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <controls:SpeedGauge Margin="0,0,-80,0"
+                                 AverageValue="17000"
+                                 MaxValue="19800"
+                                 PercentValue="66" />
+            <controls:SpeedGauge Grid.Column="1"
+                                 Margin="-80,0,0,0"
+                                 AverageValue="19600"
+                                 MaxValue="22470"
+                                 PercentValue="87" />
+        </Grid>
+
+        <Grid x:Name="BottomRightPane"
+              Grid.Row="1"
+              Grid.RowSpan="2"
+              Grid.Column="1"
+              Grid.ColumnSpan="2"
+              Padding="24,40,24,24"
+              BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+              BorderThickness="1,0,0,0"
+              RowSpacing="24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="32,0,0,0"
+                       FontFamily="{StaticResource SemiBold}"
+                       FontSize="18"
+                       Foreground="{StaticResource Brush-Gray-3}"
+                       Text="DATA" />
+        </Grid>
     </Grid>
 </Page>

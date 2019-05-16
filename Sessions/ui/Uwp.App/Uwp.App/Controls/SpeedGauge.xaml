@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Uwp.App.Controls.SpeedGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="212"
+             d:DesignWidth="240"
+             mc:Ignorable="d">
+
+    <Border x:Name="Root" HorizontalAlignment="Center">
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <controls:RadialGauge Grid.Row="1" Value="{x:Bind PercentValue, Mode=OneWay}" />
+            <StackPanel Grid.Row="1"
+                        Width="80"
+                        Height="60"
+                        Spacing="8">
+                <ContentControl Foreground="{StaticResource Brush-Gray-3}" Style="{StaticResource Style-Icon-Triangle}" />
+                <Viewbox Margin="12,0,0,0" StretchDirection="DownOnly">
+                    <TextBlock FontFamily="{StaticResource SemiBold}"
+                               FontSize="12"
+                               Foreground="White">
+                        <Run FontSize="20" Text="{x:Bind AverageValue, Mode=OneWay}" />
+                        <Run Foreground="{StaticResource Brush-Gray-2}" Text="MPH" />
+                    </TextBlock>
+                </Viewbox>
+            </StackPanel>
+            <TextBlock Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       FontFamily="{StaticResource Bold}"
+                       FontSize="16"
+                       Foreground="{StaticResource Brush-Blue-2}"
+                       Text="SPEED" />
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="-24,32,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <TextBlock FontFamily="{StaticResource Bold}"
+                           FontSize="12"
+                           Foreground="{StaticResource Brush-Gray-2}"
+                           Text="MAX" />
+                <Viewbox Width="72"
+                         Margin="0,-2,0,0"
+                         HorizontalAlignment="Left"
+                         StretchDirection="DownOnly">
+                    <TextBlock FontFamily="{StaticResource SemiBold}"
+                               FontSize="12"
+                               Foreground="White"
+                               OpticalMarginAlignment="TrimSideBearings"
+                               TextLineBounds="Tight">
+                        <Run FontSize="20" Text="{x:Bind MaxValue, Mode=OneWay}" />
+                        <Run Foreground="{StaticResource Brush-Gray-2}" Text="MPH" />
+                    </TextBlock>
+                </Viewbox>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
