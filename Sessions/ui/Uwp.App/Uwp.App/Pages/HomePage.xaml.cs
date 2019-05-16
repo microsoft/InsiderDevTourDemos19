@@ -21,6 +21,11 @@ namespace Uwp.App.Pages
 
             _compositor = Window.Current.Compositor;
             VisualExtensions.GetVisual(RepeaterScroll).Clip = _compositor.CreateInsetClip();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
 
             var photos = new List<Photo>
             {
@@ -67,6 +72,13 @@ namespace Uwp.App.Pages
             Repeater.ItemsSource = photos;
             Banner.Source = new BitmapImage(new Uri(photos[0].Url));
             BannerTitle.Text = photos[0].Title;
+            Repeater.Loaded += Repeater_Loaded;
+        }
+
+        private void Repeater_Loaded(object sender, RoutedEventArgs e)
+        {
+            RepeaterScroll.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
+            ScrollToCenterOfViewport(sender);
         }
 
         private void OnThumbnailClicked(object sender, RoutedEventArgs e)
@@ -79,8 +91,6 @@ namespace Uwp.App.Pages
                 BannerTitle.Text = image.Tag.ToString();
                 BannerEnter.Begin();
             }
-
-            ScrollToCenterOfViewport(sender);
 
             ScrollToCenterOfViewport(sender);
         }
