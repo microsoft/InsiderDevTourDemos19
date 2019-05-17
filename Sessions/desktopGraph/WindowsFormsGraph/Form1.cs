@@ -25,6 +25,16 @@ namespace WindowsFormsGraph
             var name = await connector.GetUserNameAsync();
 
             labelUserName.Text = "User: " + name;
+
+            var events = await connector.GetCalendarEventsAsync();
+
+            listViewCalendar.Items.AddRange(events.Select(ev =>
+            {
+                var lvi = new ListViewItem(ev.Subject);
+                lvi.SubItems.Add(ev.Start.ToDateTimeOffset().LocalDateTime.ToString("g"));
+                lvi.SubItems.Add(ev.End.ToDateTimeOffset().LocalDateTime.ToString("g"));
+                return lvi;
+            }).ToArray());
         }
     }
 }

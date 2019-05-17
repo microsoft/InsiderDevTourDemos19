@@ -2,6 +2,8 @@
 using Microsoft.Graph.Auth;
 using Microsoft.Identity.Client;
 using System;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MyGraph
@@ -37,6 +39,19 @@ namespace MyGraph
             var user = await _graph.Me.Request().GetAsync();
 
             return user.DisplayName;
+        }
+
+        public async Task<Event[]> GetCalendarEventsAsync()
+        {
+            // Calendar Data, Today and Next 2 Days (Local)
+            // Between Previous Midnight (of today) and Midnight of 2nd day (3 from now)
+            var today = DateTimeOffset.Now.Date.ToUniversalTime();
+            var events = await _graph.Me.CalendarView.Request(new[] {
+                new QueryOption("startDateTime", today.ToString("o", CultureInfo.InvariantCulture)),
+                new QueryOption("endDateTime", today.AddDays(3).ToString("o", CultureInfo.InvariantCulture)),
+            }).OrderBy("start/dateTime").GetAsync();
+
+            return events.CurrentPage.ToArray();
         }
     }
 }
