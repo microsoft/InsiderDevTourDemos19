@@ -11,7 +11,7 @@
     <Grid x:Name="Root"
           Padding="24,40,24,0"
           BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
-          RowSpacing="40">
+          RowSpacing="36">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />

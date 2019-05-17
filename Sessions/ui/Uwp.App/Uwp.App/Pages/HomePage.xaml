@@ -24,12 +24,18 @@
 
         <controls:MissionView Grid.Row="2" />
 
-        <controls:GaugeView Grid.Column="1" Grid.ColumnSpan="2" />
+        <controls:GaugeView x:Name="GaugeView"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2" />
 
         <controls:JournalView x:Name="JournalView"
                               Grid.Row="1"
                               Grid.RowSpan="2"
                               Grid.Column="1"
                               Grid.ColumnSpan="2" />
+
+        <controls:HelpView x:Name="HelperView"
+                           Grid.RowSpan="3"
+                           Grid.ColumnSpan="3" />
     </Grid>
 </Page>

@@ -16,7 +16,8 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <controls:SpeedGauge Margin="0,0,-80,0"
+        <controls:SpeedGauge x:Name="Gauge1"
+                             Margin="0,0,-80,0"
                              AverageValue="17000"
                              MaxValue="19800"
                              PercentValue="66" />

@@ -46,7 +46,7 @@
                 <ResourceDictionary Source="Resources/Brush.xaml" />
                 <ResourceDictionary Source="Resources/Font.xaml" />
                 <ResourceDictionary Source="Resources/Icon.xaml" />
-                <ResourceDictionary Source="Resources/RadioButton.xaml" />
+                <ResourceDictionary Source="Resources/Button.xaml" />
                 <ResourceDictionary Source="Resources/NavigationView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

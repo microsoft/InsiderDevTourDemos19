@@ -25,5 +25,8 @@ namespace Uwp.App.Pages
             ImageView.LoadImages();
             JournalView.LoadDataGrid();
         }
+
+        internal void ShowTeachingTips() => 
+            HelperView.ShowTeachingTips(GaugeView.TeachingTipTarget, JournalView.TeachingTipTarget);
     }
 }

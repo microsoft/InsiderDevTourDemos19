@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Uwp.App.Models;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Uwp.App.Controls
@@ -9,7 +10,10 @@ namespace Uwp.App.Controls
         public JournalView()
         {
             InitializeComponent();
+            TeachingTipTarget = Share;
         }
+
+        internal FrameworkElement TeachingTipTarget { get; private set; }
 
         public void LoadDataGrid()
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using Uwp.App.Pages;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
@@ -30,6 +32,15 @@ namespace Uwp.App
             {
                 MainNav.SelectedItem = item;
                 NavigateToPage(item.Tag);
+            }
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainNav.Content is Frame frame && 
+                frame.Content is HomePage homePage)
+            {
+                homePage.ShowTeachingTips();
             }
         }
     }

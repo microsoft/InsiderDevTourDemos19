@@ -23,8 +23,10 @@
             <StackPanel Grid.Row="1"
                         Width="80"
                         Height="60"
-                        Spacing="8">
-                <ContentControl Foreground="{StaticResource Brush-Gray-3}" Style="{StaticResource Style-Icon-Triangle}" />
+                        Spacing="12">
+                <ContentControl Width="16"
+                                Foreground="{StaticResource Brush-Gray-3}"
+                                Style="{StaticResource Style-Icon-Triangle-Fill}" />
                 <Viewbox Margin="12,0,0,0" StretchDirection="DownOnly">
                     <TextBlock FontFamily="{StaticResource SemiBold}"
                                FontSize="12"

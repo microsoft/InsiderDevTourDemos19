@@ -41,7 +41,15 @@
                 </winui:NavigationViewItem>
             </winui:NavigationView.MenuItems>
 
-            <Frame x:Name="ContentFrame" Margin="0,-26,0,0" />
+            <Frame x:Name="ContentFrame" Margin="0,-32,0,0" />
         </winui:NavigationView>
+
+        <Button x:Name="Help"
+                Margin="0,0,0,40"
+                VerticalAlignment="Bottom"
+                Click="Help_Click"
+                Style="{StaticResource Style-Button-Icon-Circle}">
+            <ContentControl Style="{StaticResource Style-Icon-Help}" />
+        </Button>
     </Grid>
 </Page>
