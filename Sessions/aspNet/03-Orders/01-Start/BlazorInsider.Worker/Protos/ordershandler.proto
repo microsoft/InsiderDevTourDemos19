@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package OrdersHandler;
+
+// The greeting service definition.
+service OrdersManager {
+  // Sends a greeting
+  rpc GetNewOrder (OrderRequest) returns (OrderReply) {}
+}
+
+// The request message containing the user's name.
+message OrderRequest {
+  
+}
+
+// The response message containing the greetings.
+message OrderReply {
+  int32 orderId = 1;
+}
