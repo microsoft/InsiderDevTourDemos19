@@ -24,17 +24,17 @@
                                     Height="20"
                                     Style="{StaticResource Style-Icon-Triangle}" />
                 </winui:NavigationViewItem>
-                <winui:NavigationViewItem Tag="HomePage">
+                <winui:NavigationViewItem Tag="HubblePage">
                     <ContentControl Width="20"
                                     Height="20"
                                     Style="{StaticResource Style-Icon-Rectangle}" />
                 </winui:NavigationViewItem>
-                <winui:NavigationViewItem Tag="HomePage">
+                <winui:NavigationViewItem Tag="OtherPage">
                     <ContentControl Width="20"
                                     Height="20"
                                     Style="{StaticResource Style-Icon-Rectangle-Rotated}" />
                 </winui:NavigationViewItem>
-                <winui:NavigationViewItem Tag="HomePage">
+                <winui:NavigationViewItem Tag="OtherPage">
                     <ContentControl Width="20"
                                     Height="20"
                                     Style="{StaticResource Style-Icon-Ellipse}" />
