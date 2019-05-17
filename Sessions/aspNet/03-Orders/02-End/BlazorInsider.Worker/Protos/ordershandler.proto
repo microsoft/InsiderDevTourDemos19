@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package OrdersHandler;
+
+// The orders service definition.
+service OrdersManager {
+  // Gets an order from the database
+  rpc GetNewOrder (OrderRequest) returns (OrderReply) {}
+}
+
+// The order request
+message OrderRequest {
+  
+}
+
+// The id of the order which must be processed
+message OrderReply {
+  int32 orderId = 1;
+}

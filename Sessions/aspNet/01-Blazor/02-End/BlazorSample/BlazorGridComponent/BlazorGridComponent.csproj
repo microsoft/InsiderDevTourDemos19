@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+    <LangVersion>7.3</LangVersion>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <PackageId>BlazorGrid</PackageId>
+    <Authors>Ankit Sharma</Authors>
+    <Product>BlazorGrid</Product>
+    <PackageProjectUrl>https://github.com/AnkitSharma-007/BlazorGrid</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/AnkitSharma-007/BlazorGrid/blob/master/BlazorGridComponent/LICENSE</PackageLicenseUrl>
+    <PackageTags>ASP.NETCore Blazor BlazorGrid  Blazor-Component</PackageTags>
+    <Description>A reusable grid component for Blazor.</Description>
+    <RepositoryUrl>https://github.com/AnkitSharma-007/BlazorGrid</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>(c) Ankit Sharma</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
+    <EmbeddedResource Include="content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview4-19216-03" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

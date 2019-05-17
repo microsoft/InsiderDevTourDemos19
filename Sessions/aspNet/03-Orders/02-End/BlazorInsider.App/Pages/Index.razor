@@ -1,0 +1,99 @@
+﻿@page "/"
+@using BlazorInsider.App.Services
+@using BlazorInsider.Shared.Model
+@inject DatabaseService DatabaseService
+
+<h3>Add new order</h3>
+
+<table>
+    <tr>
+        <td>Description:</td>
+        <td><input type="text" bind="@description" /></td>
+    </tr>
+    <tr>
+        <td>Quantity:</td>
+        <td><input type="number" bind="@quantity" /></td>
+    </tr>
+    <tr>
+        <td>Total:</td>
+        <td><input type="number" bind="@total" /></td>
+    </tr>
+</table>
+
+<p></p>
+
+<table>
+    <tr>
+        <td><button class="btn btn-primary" onclick="@SaveOrder">Save order</button></td>
+        <td><button class="btn btn-primary" onclick="@RefreshOrders">Refresh orders</button></td>
+    </tr>
+</table>
+
+<p></p>
+<h3>Orders</h3>
+<p></p>
+
+@if (orders == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th scope="col">Order id</th>
+                <th scope="col">Description</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <th scope="row">@order.OrderId</th>
+                    <td data-title="Description">@order.Description</td>
+                    <td data-title="Quantity">@order.Quantity</td>
+                    <td data-title="Total">@order.Total</td>
+                    <td data-title="Status">@order.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@functions {
+    string description;
+    int quantity;
+    double total;
+    List<Order> orders;
+
+    void SaveOrder()
+    {
+        Order order = new Order
+        {
+            Description = description,
+            Quantity = quantity,
+            Total = total,
+            Status = "Pending"
+        };
+
+        DatabaseService.AddOrder(order);
+        RefreshOrders();
+        description = string.Empty;
+        quantity = 0;
+        total = 0;
+    }
+
+    void RefreshOrders()
+    {
+        orders = DatabaseService.GetOrders();
+    }
+
+    protected override void OnInit()
+    {
+        RefreshOrders();
+    }
+}
