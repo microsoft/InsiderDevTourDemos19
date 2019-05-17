@@ -179,6 +179,7 @@
     <Content Include="Assets\Fonts\Montserrat-SemiBoldItalic.ttf" />
     <Content Include="Assets\Fonts\Montserrat-Thin.ttf" />
     <Content Include="Assets\Fonts\Montserrat-ThinItalic.ttf" />
+    <Content Include="Assets\Models\Telescope.gltf" />
     <None Include="Uwp.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

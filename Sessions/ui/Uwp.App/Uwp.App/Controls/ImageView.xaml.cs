@@ -79,8 +79,8 @@ namespace Uwp.App.Controls
             ScrollToCenterOfViewport(sender);
 
             await Task.Delay(1200);
-            var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).First();
-            first.IsChecked = true;
+            var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).FirstOrDefault();
+            if (first != null) first.IsChecked = true;
         }
 
         private void OnThumbnailClicked(object sender, RoutedEventArgs e)

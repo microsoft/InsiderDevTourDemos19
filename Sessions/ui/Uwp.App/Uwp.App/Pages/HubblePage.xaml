@@ -26,12 +26,24 @@
                    Foreground="{StaticResource Brush-Gray-3}"
                    Text="HUBBLE SPACE TELESCOPE" />
 
-        <Image x:Name="BackgroundImage"
+        <Image x:Name="HubbleImage"
                Grid.Row="1"
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="2"
                Source="/Assets/Images/Hubble.png" />
-        <Rectangle x:Name="ModelHost" />
+        <Rectangle x:Name="ModelHost"
+                   Grid.RowSpan="4"
+                   Grid.ColumnSpan="4"
+                   SizeChanged="ModelHost_SizeChanged" />
+
+        <Button x:Name="Surprise"
+                Grid.Row="3"
+                Grid.ColumnSpan="4"
+                Margin="0,0,64,48"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="Surprise_Click"
+                Content="CLICK ME!" />
     </Grid>
 </Page>
