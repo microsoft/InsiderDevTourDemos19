@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>dotnet-BlazorInsider.Worker-D1BA562D-71CF-4F0B-A32C-1F27E9E39245</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\ordershandler.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview5.19227.9" />
+    <PackageReference Include="Google.Protobuf" Version="3.7.0" />
+    <PackageReference Include="Grpc.Core" Version="1.21.0-pre1" />
+    <PackageReference Include="Grpc.Tools" Version="1.21.0-pre1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.0.0-preview5.19227.9" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorInsider.Shared\BlazorInsider.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
