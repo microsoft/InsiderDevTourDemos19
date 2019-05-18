@@ -2,7 +2,9 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
@@ -36,6 +38,15 @@
                    Grid.RowSpan="4"
                    Grid.ColumnSpan="4"
                    SizeChanged="ModelHost_SizeChanged" />
+
+        <winui:AnimatedVisualPlayer x:Name="LottiePlayer"
+                                    Grid.RowSpan="4"
+                                    Grid.ColumnSpan="4"
+                                    Width="200"
+                                    AutoPlay="False"
+                                    Visibility="Collapsed">
+            <lottie:LottieVisualSource UriSource="ms-appx:///Assets/LottieFiles/PaperPlane.json" />
+        </winui:AnimatedVisualPlayer>
 
         <Button x:Name="Surprise"
                 Grid.Row="3"

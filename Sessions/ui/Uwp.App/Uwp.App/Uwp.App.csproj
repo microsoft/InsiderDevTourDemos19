@@ -180,6 +180,7 @@
     <Content Include="Assets\Fonts\Montserrat-Thin.ttf" />
     <Content Include="Assets\Fonts\Montserrat-ThinItalic.ttf" />
     <Content Include="Assets\Models\Telescope.gltf" />
+    <Content Include="Assets\LottieFiles\PaperPlane.json" />
     <None Include="Uwp.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +279,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
       <Version>5.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Lottie">
+      <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.1.190405004.2</Version>

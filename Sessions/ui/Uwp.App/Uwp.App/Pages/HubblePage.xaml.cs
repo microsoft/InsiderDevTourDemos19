@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Animations;
 using SceneLoaderComponent;
 using System;
+using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -16,6 +17,7 @@ namespace Uwp.App.Pages
     public sealed partial class HubblePage : Page
     {
         private readonly Compositor _compositor;
+        private readonly ContainerVisual _hostVisual;
         private readonly SceneVisual _sceneVisual;
 
         public HubblePage()
@@ -23,6 +25,7 @@ namespace Uwp.App.Pages
             InitializeComponent();
 
             _compositor = Window.Current.Compositor;
+            _hostVisual = _compositor.CreateContainerVisual();
             _sceneVisual = SceneVisual.Create(_compositor);
         }
 
@@ -34,6 +37,11 @@ namespace Uwp.App.Pages
 
         private async void Surprise_Click(object sender, RoutedEventArgs e)
         {
+            if (_hostVisual.Children.Any()) return;
+
+            LottiePlayer.Visibility = Visibility.Visible;
+            LottiePlayer.AutoPlay = true;
+
             HubbleImage.Fade(duration: 800).Start();
 
             var uri = new Uri("ms-appx:///Assets/Models/Telescope.gltf");
@@ -43,12 +51,15 @@ namespace Uwp.App.Pages
             var loader = new SceneLoader();
             var model = loader.Load(buffer, _compositor);
 
-            var hostVisual = _compositor.CreateContainerVisual();
-            hostVisual.RelativeSizeAdjustment = Vector2.One;
-            ElementCompositionPreview.SetElementChildVisual(ModelHost, hostVisual);
+            LottiePlayer.Stop();
+            await LottiePlayer.Fade(duration: 600).StartAsync();
+
+            _hostVisual.RelativeSizeAdjustment = Vector2.One;
+            ElementCompositionPreview.SetElementChildVisual(ModelHost, _hostVisual);
 
             _sceneVisual.Scale = new Vector3(2.5f, 2.5f, 1.0f);
             _sceneVisual.Root = SceneNode.Create(_compositor);
+            _sceneVisual.Root.Children.Clear();
             _sceneVisual.Root.Children.Add(model);
 
             var rotationAnimation = _compositor.CreateScalarKeyFrameAnimation();
@@ -58,7 +69,7 @@ namespace Uwp.App.Pages
             _sceneVisual.Root.Transform.RotationAxis = new Vector3(0.0f, 1.0f, 0.2f); ;
             _sceneVisual.Root.Transform.StartAnimation(nameof(SceneNode.Transform.RotationAngleInDegrees), rotationAnimation);
 
-            hostVisual.Children.InsertAtTop(_sceneVisual);
+            _hostVisual.Children.InsertAtTop(_sceneVisual);
         }
     }
 }
