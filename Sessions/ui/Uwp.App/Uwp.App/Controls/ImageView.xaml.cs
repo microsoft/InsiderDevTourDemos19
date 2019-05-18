@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace Uwp.App.Controls
 {
@@ -65,12 +66,16 @@ namespace Uwp.App.Controls
             VisualExtensions.GetVisual(RepeaterScroll).Clip = _compositor.CreateInsetClip();
         }
 
+        public event ImageUpdatedEventHandler ImageUpdated;
+
         public void LoadImages()
         {
             Repeater.ItemsSource = _photos;
-            Banner.Source = BackgroundImage.Source = new BitmapImage(new Uri(_photos[0].Url));
+            Banner.Source = new BitmapImage(new Uri(_photos[0].Url));
             BannerTitle.Text = _photos[0].Title;
             Repeater.Loaded += Repeater_Loaded;
+
+            ImageUpdated.Invoke(this, new ImageUpdatedEventArgs(Banner.Source));
         }
 
         private async void Repeater_Loaded(object sender, RoutedEventArgs e)
@@ -89,9 +94,11 @@ namespace Uwp.App.Controls
 
             if (button.FindName("Thumbnail") is Image image)
             {
-                Banner.Source = BackgroundImage.Source = image.Source;
+                Banner.Source = image.Source;
                 BannerTitle.Text = button.Tag.ToString();
                 BannerEnter.Begin();
+
+                ImageUpdated.Invoke(this, new ImageUpdatedEventArgs(Banner.Source));
             }
 
             ScrollToCenterOfViewport(sender);
@@ -107,5 +114,17 @@ namespace Uwp.App.Controls
                 AnimationDesired = true,
             });
         }
+    }
+
+    public delegate void ImageUpdatedEventHandler(object sender, ImageUpdatedEventArgs args);
+
+    public class ImageUpdatedEventArgs : EventArgs
+    {
+        public ImageUpdatedEventArgs(ImageSource imageSource)
+        {
+            ImageSource = imageSource;
+        }
+
+        public ImageSource ImageSource { get; }
     }
 }

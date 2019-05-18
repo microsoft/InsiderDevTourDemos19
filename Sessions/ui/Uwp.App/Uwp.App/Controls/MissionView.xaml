@@ -25,6 +25,12 @@
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
             <StackPanel Spacing="24">
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+
                 <controls:MissionItem Date="April 24, 1990" Description="LAUNCH FROM SPACE SHUTTLE DISCOVERY" />
                 <controls:MissionItem Date="April 25, 1990" Description="DEPLOYMENT TO SPACE" />
                 <controls:MissionItem Date="May 20, 1990" Description="FIRST IMAGE TAKEN FROM THE HUBBLE" />

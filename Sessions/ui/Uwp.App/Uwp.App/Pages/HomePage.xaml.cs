@@ -20,5 +20,10 @@ namespace Uwp.App.Pages
 
         internal void ShowTeachingTips() => 
             HelperView.ShowTeachingTips(GaugeView.TeachingTipTarget, JournalView.TeachingTipTarget);
+
+        private void ImageView_ImageUpdated(object sender, Controls.ImageUpdatedEventArgs args)
+        {
+            BlurredBackground.UpdateImage(args.ImageSource);
+        }
     }
 }

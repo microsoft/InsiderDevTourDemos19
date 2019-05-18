@@ -10,105 +10,77 @@
              d:DesignWidth="800"
              mc:Ignorable="d">
 
-    <Grid x:Name="Root">
+    <Grid x:Name="Root"
+          Padding="24,64,24,24"
+          BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+          BorderThickness="0,0,0,1"
+          RowSpacing="24">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="4*" />
-        </Grid.ColumnDefinitions>
 
-        <Image x:Name="BackgroundImage"
-               Grid.RowSpan="3"
-               Grid.ColumnSpan="3"
-               Opacity="0.15"
-               Stretch="UniformToFill" />
-        <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3">
-            <Rectangle.Fill>
-                <AcrylicBrush BackgroundSource="Backdrop"
-                              FallbackColor="{StaticResource Color-Gray-0}"
-                              TintColor="{StaticResource Color-Blue-2}"
-                              TintLuminosityOpacity="0"
-                              TintOpacity="0.9" />
-            </Rectangle.Fill>
-        </Rectangle>
+        <TextBlock Margin="32,0,0,0"
+                   FontFamily="{StaticResource SemiBold}"
+                   FontSize="18"
+                   Foreground="{StaticResource Brush-Gray-3}"
+                   Text="HUBBLE SPACE TELESCOPE IMAGES" />
 
-        <Grid Grid.RowSpan="2"
-              Padding="24,64,24,24"
-              BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
-              BorderThickness="0,0,0,1"
-              RowSpacing="24">
+        <Grid Grid.Row="1" RowSpacing="12">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Storyboard x:Name="BannerEnter">
+                    <PopInThemeAnimation FromHorizontalOffset="240"
+                                         Storyboard.TargetName="BannerHost"
+                                         Duration="1200" />
+                </Storyboard>
+            </Grid.Resources>
 
-            <TextBlock Margin="32,0,0,0"
-                       FontFamily="{StaticResource SemiBold}"
-                       FontSize="18"
-                       Foreground="{StaticResource Brush-Gray-3}"
-                       Text="HUBBLE SPACE TELESCOPE IMAGES" />
-
-            <Grid Grid.Row="1" RowSpacing="12">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.Resources>
-                    <Storyboard x:Name="BannerEnter">
-                        <PopInThemeAnimation FromHorizontalOffset="240"
-                                             Storyboard.TargetName="BannerHost"
-                                             Duration="1200" />
-                    </Storyboard>
-                </Grid.Resources>
-
-                <Grid x:Name="BannerHost"
-                      BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
-                      BorderThickness="1">
-                    <Image x:Name="Banner" Stretch="UniformToFill" />
-                    <TextBlock x:Name="BannerTitle"
-                               Margin="40"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Bottom"
-                               FontFamily="{StaticResource Medium}"
-                               FontSize="12"
-                               Foreground="White"
-                               TextLineBounds="Tight" />
-                </Grid>
-                <ScrollViewer x:Name="RepeaterScroll"
-                              Grid.Row="1"
-                              HorizontalScrollBarVisibility="Hidden"
-                              HorizontalScrollMode="Enabled"
-                              VerticalScrollBarVisibility="Disabled"
-                              VerticalScrollMode="Disabled">
-                    <winui:ItemsRepeater x:Name="Repeater"
-                                         HorizontalCacheLength="5"
-                                         VerticalCacheLength="0">
-                        <winui:ItemsRepeater.Layout>
-                            <layouts:VirtualizingUniformCarousalStackLayout x:Name="Layout"
-                                                                            ItemHeight="120"
-                                                                            ItemWidth="200"
-                                                                            Spacing="12" />
-                        </winui:ItemsRepeater.Layout>
-                        <winui:ItemsRepeater.ItemTemplate>
-                            <DataTemplate x:DataType="models:Photo">
-                                <RadioButton Click="OnThumbnailClicked"
-                                             GroupName="Thumbnail"
-                                             Style="{StaticResource Style-RadioButton-Thumbnail}"
-                                             Tag="{x:Bind Title}">
-                                    <Image x:Name="Thumbnail"
-                                           Source="{x:Bind Url}"
-                                           Stretch="UniformToFill" />
-                                </RadioButton>
-                            </DataTemplate>
-                        </winui:ItemsRepeater.ItemTemplate>
-                    </winui:ItemsRepeater>
-                </ScrollViewer>
+            <Grid x:Name="BannerHost"
+                  BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+                  BorderThickness="1">
+                <Image x:Name="Banner" Stretch="UniformToFill" />
+                <TextBlock x:Name="BannerTitle"
+                           Margin="40"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           FontFamily="{StaticResource Medium}"
+                           FontSize="12"
+                           Foreground="White"
+                           TextLineBounds="Tight" />
             </Grid>
+            <ScrollViewer x:Name="RepeaterScroll"
+                          Grid.Row="1"
+                          HorizontalScrollBarVisibility="Hidden"
+                          HorizontalScrollMode="Enabled"
+                          VerticalScrollBarVisibility="Disabled"
+                          VerticalScrollMode="Disabled">
+                <winui:ItemsRepeater x:Name="Repeater"
+                                     HorizontalCacheLength="5"
+                                     VerticalCacheLength="0">
+                    <winui:ItemsRepeater.Layout>
+                        <layouts:VirtualizingUniformCarousalStackLayout x:Name="Layout"
+                                                                        ItemHeight="120"
+                                                                        ItemWidth="200"
+                                                                        Spacing="12" />
+                    </winui:ItemsRepeater.Layout>
+                    <winui:ItemsRepeater.ItemTemplate>
+                        <DataTemplate x:DataType="models:Photo">
+                            <RadioButton Click="OnThumbnailClicked"
+                                         GroupName="Thumbnail"
+                                         Style="{StaticResource Style-RadioButton-Thumbnail}"
+                                         Tag="{x:Bind Title}">
+                                <Image x:Name="Thumbnail"
+                                       Source="{x:Bind Url}"
+                                       Stretch="UniformToFill" />
+                            </RadioButton>
+                        </DataTemplate>
+                    </winui:ItemsRepeater.ItemTemplate>
+                </winui:ItemsRepeater>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

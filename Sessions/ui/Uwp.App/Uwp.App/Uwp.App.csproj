@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BlurredBackground.xaml.cs">
+      <DependentUpon>BlurredBackground.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GaugeView.xaml.cs">
       <DependentUpon>GaugeView.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\BlurredBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GaugeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -9,22 +9,25 @@
              mc:Ignorable="d">
 
     <Grid x:Name="Root"
+          Padding="40,32,40,0"
           BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
           BorderThickness="1,0,0,1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <Viewbox StretchDirection="DownOnly">
+            <Grid ColumnSpacing="80">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-        <controls:SpeedGauge x:Name="Gauge1"
-                             Margin="0,0,-80,0"
-                             AverageValue="17000"
-                             MaxValue="19800"
-                             PercentValue="66" />
-        <controls:SpeedGauge Grid.Column="1"
-                             Margin="-80,0,0,0"
-                             AverageValue="19600"
-                             MaxValue="22470"
-                             PercentValue="87" />
+                <controls:SpeedGauge x:Name="Gauge1"
+                                     AverageValue="17000"
+                                     MaxValue="19800"
+                                     PercentValue="66" />
+                <controls:SpeedGauge Grid.Column="1"
+                                     AverageValue="19600"
+                                     MaxValue="22470"
+                                     PercentValue="87" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

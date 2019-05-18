@@ -18,9 +18,13 @@
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
+        <controls:BlurredBackground x:Name="BlurredBackground"
+                                    Grid.RowSpan="3"
+                                    Grid.ColumnSpan="3" />
+
         <controls:ImageView x:Name="ImageView"
-                            Grid.RowSpan="3"
-                            Grid.ColumnSpan="3" />
+                            Grid.RowSpan="2"
+                            ImageUpdated="ImageView_ImageUpdated" />
 
         <controls:MissionView Grid.Row="2" />
 
