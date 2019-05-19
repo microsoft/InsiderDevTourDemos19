@@ -22,6 +22,8 @@
                         <Setter Target="LayoutRoot.VerticalScrollMode" Value="Disabled" />
                         <Setter Target="LayoutRoot.VerticalScrollBarVisibility" Value="Disabled" />
 
+                        <Setter Target="HorizontalTopSeparator.Visibility" Value="Collapsed" />
+
                         <Setter Target="RootGrid.RowDefinitions[0].Height" Value="*" />
                         <Setter Target="RootGrid.RowDefinitions[0].MaxHeight" Value="480" />
                         <Setter Target="RootGrid.RowDefinitions[1].Height" Value="*" />
@@ -186,6 +188,92 @@
                                                  Duration="0:0:0.6" />
                 </animations:Implicit.HideAnimations>
             </controls:JournalView>
+
+            <!--#region Separators-->
+            <Line x:Name="HorizontalTopSeparator"
+                  Margin="0,0,0,-0.5"
+                  VerticalAlignment="Bottom"
+                  Stretch="Fill"
+                  Stroke="{StaticResource SystemControlBackgroundListLowBrush}"
+                  X2="1">
+                <animations:Implicit.ShowAnimations>
+                    <animations:OpacityAnimation Delay="0:0:0.2"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </Line>
+
+            <Line x:Name="HorizontalLeftSeparator"
+                  Grid.Row="1"
+                  Margin="0,0,0,-0.5"
+                  VerticalAlignment="Bottom"
+                  Stretch="Fill"
+                  Stroke="{StaticResource SystemControlBackgroundListLowBrush}"
+                  X2="1">
+                <animations:Implicit.ShowAnimations>
+                    <animations:OpacityAnimation Delay="0:0:0.2"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </Line>
+
+            <Line x:Name="VerticalMiddleSeparator"
+                  Grid.RowSpan="4"
+                  Margin="0,0,-0.5,0"
+                  HorizontalAlignment="Right"
+                  Stretch="Fill"
+                  Stroke="{StaticResource SystemControlBackgroundListLowBrush}"
+                  Y2="1">
+                <animations:Implicit.ShowAnimations>
+                    <animations:OpacityAnimation Delay="0:0:0.2"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </Line>
+
+            <Line x:Name="HorizontalRightSeparator"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Margin="0,0,0,-0.5"
+                  VerticalAlignment="Bottom"
+                  Stretch="Fill"
+                  Stroke="{StaticResource SystemControlBackgroundListLowBrush}"
+                  X2="1">
+                <animations:Implicit.ShowAnimations>
+                    <animations:OpacityAnimation Delay="0:0:0.2"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </Line>
+            <!--#endregion-->
 
             <controls:HelpView x:Name="HelperView"
                                Grid.RowSpan="4"

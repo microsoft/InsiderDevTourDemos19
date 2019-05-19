@@ -8,10 +8,7 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
 
-    <Grid x:Name="Root"
-          Padding="40,32"
-          BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
-          BorderThickness="1,0,0,1">
+    <Grid x:Name="Root" Padding="40,32">
         <Viewbox StretchDirection="DownOnly">
             <Grid ColumnSpacing="80">
                 <Grid.ColumnDefinitions>
