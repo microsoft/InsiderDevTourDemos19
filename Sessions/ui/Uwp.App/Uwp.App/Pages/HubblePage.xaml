@@ -91,7 +91,20 @@
         <Rectangle x:Name="ModelHost"
                    Grid.RowSpan="4"
                    Grid.ColumnSpan="4"
-                   SizeChanged="ModelHost_SizeChanged" />
+                   extensions:VisualExtensions.NormalizedCenterPoint="0.5,0.5,0"
+                   SizeChanged="ModelHost_SizeChanged">
+            <animations:Implicit.HideAnimations>
+                <animations:ScaleAnimation From="1"
+                                           To="0.8"
+                                           Duration="0:0:0.6" />
+                <animations:TranslationAnimation From="0,0,0"
+                                                 To="0,80,0"
+                                                 Duration="0:0:0.6" />
+                <animations:OpacityAnimation From="1"
+                                             To="0"
+                                             Duration="0:0:0.6" />
+            </animations:Implicit.HideAnimations>
+        </Rectangle>
 
         <winui:AnimatedVisualPlayer x:Name="LottiePlayer"
                                     Grid.RowSpan="4"
@@ -102,6 +115,38 @@
             <lottie:LottieVisualSource UriSource="ms-appx:///Assets/LottieFiles/PaperPlane.json" />
         </winui:AnimatedVisualPlayer>
 
+        <TextBlock x:Name="Credits"
+                   Grid.Row="2"
+                   Grid.Column="2"
+                   Margin="0,0,52,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   FontFamily="{StaticResource Medium}"
+                   FontSize="12"
+                   Foreground="{StaticResource Brush-Gray-2}"
+                   Text="Credits: NASA's Goddard Space Flight Center">
+            <animations:Implicit.ShowAnimations>
+                <animations:TranslationAnimation Delay="0:0:0.4"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0,24,0"
+                                                 To="0,0,0"
+                                                 Duration="0:0:1.2" />
+                <animations:OpacityAnimation Delay="0:0:0.4"
+                                             SetInitialValueBeforeDelay="True"
+                                             From="0"
+                                             To="1"
+                                             Duration="0:0:1.2" />
+            </animations:Implicit.ShowAnimations>
+            <animations:Implicit.HideAnimations>
+                <animations:TranslationAnimation From="0,0,0"
+                                                 To="0,24,0"
+                                                 Duration="0:0:0.6" />
+                <animations:OpacityAnimation From="1"
+                                             To="0"
+                                             Duration="0:0:0.6" />
+            </animations:Implicit.HideAnimations>
+        </TextBlock>
+
         <Button x:Name="Surprise"
                 Grid.Row="3"
                 Grid.ColumnSpan="4"
@@ -111,12 +156,12 @@
                 Click="Surprise_Click"
                 Content="CLICK ME!">
             <animations:Implicit.ShowAnimations>
-                <animations:TranslationAnimation Delay="0:0:0.4"
+                <animations:TranslationAnimation Delay="0:0:0.5"
                                                  SetInitialValueBeforeDelay="True"
                                                  From="0,80,0"
                                                  To="0,0,0"
                                                  Duration="0:0:1.2" />
-                <animations:OpacityAnimation Delay="0:0:0.4"
+                <animations:OpacityAnimation Delay="0:0:0.5"
                                              SetInitialValueBeforeDelay="True"
                                              From="0"
                                              To="1"

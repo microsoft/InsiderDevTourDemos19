@@ -42,7 +42,8 @@ namespace Uwp.App.Pages
             LottiePlayer.Visibility = Visibility.Visible;
             LottiePlayer.AutoPlay = true;
 
-            HubbleImage.Fade(duration: 800).Start();
+            HubbleImage.Visibility = Visibility.Collapsed;
+            Credits.Visibility = Visibility.Collapsed;
 
             var uri = new Uri("ms-appx:///Assets/Models/Telescope.gltf");
             var storageFile = await StorageFile.GetFileFromApplicationUriAsync(uri);

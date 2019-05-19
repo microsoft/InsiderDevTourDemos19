@@ -69,7 +69,7 @@
                 <animations:Implicit.ShowAnimations>
                     <animations:ScaleAnimation Delay="0:0:0.6"
                                                SetInitialValueBeforeDelay="True"
-                                               From="0.8"
+                                               From="1.2"
                                                To="1"
                                                Duration="0:0:1.2" />
                     <animations:OpacityAnimation Delay="0:0:0.6"
@@ -80,7 +80,7 @@
                 </animations:Implicit.ShowAnimations>
                 <animations:Implicit.HideAnimations>
                     <animations:ScaleAnimation From="1"
-                                               To="0.8"
+                                               To="1.2"
                                                Duration="0:0:0.6" />
                     <animations:OpacityAnimation From="1"
                                                  To="0"
