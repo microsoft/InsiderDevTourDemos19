@@ -9,8 +9,9 @@
              mc:Ignorable="d">
 
     <Grid x:Name="Root"
-          Padding="24,40,24,0"
+          Padding="24,40"
           BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
+          BorderThickness="0,0,0,1"
           RowSpacing="36">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -36,9 +37,6 @@
                 <controls:MissionItem Date="May 20, 1990" Description="FIRST IMAGE TAKEN FROM THE HUBBLE" />
                 <controls:MissionItem Date="December 1993" Description="Servicing Mission 1" />
                 <controls:MissionItem Date="February 1997" Description="Servicing Mission 2" />
-                <controls:MissionItem Date="December 1999" Description="Servicing Mission 3A" />
-                <controls:MissionItem Date="February 2002" Description="Servicing Mission 3B" />
-                <controls:MissionItem Date="May 2009" Description="Servicing Mission 4" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

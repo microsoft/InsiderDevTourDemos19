@@ -9,7 +9,7 @@
              mc:Ignorable="d">
 
     <Grid x:Name="Root"
-          Padding="40,32,40,0"
+          Padding="40,32"
           BorderBrush="{StaticResource SystemControlBackgroundListLowBrush}"
           BorderThickness="1,0,0,1">
         <Viewbox StretchDirection="DownOnly">

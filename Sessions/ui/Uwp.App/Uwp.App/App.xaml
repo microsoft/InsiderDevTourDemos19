@@ -7,12 +7,23 @@
 
     <Application.Resources>
         <ResourceDictionary>
+            <!--
+                After attaching this animation collection to an element, whenever the position
+                of the element is changed, it will smoothly move from the original position
+                to the new one, in 0.4 seconds.
+            -->
+            <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
+                <animations:OffsetAnimation Duration="0:0:0.4" />
+
+                <!--  Other samples that are not suitable in our case:  -->
+                <animations:OpacityAnimation Duration="0:0:0.4" />
+                <animations:ScaleAnimation Duration="0:0:0.4" />
+                <animations:RotationAnimation Duration="0:0:0.4" />
+            </animations:AnimationCollection>
+
+            <!--#region Default styling-->
             <x:Boolean x:Key="UseSystemFocusVisuals">False</x:Boolean>
             <Color x:Key="SystemAccentColor">#FF3CBFB6</Color>
-
-            <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
-                <animations:OffsetAnimation Duration="0:0:0.6" />
-            </animations:AnimationCollection>
 
             <Style TargetType="TextBox">
                 <Setter Property="FontFamily" Value="{StaticResource Medium}" />
@@ -39,6 +50,7 @@
                 <Setter Property="NeedleWidth" Value="0" />
                 <Setter Property="TickLength" Value="0" />
             </Style>
+            <!--#endregion-->
 
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />

@@ -1,45 +1,195 @@
 ﻿<Page x:Class="Uwp.App.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:controls="using:Uwp.App.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      d:DesignHeight="1200"
       mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="4*" />
-        </Grid.ColumnDefinitions>
+    <ScrollViewer x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="MediumSize">
+                    <VisualState.StateTriggers>
+                        <!--  VisualState to be triggered when window width is >=1008 effective pixels.  -->
+                        <AdaptiveTrigger MinWindowWidth="1008" />
+                    </VisualState.StateTriggers>
 
-        <controls:BlurredBackground x:Name="BlurredBackground"
-                                    Grid.RowSpan="3"
-                                    Grid.ColumnSpan="3" />
+                    <VisualState.Setters>
+                        <Setter Target="LayoutRoot.VerticalScrollMode" Value="Disabled" />
+                        <Setter Target="LayoutRoot.VerticalScrollBarVisibility" Value="Disabled" />
 
-        <controls:ImageView x:Name="ImageView"
-                            Grid.RowSpan="2"
-                            ImageUpdated="ImageView_ImageUpdated" />
+                        <Setter Target="RootGrid.RowDefinitions[0].Height" Value="*" />
+                        <Setter Target="RootGrid.RowDefinitions[0].MaxHeight" Value="480" />
+                        <Setter Target="RootGrid.RowDefinitions[1].Height" Value="*" />
+                        <Setter Target="RootGrid.RowDefinitions[2].Height" Value="*" />
+                        <Setter Target="RootGrid.RowDefinitions[3].Height" Value="0" />
 
-        <controls:MissionView Grid.Row="2" />
+                        <Setter Target="RootGrid.ColumnDefinitions[1].Width" Value="4*" />
+                        <Setter Target="RootGrid.ColumnDefinitions[2].Width" Value="4*" />
 
-        <controls:GaugeView x:Name="GaugeView"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="2" />
+                        <Setter Target="ImageView.(Grid.RowSpan)" Value="2" />
 
-        <controls:JournalView x:Name="JournalView"
-                              Grid.Row="1"
-                              Grid.RowSpan="2"
-                              Grid.Column="1"
-                              Grid.ColumnSpan="2" />
+                        <Setter Target="GaugeView.(Grid.Row)" Value="0" />
+                        <Setter Target="GaugeView.HorizontalAlignment" Value="Stretch" />
+                        <Setter Target="GaugeView.(Grid.Column)" Value="1" />
+                        <Setter Target="GaugeView.(Grid.ColumnSpan)" Value="2" />
 
-        <controls:HelpView x:Name="HelperView"
-                           Grid.RowSpan="3"
-                           Grid.ColumnSpan="3" />
-    </Grid>
+                        <Setter Target="JournalView.(Grid.Row)" Value="1" />
+                        <Setter Target="JournalView.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="JournalView.(Grid.Column)" Value="1" />
+                        <Setter Target="JournalView.(Grid.ColumnSpan)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid x:Name="RootGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="0" />
+            </Grid.ColumnDefinitions>
+
+            <controls:BlurredBackground x:Name="BlurredBackground"
+                                        Grid.RowSpan="4"
+                                        Grid.ColumnSpan="3"
+                                        extensions:VisualExtensions.NormalizedCenterPoint="0.5,0.5,0">
+                <animations:Implicit.ShowAnimations>
+                    <animations:ScaleAnimation Delay="0:0:0.6"
+                                               SetInitialValueBeforeDelay="True"
+                                               From="0.8"
+                                               To="1"
+                                               Duration="0:0:1.2" />
+                    <animations:OpacityAnimation Delay="0:0:0.6"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:ScaleAnimation From="1"
+                                               To="0.8"
+                                               Duration="0:0:0.6" />
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </controls:BlurredBackground>
+
+            <controls:ImageView x:Name="ImageView"
+                                animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}"
+                                ImageUpdated="ImageView_ImageUpdated">
+                <animations:Implicit.ShowAnimations>
+                    <animations:TranslationAnimation Delay="0:0:0.2"
+                                                     SetInitialValueBeforeDelay="True"
+                                                     From="0,-80,0"
+                                                     To="0,0,0"
+                                                     Duration="0:0:1.2" />
+                    <animations:OpacityAnimation Delay="0:0:0.2"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:TranslationAnimation From="0,0,0"
+                                                     To="0,-80,0"
+                                                     Duration="0:0:0.6" />
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </controls:ImageView>
+
+            <controls:MissionView x:Name="MissionView"
+                                  Grid.Row="2"
+                                  animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}">
+                <animations:Implicit.ShowAnimations>
+                    <animations:TranslationAnimation Delay="0:0:0.5"
+                                                     SetInitialValueBeforeDelay="True"
+                                                     From="-80,0,0"
+                                                     To="0,0,0"
+                                                     Duration="0:0:1.2" />
+                    <animations:OpacityAnimation Delay="0:0:0.5"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:TranslationAnimation From="0,0,0"
+                                                     To="-80,0,0"
+                                                     Duration="0:0:0.6" />
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </controls:MissionView>
+
+            <controls:GaugeView x:Name="GaugeView"
+                                Grid.Row="1"
+                                HorizontalAlignment="Left"
+                                animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}">
+                <animations:Implicit.ShowAnimations>
+                    <animations:TranslationAnimation Delay="0:0:0.4"
+                                                     SetInitialValueBeforeDelay="True"
+                                                     From="80,0,0"
+                                                     To="0,0,0"
+                                                     Duration="0:0:1.2" />
+                    <animations:OpacityAnimation Delay="0:0:0.4"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:TranslationAnimation From="0,0,0"
+                                                     To="80,0,0"
+                                                     Duration="0:0:0.6" />
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </controls:GaugeView>
+
+            <controls:JournalView x:Name="JournalView"
+                                  Grid.Row="3"
+                                  animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}">
+                <animations:Implicit.ShowAnimations>
+                    <animations:TranslationAnimation Delay="0:0:0.3"
+                                                     SetInitialValueBeforeDelay="True"
+                                                     From="0,80,0"
+                                                     To="0,0,0"
+                                                     Duration="0:0:1.2" />
+                    <animations:OpacityAnimation Delay="0:0:0.3"
+                                                 SetInitialValueBeforeDelay="True"
+                                                 From="0"
+                                                 To="1"
+                                                 Duration="0:0:1.2" />
+                </animations:Implicit.ShowAnimations>
+                <animations:Implicit.HideAnimations>
+                    <animations:TranslationAnimation From="0,0,0"
+                                                     To="0,80,0"
+                                                     Duration="0:0:0.6" />
+                    <animations:OpacityAnimation From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.6" />
+                </animations:Implicit.HideAnimations>
+            </controls:JournalView>
+
+            <controls:HelpView x:Name="HelperView"
+                               Grid.RowSpan="4"
+                               Grid.ColumnSpan="3" />
+        </Grid>
+    </ScrollViewer>
 </Page>

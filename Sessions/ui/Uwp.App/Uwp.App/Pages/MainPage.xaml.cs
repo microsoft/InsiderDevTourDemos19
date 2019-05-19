@@ -2,6 +2,7 @@
 using Uwp.App.Pages;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace Uwp.App
@@ -23,7 +24,7 @@ namespace Uwp.App
             var pageName = $"Uwp.App.Pages.{pageTag}";
             var pageType = Type.GetType(pageName);
 
-            ContentFrame.Navigate(pageType);
+            ContentFrame.Navigate(pageType, null, new SuppressNavigationTransitionInfo());
         }
 
         private void NavigateToHome()
