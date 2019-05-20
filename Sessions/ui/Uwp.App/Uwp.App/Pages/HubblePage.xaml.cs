@@ -39,30 +39,32 @@ namespace Uwp.App.Pages
         {
             if (_hostVisual.Children.Any()) return;
 
-            LottiePlayer.Visibility = Visibility.Visible;
-            LottiePlayer.AutoPlay = true;
+            // TODO 6.2: [AnimatedVisualPlayer] - Show the Lottie animation while the 3D model is loading.
+            //LottiePlayer.Visibility = Visibility.Visible;
+            //LottiePlayer.AutoPlay = true;
 
             HubbleImage.Visibility = Visibility.Collapsed;
-            Credits.Visibility = Visibility.Collapsed;
 
+            // TODO 5.1: [SceneLoader] - Load the .gltf 3D model into a SceneNode.
             var uri = new Uri("ms-appx:///Assets/Models/Telescope.gltf");
             var storageFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
             var buffer = await FileIO.ReadBufferAsync(storageFile);
-
             var loader = new SceneLoader();
-            var model = loader.Load(buffer, _compositor);
+            var sceneNode = loader.Load(buffer, _compositor);
 
-            LottiePlayer.Stop();
-            await LottiePlayer.Fade(duration: 600).StartAsync();
+            // TODO 6.3: [AnimatedVisualPlayer] - Hide the Lottie animation after the 3D model finished loading.
+            //LottiePlayer.Stop();
+            //await LottiePlayer.Fade(duration: 600).StartAsync();
 
+            // TODO 5.2: [SceneLoader] - Use a UIElement ModelHost to host _hostVisual that hosts SceneVisual that hosts SceneNode.
             _hostVisual.RelativeSizeAdjustment = Vector2.One;
             ElementCompositionPreview.SetElementChildVisual(ModelHost, _hostVisual);
-
             _sceneVisual.Scale = new Vector3(2.5f, 2.5f, 1.0f);
             _sceneVisual.Root = SceneNode.Create(_compositor);
             _sceneVisual.Root.Children.Clear();
-            _sceneVisual.Root.Children.Add(model);
+            _sceneVisual.Root.Children.Add(sceneNode);
 
+            // Auto-rotate the SceneVisual.
             var rotationAnimation = _compositor.CreateScalarKeyFrameAnimation();
             rotationAnimation.InsertKeyFrame(1.0f, 360.0f, _compositor.CreateLinearEasingFunction());
             rotationAnimation.Duration = TimeSpan.FromSeconds(16);

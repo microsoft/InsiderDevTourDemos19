@@ -610,6 +610,9 @@
     </UserControl.Resources>
 
     <Grid x:Name="Root">
+        <!--
+            TODO 3.1: [TeachingTip] - Define three TeachTip(s) as a step-by-step guide in a UserControl.
+        -->
         <winui:TeachingTip x:Name="TeachingTip1"
                            Title="Let's start exploring the Hubble!"
                            ActionButtonClick="TeachingTip1_ActionButtonClick"
@@ -635,9 +638,10 @@
             </winui:TeachingTip.HeroContent>
             <winui:TeachingTip.Content>
                 <TextBlock TextWrapping="WrapWholeWords">
-                    To find out more, please visit the <Hyperlink NavigateUri="https://www.nasa.gov/mission_pages/hubble/story/index.html">
+                    To find out more, please visit the<Hyperlink NavigateUri="https://www.nasa.gov/mission_pages/hubble/story/index.html">
                         official website
-                    </Hyperlink>.</TextBlock>
+                    </Hyperlink>
+                    .</TextBlock>
             </winui:TeachingTip.Content>
         </winui:TeachingTip>
 

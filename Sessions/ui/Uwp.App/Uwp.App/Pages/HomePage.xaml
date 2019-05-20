@@ -88,10 +88,17 @@
                 </animations:Implicit.HideAnimations>
             </controls:BlurredBackground>
 
-            <controls:ImageView x:Name="ImageView"
-                                animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}"
-                                ImageUpdated="ImageView_ImageUpdated">
-                <animations:Implicit.ShowAnimations>
+            <!--
+                TODO 4.1: [Implicit Animations] - Add the following implicit offset animation...
+                animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}"
+                to controls:ImageView, controls:MissionView, controls:GaugeView & controls:JournalView.
+            -->
+            <controls:ImageView x:Name="ImageView" ImageUpdated="ImageView_ImageUpdated">
+                <!--
+                    TODO 4.3: [Implicit Animations] - Enable implicit show & hide animations...
+                    on controls:ImageView, controls:MissionView, controls:GaugeView & controls:JournalView.
+                -->
+                <!--<animations:Implicit.ShowAnimations>
                     <animations:TranslationAnimation Delay="0:0:0.2"
                                                      SetInitialValueBeforeDelay="True"
                                                      From="0,-80,0"
@@ -110,13 +117,11 @@
                     <animations:OpacityAnimation From="1"
                                                  To="0"
                                                  Duration="0:0:0.6" />
-                </animations:Implicit.HideAnimations>
+                </animations:Implicit.HideAnimations>-->
             </controls:ImageView>
 
-            <controls:MissionView x:Name="MissionView"
-                                  Grid.Row="2"
-                                  animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}">
-                <animations:Implicit.ShowAnimations>
+            <controls:MissionView x:Name="MissionView" Grid.Row="2">
+                <!--<animations:Implicit.ShowAnimations>
                     <animations:TranslationAnimation Delay="0:0:0.5"
                                                      SetInitialValueBeforeDelay="True"
                                                      From="-80,0,0"
@@ -135,14 +140,13 @@
                     <animations:OpacityAnimation From="1"
                                                  To="0"
                                                  Duration="0:0:0.6" />
-                </animations:Implicit.HideAnimations>
+                </animations:Implicit.HideAnimations>-->
             </controls:MissionView>
 
             <controls:GaugeView x:Name="GaugeView"
                                 Grid.Row="1"
-                                HorizontalAlignment="Left"
-                                animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}">
-                <animations:Implicit.ShowAnimations>
+                                HorizontalAlignment="Left">
+                <!--<animations:Implicit.ShowAnimations>
                     <animations:TranslationAnimation Delay="0:0:0.4"
                                                      SetInitialValueBeforeDelay="True"
                                                      From="80,0,0"
@@ -161,13 +165,11 @@
                     <animations:OpacityAnimation From="1"
                                                  To="0"
                                                  Duration="0:0:0.6" />
-                </animations:Implicit.HideAnimations>
+                </animations:Implicit.HideAnimations>-->
             </controls:GaugeView>
 
-            <controls:JournalView x:Name="JournalView"
-                                  Grid.Row="3"
-                                  animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}">
-                <animations:Implicit.ShowAnimations>
+            <controls:JournalView x:Name="JournalView" Grid.Row="3">
+                <!--<animations:Implicit.ShowAnimations>
                     <animations:TranslationAnimation Delay="0:0:0.3"
                                                      SetInitialValueBeforeDelay="True"
                                                      From="0,80,0"
@@ -186,7 +188,7 @@
                     <animations:OpacityAnimation From="1"
                                                  To="0"
                                                  Duration="0:0:0.6" />
-                </animations:Implicit.HideAnimations>
+                </animations:Implicit.HideAnimations>-->
             </controls:JournalView>
 
             <!--#region Separators-->
