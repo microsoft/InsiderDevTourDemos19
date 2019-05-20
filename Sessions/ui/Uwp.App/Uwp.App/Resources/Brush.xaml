@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  The smaller the number is, the darker the color gets.  -->
+
+    <Color x:Key="Color-Gray-0">#FF050E0E</Color>
+    <Color x:Key="Color-Gray-1">#FF4C5353</Color>
+    <Color x:Key="Color-Gray-2">#FF9BA9A9</Color>
+    <Color x:Key="Color-Gray-3">#FFDEDEDE</Color>
+
+    <Color x:Key="Color-Blue-0">#FF075C66</Color>
+    <Color x:Key="Color-Blue-1">#FF3CBFB6</Color>
+    <Color x:Key="Color-Blue-2">#FF6ECDCA</Color>
+    <Color x:Key="Color-Blue-3">#FFC1F2F0</Color>
+
+    <SolidColorBrush x:Key="Brush-Gray-0" Color="{StaticResource Color-Gray-0}" />
+    <SolidColorBrush x:Key="Brush-Gray-1" Color="{StaticResource Color-Gray-1}" />
+    <SolidColorBrush x:Key="Brush-Gray-2" Color="{StaticResource Color-Gray-2}" />
+    <SolidColorBrush x:Key="Brush-Gray-3" Color="{StaticResource Color-Gray-3}" />
+
+    <SolidColorBrush x:Key="Brush-Blue-0" Color="{StaticResource Color-Blue-0}" />
+    <SolidColorBrush x:Key="Brush-Blue-1" Color="{StaticResource Color-Blue-1}" />
+    <SolidColorBrush x:Key="Brush-Blue-2" Color="{StaticResource Color-Blue-2}" />
+    <SolidColorBrush x:Key="Brush-Blue-3" Color="{StaticResource Color-Blue-3}" />
+</ResourceDictionary>

@@ -5,8 +5,11 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,6 +42,19 @@ namespace Uwp.App
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            CustomizeTitleBar();
+            void CustomizeTitleBar()
+            {
+                // Draw into the title bar.
+                CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
+                // Remove the solid-colored backgrounds behind the caption controls and system back button.
+                var viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+                viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
+                viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                viewTitleBar.ButtonForegroundColor = (Color)Resources["SystemBaseHighColor"];
+            }
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -52,7 +68,6 @@ namespace Uwp.App
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
@@ -93,7 +108,6 @@ namespace Uwp.App
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
     }

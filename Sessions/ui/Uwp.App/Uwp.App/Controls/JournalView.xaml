@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Uwp.App.Controls.JournalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:localprimitives="using:Microsoft.Toolkit.Uwp.UI.Controls.Primitives"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+    <Grid x:Name="Root"
+          Padding="24,40,24,24"
+          RowSpacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="32,0,0,0"
+                   FontFamily="{StaticResource SemiBold}"
+                   FontSize="18"
+                   Foreground="{StaticResource Brush-Gray-3}"
+                   Text="JOURNAL" />
+
+        <toolkit:DataGrid x:Name="DataGrid"
+                          Grid.Row="1"
+                          AlternatingRowBackground="#33000000"
+                          AlternatingRowForeground="{StaticResource Brush-Gray-3}"
+                          AreRowDetailsFrozen="False"
+                          AreRowGroupHeadersFrozen="True"
+                          AutoGenerateColumns="False"
+                          CanUserReorderColumns="False"
+                          CanUserResizeColumns="False"
+                          CanUserSortColumns="False"
+                          ColumnHeaderHeight="56"
+                          FontFamily="{StaticResource Medium}"
+                          FrozenColumnCount="1"
+                          GridLinesVisibility="None"
+                          HeadersVisibility="Column"
+                          HorizontalScrollBarVisibility="Visible"
+                          IsReadOnly="True"
+                          MaxColumnWidth="640"
+                          RowDetailsVisibilityMode="Collapsed"
+                          RowForeground="{StaticResource Brush-Gray-3}"
+                          RowGroupHeaderPropertyNameAlternative="Range"
+                          RowHeight="40"
+                          SelectionMode="Extended"
+                          VerticalScrollBarVisibility="Visible">
+            <toolkit:DataGrid.Resources>
+                <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush" Color="Transparent" />
+                <SolidColorBrush x:Key="DataGridCellFocusVisualSecondaryBrush" Color="Transparent" />
+                <SolidColorBrush x:Key="GridLinesBrush" Color="{StaticResource SystemListLowColor}" />
+                <Color x:Key="DataGridColumnHeaderBackgroundColor">Transparent</Color>
+
+                <Style TargetType="localprimitives:DataGridColumnHeader">
+                    <Setter Property="SeparatorVisibility" Value="Collapsed" />
+                    <Setter Property="FontFamily" Value="{StaticResource SemiBold}" />
+                    <Setter Property="Foreground" Value="{StaticResource Brush-Gray-2}" />
+                </Style>
+            </toolkit:DataGrid.Resources>
+
+            <toolkit:DataGrid.Columns>
+                <toolkit:DataGridTextColumn Width="20" Header="" />
+                <toolkit:DataGridTextColumn Binding="{Binding Year}" Header="YEAR" />
+                <toolkit:DataGridTextColumn Binding="{Binding Event}" Header="EVENT" />
+            </toolkit:DataGrid.Columns>
+        </toolkit:DataGrid>
+
+        <StackPanel Grid.Row="2"
+                    Margin="0,0,40,24"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="8">
+            <Button x:Name="Share" Content="SHARE" />
+            <Button Content="DOWNLOAD" />
+        </StackPanel>
+    </Grid>
+</UserControl>

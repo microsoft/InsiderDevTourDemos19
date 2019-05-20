@@ -1,0 +1,25 @@
+﻿.blazor-grid-header {
+    text-align: center;
+    border-collapse: collapse;
+    background: #ebebeb;
+}
+
+.blazor-row-item:hover {
+    background: #9fcdf4;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #d1d1d1;
+    text-align: center;
+}
+
+.pagebutton {
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.currentpage {
+    background-color: dodgerblue;
+    color: white;
+}

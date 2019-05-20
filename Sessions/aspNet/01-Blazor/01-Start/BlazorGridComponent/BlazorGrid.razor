@@ -1,0 +1,135 @@
+﻿@typeparam TableItem
+
+<table>
+    <thead>
+        <tr class="blazor-grid-header">@GridHeader</tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ItemList)
+        {
+            <tr class="blazor-row-item">@GridRow(item)</tr>
+        }
+    </tbody>
+</table>
+<div class="pagination">
+
+    <button class="btn pagebutton btn-info" onclick=@(async () => SetPagerSize("back"))>&laquo;</button>
+    <button class="btn pagebutton btn-secondary" onclick=@(async () => NavigateToPage("previous"))>Prev</button>
+
+    @for (int i = startPage; i <= endPage; i++)
+    {
+        var currentPage = i;
+        <button class="btn pagebutton @(currentPage==curPage?"currentpage":"")" onclick=@(async () => updateList(currentPage))>
+            @currentPage
+        </button>
+    }
+
+    <button class="btn pagebutton btn-secondary" onclick=@(async () => NavigateToPage("next"))>Next</button>
+    <button class="btn pagebutton btn-info" onclick=@(async () => SetPagerSize("forward"))>&raquo;</button>
+
+    <span class="pagebutton btn btn-link disabled">Page @curPage of @totalPages</span>
+
+</div>
+
+@functions {
+    int totalPages;
+    int curPage;
+    int pagerSize;
+
+    int startPage;
+    int endPage;
+
+    /// <summary>
+    /// Header for BlazorGrid.
+    /// </summary>
+    [Parameter]
+    RenderFragment GridHeader { get; set; }
+
+    /// <summary>
+    /// Rows for BlazorGrid.
+    /// </summary>
+    [Parameter]
+    RenderFragment<TableItem> GridRow { get; set; }
+
+    /// <summary>
+    /// The list of item supplied to the BlazorGrid.
+    /// </summary>
+    [Parameter]
+    IEnumerable<TableItem> Items { get; set; }
+
+    /// <summary>
+    /// Size of each page of BlazorGrid. This is a required field.
+    /// </summary>
+    [Parameter]
+    int PageSize { get; set; }
+
+    IEnumerable<TableItem> ItemList { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        pagerSize = 5;
+        curPage = 1;
+
+        ItemList = Items.Skip((curPage - 1) * PageSize).Take(PageSize);
+        totalPages = (int)Math.Ceiling(Items.Count() / (decimal)PageSize);
+
+        SetPagerSize("forward");
+    }
+
+    public void updateList(int currentPage)
+    {
+        ItemList = Items.Skip((currentPage - 1) * PageSize).Take(PageSize);
+        curPage = currentPage;
+        this.StateHasChanged();
+    }
+
+    public void SetPagerSize(string direction)
+    {
+        if (direction == "forward" && endPage < totalPages)
+        {
+            startPage = endPage + 1;
+            if (endPage + pagerSize < totalPages)
+            {
+                endPage = startPage + pagerSize - 1;
+            }
+            else
+            {
+                endPage = totalPages;
+            }
+            this.StateHasChanged();
+        }
+        else if (direction == "back" && startPage > 1)
+        {
+            endPage = startPage - 1;
+            startPage = startPage - pagerSize;
+        }
+    }
+
+    public void NavigateToPage(string direction)
+    {
+        if (direction == "next")
+        {
+            if (curPage < totalPages)
+            {
+                if (curPage == endPage)
+                {
+                    SetPagerSize("forward");
+                }
+                curPage += 1;
+            }
+        }
+        else if (direction == "previous")
+        {
+            if (curPage > 1)
+            {
+                if (curPage == startPage)
+                {
+                    SetPagerSize("back");
+                }
+                curPage -= 1;
+            }
+        }
+
+        updateList(curPage);
+    }
+}  
