@@ -1,6 +1,5 @@
 ﻿using Microsoft.Toolkit.Wpf.UI.XamlHost;
 using System;
-using System.Windows;
 using Windows.Devices.Geolocation;
 
 namespace ModernWpfDemo
@@ -12,7 +11,7 @@ namespace ModernWpfDemo
             InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Geolocator geolocator = new Geolocator() { DesiredAccuracyInMeters = 5 };
             Geoposition pos = await geolocator.GetGeopositionAsync();
