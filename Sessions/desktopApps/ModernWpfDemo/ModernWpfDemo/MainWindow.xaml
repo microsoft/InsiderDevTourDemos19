@@ -1,0 +1,32 @@
+﻿<Window x:Class="ModernWpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls"
+        xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Longitude: " FontSize="18" Margin="10"/>
+            <TextBlock Text="Latitude: " FontSize="18" Margin="10"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock x:Name="LongBlock" FontSize="18" Margin="10"/>
+            <TextBlock x:Name="LatBlock" FontSize="18" Margin="10"/>
+        </StackPanel>
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Find Me!" FontSize="18" Margin="5" Click="Button_Click"/>
+        <controls:MapControl TrafficFlowVisible="True" x:Name="TheMap" Grid.Column="2" />
+        <xamlHost:WindowsXamlHost InitialTypeName="Windows.UI.Xaml.Controls.TextBox" ChildChanged="WindowsXamlHost_ChildChanged" Grid.Column="2" Grid.Row="1" />
+    </Grid>
+</Window>
