@@ -22,35 +22,35 @@ Do a search on *"TODO"* in Visual Studio and use <kbd>Ctrl</kbd> + <kbd>K</kbd> 
 
 Clicking on each item from the Task List will take you directly to a predefined location in the code.
 
-### Step 1.1 `ItemsRepeater`
+#### Step 1.1 `ItemsRepeater`
 
 *Click on the first *TODO* item to navigate to the code, do the same for the rest of the steps.*
 
 Remove the `ListView` from XAML and uncomment out the `ScrollViewer` below that contains the `ItemsRepeater`.
 
-### Step 1.2 `ItemsRepeater`
+#### Step 1.2 `ItemsRepeater`
 
 Uncomment out the `Loaded` event.
 
 After you have done [1.1](#step-11-itemsrepeater) & [1.2](#step-12-itemsrepeater), you should see a carousel-like `ItemsRepeater` control implemented on the UI.
 
-### Step 2.0 `AcrylicBrush`
+#### Step 2.0 `AcrylicBrush`
 
 Uncomment out the `Rectangle` that is colored with the `AcrylicBrush`.
 
 After you have done [2.0](#step-20-acrylicbrush), you should see a blurred background that gets updated to a new image every time you select a different one from the `ItemsRepeater` control.
 
-### Step 3.1 `TeachingTip`
+#### Step 3.1 `TeachingTip`
 
 Check out how the three `TeachingTip`s are defined inside a `UserControl`.
 
-### Step 3.2 `TeachingTip`
+#### Step 3.2 `TeachingTip`
 
 Check out how the `Target` of the `TeachingTip` is setup.
 
 After you have gone through [3.1](#step-31-teachingtip) & [3.2](#step-32-teachingtip), click on the circular button from the bottom of the `NavigationView` to see how the *step-by-step guide* works.
 
-### Step 4.1 `ImplicitAnimations`
+#### Step 4.1 `ImplicitAnimations`
 
 Add `animations:Implicit.Animations="{StaticResource ImplicitOffsetAnimation}"` to `controls:ImageView`, `controls:MissionView`, `controls:GaugeView` & `controls:JournalView`.
 
@@ -63,11 +63,11 @@ For example,
 
 After you have done [4.1](#step-41-implicit-animations), you should see components smoothly move to their new position when you resize the app window.
 
-### Step 4.2 `ImplicitAnimations`
+#### Step 4.2 `ImplicitAnimations`
 
 Remove the default `Navigate` method with the new one that suppresses the default navigation animation.
 
-### Step 4.3 `ImplicitAnimations`
+#### Step 4.3 `ImplicitAnimations`
 
 Uncomment out animation code on `controls:ImageView`, `controls:MissionView`, `controls:GaugeView` & `controls:JournalView`. 
 
@@ -99,25 +99,25 @@ For example,
 
 After you have done [4.2](#step-42-implicit-animations) & [4.3](#step-43-implicit-animations), try to navigate from the current page to another page to see customized page animations.
 
-### Step 5.1 `SceneLoader`
+#### Step 5.1 `SceneLoader`
 
 Check out how to use the `SceneLoader` API *(Nuget link missing atm)* to load a `.gltf` file into a `SceneNode`.
 
-### Step 5.2 `SceneLoader`
+#### Step 5.2 `SceneLoader`
 
 Check out how to attach the `SceneNode` to UI.
 
 After you have gone through [5.1](#step-51-sceneloader) & [5.2](#step-52-sceneloader), you should have a basic understanding of how the `SceneLoader` works.
 
-### Step 6.1 `AnimatedVisualLayer`
+#### Step 6.1 `AnimatedVisualLayer`
 
 Uncomment out the `winui:AnimatedVisualPlayer` control from XAML.
 
-### Step 6.2 `AnimatedVisualLayer`
+#### Step 6.2 `AnimatedVisualLayer`
 
 Uncomment out the code that shows the Lottie animation.
 
-### Step 6.3 `AnimatedVisualLayer`
+#### Step 6.3 `AnimatedVisualLayer`
 
 Uncomment out the code that hides the Lottie animation.
 
