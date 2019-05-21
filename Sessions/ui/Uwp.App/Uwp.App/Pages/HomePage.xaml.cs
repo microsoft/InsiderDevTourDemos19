@@ -18,7 +18,7 @@ namespace Uwp.App.Pages
             JournalView.LoadDataGrid();
         }
 
-        internal void ShowTeachingTips() => 
+        internal void ShowTeachingTips() =>
             HelperView.ShowTeachingTips(GaugeView.TeachingTipTarget, JournalView.TeachingTipTarget);
 
         private void ImageView_ImageUpdated(object sender, Controls.ImageUpdatedEventArgs args)

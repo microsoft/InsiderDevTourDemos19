@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PWA Myths Busting</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel='stylesheet' href='fluentweb.css' />
+    <script src="fluentweb.js"></script>
+    <style>
+        body {
+            background-image: url(IDTBackground.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #235689;
+            overflow-y: hidden;
+        }
+
+        .buttonsContainer {
+            display: flex;
+            /*position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;*/
+            flex-wrap: wrap;
+        }
+
+        .grid {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: 1fr;
+            grid-template-rows: 100vh;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-family: 'Segoe UI';
+            font-size: 16px;
+            transition: transform 0.25s ease;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 60px;
+            width: 100px;
+            background-color: #8AA3BD;
+            color: white;
+        }
+
+        .external {
+            background-color: #235689;
+        }
+
+            button:focus {
+                outline: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="buttonsContainer has-acrylic-60 is-black">
+            <button id="PWABuilder" class="has-reveal is-dark external">Myth 1</button>
+            <button id="WASMButton" class="has-reveal is-dark">Myth 2</button>
+            <button id="GraphExplorer" class="has-reveal is-dark external">Myth 3 - Demo 1</button>
+            <button id="MGTButton" class="has-reveal is-dark">Myth 3 - Demo 2</button>
+            <button id="WebGL" class="has-reveal is-dark">Myth 4</button>
+            <button id="MSStorePWA" class="has-reveal is-dark external">Myth 5 - Demo 1</button>
+            <button id="PlayStorePWA" class="has-reveal is-dark external">Myth 5 - Demo 2</button>
+            <button id="PWAFromBrowser" class="has-reveal is-dark external">Myth 5 - Demo 3</button>
+            <button id="FluentWebFabric" class="has-reveal is-dark external">Myth 6 - Demo 1</button>
+            <button id="FluentWebRevealAcrylic" class="has-reveal is-dark">Myth 6 - Demo 2</button>
+            <button id="Notification" class="has-reveal is-dark external">Myth 7</button>
+            <button id="WebBT" class="has-reveal is-dark external">Myth 8</button>
+        </div>
+    </div>
+    <script>
+        var PWABuilder = document.getElementById("PWABuilder");
+        PWABuilder.addEventListener("click", () => {
+            window.open("https://www.pwabuilder.com", "_blank");
+        });
+        var WASMButton = document.getElementById("WASMButton");
+        WASMButton.addEventListener("click", () => {
+            window.location.href = './WASM/index-video.html';
+        });
+        var GraphExplorer = document.getElementById("GraphExplorer");
+        GraphExplorer.addEventListener("click", () => {
+            window.open("https://developer.microsoft.com/en-us/graph/graph-explorer", "_blank");
+        });
+        var MGTButton = document.getElementById("MGTButton");
+        MGTButton.addEventListener("click", () => {
+            window.location.href = './MGT/index.html';
+        });
+        var MGTButton = document.getElementById("WebGL");
+        MGTButton.addEventListener("click", () => {
+            window.location.href = './WebGL2/index.html';
+        });
+        var MSStorePWA = document.getElementById("MSStorePWA");
+        MSStorePWA.addEventListener("click", () => {
+            window.open("https://www.microsoft.com/store/productId/9WZDNCRDBZT1", "_blank");
+        });
+        var PlayStorePWA = document.getElementById("PlayStorePWA");
+        PlayStorePWA.addEventListener("click", () => {
+            window.open("https://play.google.com/store/apps/details?id=www.urzagatherer.app&hl=en_US", "_blank");
+        });
+        var PWAFromBrowser = document.getElementById("PWAFromBrowser");
+        PWAFromBrowser.addEventListener("click", () => {
+            window.open("https://www.urzagatherer.app/", "_blank");
+        });
+        var FluentWebFabric = document.getElementById("FluentWebFabric");
+        FluentWebFabric.addEventListener("click", () => {
+            window.open("https://developer.microsoft.com/en-us/fabric#/controls/web", "_blank");
+        });
+        var FluentWebRevealAcrylic = document.getElementById("FluentWebRevealAcrylic");
+        FluentWebRevealAcrylic.addEventListener("click", () => {
+            window.location.href = './Fluent/index.html';
+        });
+        var Notification = document.getElementById("Notification");
+        Notification.addEventListener("click", () => {
+            window.open("https://northwindpwa.azurewebsites.net", "_blank");
+        });
+        var WebBT = document.getElementById("WebBT");
+        WebBT.addEventListener("click", () => {
+            window.open("https://developer.nordicsemi.com/thingy/52/", "_blank");
+        });
+    </script>
+    <script>
+        // This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
+
+        // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+
+        // Check compatibility for the browser we're running this in
+        if ("serviceWorker" in navigator) {
+            if (navigator.serviceWorker.controller) {
+                console.log("[PWA Builder] active service worker found, no need to register");
+            } else {
+                // Register the service worker
+                navigator.serviceWorker
+                    .register("pwabuilder-sw.js", {
+                        scope: "./"
+                    })
+                    .then(function (reg) {
+                        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+                    });
+            }
+        }
+    </script>
+</body>
+</html>

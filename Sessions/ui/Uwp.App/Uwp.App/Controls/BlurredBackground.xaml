@@ -11,7 +11,10 @@
         <Image x:Name="BackgroundImage"
                Opacity="0.15"
                Stretch="UniformToFill" />
-        <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3">
+        <!--
+            TODO 2.0: [AcrylicBrush] - Enable AcrylicBrush in XAML to make the background more interesting.
+        -->
+        <!--<Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3">
             <Rectangle.Fill>
                 <AcrylicBrush BackgroundSource="Backdrop"
                               FallbackColor="{StaticResource Color-Gray-0}"
@@ -19,6 +22,6 @@
                               TintLuminosityOpacity="0"
                               TintOpacity="0.9" />
             </Rectangle.Fill>
-        </Rectangle>
+        </Rectangle>-->
     </Grid>
 </UserControl>

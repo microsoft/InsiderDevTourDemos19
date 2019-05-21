@@ -1,0 +1,84 @@
+﻿{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "PWA Myths Busting",
+  "scope": "./",
+  "display": "standalone",
+  "start_url": "./",
+  "short_name": "PWA MB",
+  "theme_color": "#235689",
+  "description": "",
+  "orientation": "any",
+  "background_color": "#235689",
+  "generated": "true",
+   "icons": [
+      {
+        "src": "./images/pwa44.png",
+        "sizes": "44x44"
+      },
+    {
+      "src": "./images/pwa48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "./images/pwa300.png",
+      "sizes": "300x300"
+    },
+    {
+      "src": "./images/pwa150.png",
+      "sizes": "150x150"
+    },
+    {
+      "src": "./images/pwa88.png",
+      "sizes": "88x88"
+    },
+    {
+      "src": "./images/pwa24.png",
+      "sizes": "24x24"
+    },
+    {
+      "src": "./images/pwa50.png",
+      "sizes": "50x50"
+    },
+    {
+      "src": "./images/pwa192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./images/pwa144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "./images/pwa96.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "./images/pwa72.png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "./images/pwa36.png",
+      "sizes": "36x36"
+    },
+    {
+      "src": "./images/pwa1024.png",
+      "sizes": "1024x1024"
+    },
+    {
+      "src": "./images/pwa180.png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "./images/pwa152.png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "./images/pwa120.png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "./images/pwa76.png",
+      "sizes": "76x76"
+    }
+    ]
+}

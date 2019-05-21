@@ -63,29 +63,29 @@ namespace Uwp.App.Controls
             InitializeComponent();
 
             _compositor = Window.Current.Compositor;
-            VisualExtensions.GetVisual(RepeaterScroll).Clip = _compositor.CreateInsetClip();
+            VisualExtensions.GetVisual(ImageList).Clip = _compositor.CreateInsetClip();
         }
 
         public event ImageUpdatedEventHandler ImageUpdated;
 
         public void LoadImages()
         {
-            Repeater.ItemsSource = _photos;
             Banner.Source = new BitmapImage(new Uri(_photos[0].Url));
             BannerTitle.Text = _photos[0].Title;
-            Repeater.Loaded += Repeater_Loaded;
-
             ImageUpdated.Invoke(this, new ImageUpdatedEventArgs(Banner.Source));
-        }
 
-        private async void Repeater_Loaded(object sender, RoutedEventArgs e)
-        {
-            RepeaterScroll.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
-            ScrollToCenterOfViewport(sender);
+            // TODO 1.2: [ItemsRepeater] - Auto-select first photo when loaded.
+            //Repeater.Loaded += async (s, e) =>
+            //{
+            //    // ChangeView can be called only when the layout has completed, hence waiting in the Loaded event.
+            //    ImageList.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
+            //    ScrollToCenterOfViewport(s);
 
-            await Task.Delay(1200);
-            var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).FirstOrDefault();
-            if (first != null) first.IsChecked = true;
+            //    // Auto-select first photo.
+            //    await Task.Delay(1200);
+            //    var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).FirstOrDefault();
+            //    if (first != null) first.IsChecked = true;
+            //};
         }
 
         private void OnThumbnailClicked(object sender, RoutedEventArgs e)

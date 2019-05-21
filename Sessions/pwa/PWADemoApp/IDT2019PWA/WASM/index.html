@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>OpenCV JS Binding - Image Processing Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        #header {
+            height: 30px;
+            width: 100%;
+            background-color: #235689;
+        }
+            #header button {
+                /*content: "&#xE700";*/
+                height: 100%;
+                width: 30px;
+                font-family: "Segoe MDL2 Assets";
+                background-color: black;
+                color: white;
+                border: none;
+            }
+
+                #header button:hover {
+                    background-color: #8AA3BD;
+                }
+
+                #header button:focus {
+                    outline: none;
+                }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <button id="backButton">&#xE112;</button>
+    </div>
+    <div id="showcase">
+        <img class="logo" src="./logoFinal.png" />
+        <div id="title">
+            <ul>
+                <li>
+                    <p id="title-text">WebSight</p>
+                </li>
+                <li><a href="./index-video.html">Video Demo</a></li>
+                <li><a style="font-weight:800 ; color:skyblue" href="./index.html">Image Demo</a></li>
+                <li><a href="https://github.com/Web-Sight/WebSight" target="_blank">Github</a></li>
+                <li><a href="./about-us.html">About Us</a></li>
+            </ul>
+            <div class="button-class small" id="reset-button" onclick="reset()">Reset</div>
+            <div class="button-class small" id="detect-face" onclick="detectFace()">Face Detection</div>
+            <div class="button-class small" id="detect-eyes" onclick="detectEyes()">Eye Detection</div>
+            <input class="upload" type="file" id="input" name="file" />
+        </div>
+
+        <div>
+            <div class="holder img-holder">
+                <div class="canvasHolder">
+                    <canvas id="real-wasm"></canvas><br>
+                </div>
+                <p id="wasm-label">WebAssembly <span id="wasm-speed"></span></p>
+            </div>
+
+            <div class="holder img-holder">
+                <div class="canvasHolder">
+                    <canvas id="real-asm"></canvas><br> </div>
+                <p>ASM <span id="asm-speed"></span></p>
+            </div>
+            <div class="holder img-holder">
+                <div class="canvasHolder">
+                    <canvas id="real-js"></canvas><br> </div>
+                <p>JS <span id="js-speed"></span></p>
+            </div>
+        </div>
+        <canvas class="real" id="canvas-wasm"></canvas>
+        <canvas class="real" id="canvas-asm"></canvas>
+        <canvas class="real" id="canvas-js"></canvas>
+    </div>
+    <script src="haar-detector.min.js"></script>
+    <script src="haarcascade_frontalface_alt.js"></script>
+    <script src="haarcascade_eye.js"></script>
+    <script src='dat.gui.js'></script>
+    <script src="parallel.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        var backButton = document.getElementById("backButton");
+        backButton.addEventListener("click", () => {
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
