@@ -19,6 +19,7 @@ You should see a more compelling demo after finishing all the steps below.
 ### **TIP**: Use Task List to guide you through the steps
 
 Do a search on *"TODO"* in Visual Studio and use <kbd>Ctrl</kbd> + <kbd>K</kbd> + <kbd>H</kbd> to bookmark all the TODOs from XAML since TODOs in XAML are not automatically inserted into the Task List. In the end, you should see a list like the one below:
+![Task List from Visual Studio](https://i.imgur.com/7xvLSSF.jpg)
 
 Clicking on each item from the Task List will take you directly to a predefined location in the code.
 
