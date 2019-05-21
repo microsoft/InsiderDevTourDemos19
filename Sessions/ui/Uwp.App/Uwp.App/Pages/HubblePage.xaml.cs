@@ -40,8 +40,8 @@ namespace Uwp.App.Pages
             if (_hostVisual.Children.Any()) return;
 
             // TODO 6.2: [AnimatedVisualPlayer] - Show the Lottie animation while the 3D model is loading.
-            //LottiePlayer.Visibility = Visibility.Visible;
-            //LottiePlayer.AutoPlay = true;
+            LottiePlayer.Visibility = Visibility.Visible;
+            LottiePlayer.AutoPlay = true;
 
             HubbleImage.Visibility = Visibility.Collapsed;
 
@@ -53,8 +53,8 @@ namespace Uwp.App.Pages
             var sceneNode = loader.Load(buffer, _compositor);
 
             // TODO 6.3: [AnimatedVisualPlayer] - Hide the Lottie animation after the 3D model finished loading.
-            //LottiePlayer.Stop();
-            //await LottiePlayer.Fade(duration: 600).StartAsync();
+            LottiePlayer.Stop();
+            await LottiePlayer.Fade(duration: 600).StartAsync();
 
             // TODO 5.2: [SceneLoader] - Use a UIElement ModelHost to host _hostVisual that hosts SceneVisual that hosts SceneNode.
             _hostVisual.RelativeSizeAdjustment = Vector2.One;
