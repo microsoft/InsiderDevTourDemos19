@@ -10,7 +10,7 @@
             <!--
                 After attaching this animation collection to an element, whenever the position
                 of the element is changed, it will smoothly move from the original position
-                to the new one, in 0.4 seconds.
+                to the new one, in 0.2 seconds.
             -->
             <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
                 <animations:OffsetAnimation Duration="0:0:0.2" />
