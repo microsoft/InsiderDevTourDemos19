@@ -13,12 +13,12 @@
                 to the new one, in 0.4 seconds.
             -->
             <animations:AnimationCollection x:Key="ImplicitOffsetAnimation">
-                <animations:OffsetAnimation Duration="0:0:0.4" />
+                <animations:OffsetAnimation Duration="0:0:0.2" />
 
                 <!--  Other samples that are not suitable in our case:  -->
-                <animations:OpacityAnimation Duration="0:0:0.4" />
-                <animations:ScaleAnimation Duration="0:0:0.4" />
-                <animations:RotationAnimation Duration="0:0:0.4" />
+                <!--<animations:OpacityAnimation Duration="0:0:0.2" />
+                <animations:ScaleAnimation Duration="0:0:0.2" />
+                <animations:RotationAnimation Duration="0:0:0.2" />-->
             </animations:AnimationCollection>
 
             <!--#region Default styling-->
