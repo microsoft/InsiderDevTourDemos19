@@ -277,9 +277,13 @@
             </Line>
             <!--#endregion-->
 
-            <controls:HelpView x:Name="HelperView"
+            <!--
+                TODO 3.3: [TeachingTip] - Remove Visibility="Collapsed" and show the HelpView.
+            -->
+            <controls:HelpView x:Name="HelpView"
                                Grid.RowSpan="4"
-                               Grid.ColumnSpan="3" />
+                               Grid.ColumnSpan="3"
+                               Visibility="Collapsed" />
         </Grid>
     </ScrollViewer>
 </Page>

@@ -19,7 +19,7 @@ namespace Uwp.App.Pages
         }
 
         internal void ShowTeachingTips() =>
-            HelperView.ShowTeachingTips(GaugeView.TeachingTipTarget, JournalView.TeachingTipTarget);
+            HelpView.ShowTeachingTips(GaugeView.TeachingTipTarget, JournalView.TeachingTipTarget);
 
         private void ImageView_ImageUpdated(object sender, Controls.ImageUpdatedEventArgs args)
         {
