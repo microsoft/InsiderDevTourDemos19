@@ -164,24 +164,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="Assets\Fonts\Montserrat-Black.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-BlackItalic.ttf" />
     <Content Include="Assets\Fonts\Montserrat-Bold.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-BoldItalic.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-ExtraBold.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-ExtraBoldItalic.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-ExtraLight.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-ExtraLightItalic.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-Italic.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-Light.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-LightItalic.ttf" />
     <Content Include="Assets\Fonts\Montserrat-Medium.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-MediumItalic.ttf" />
     <Content Include="Assets\Fonts\Montserrat-Regular.ttf" />
     <Content Include="Assets\Fonts\Montserrat-SemiBold.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-SemiBoldItalic.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-Thin.ttf" />
-    <Content Include="Assets\Fonts\Montserrat-ThinItalic.ttf" />
     <Content Include="Assets\Models\Telescope.gltf" />
     <Content Include="Assets\LottieFiles\PaperPlane.json" />
     <None Include="Uwp.App_TemporaryKey.pfx" />
