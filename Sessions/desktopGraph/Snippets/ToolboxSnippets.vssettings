@@ -1,0 +1,38 @@
+<UserSettings><ApplicationIdentity version="15.0"/><ToolsOptions/><Category name="Environment_Group" RegisteredName="Environment_Group"><Category name="Environment_Toolbox" Category="{481999F2-7479-4e03-83D5-BE808BA142DF}" Package="{DA9FB551-C724-11d0-AE1F-00A0C90FFFC3}" RegisteredName="Environment_Toolbox" PackageName="Visual Studio Environment Package"><PropertyValue name="ShowAllTabs">false</PropertyValue><PropertyValue name="Version">1</PropertyValue><PropertyValue name="DeletedTabCount">0</PropertyValue><PropertyValue name="Tab0.Name">Desktop Graph</PropertyValue><PropertyValue name="Tab0.View">0</PropertyValue><PropertyValue name="Tab0.UseDefaultName">false</PropertyValue><PropertyValue name="Tab0.RecordType">1</PropertyValue><PropertyValue name="Tab0.Position">53</PropertyValue><PropertyValue name="Tab0.OriginalName">Desktop Graph</PropertyValue><PropertyValue name="TabCount">1</PropertyValue><PropertyValue name="DeletedItemCount">0</PropertyValue><PropertyValue name="Item0.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item0.ID">AEAFF384FF6420D3E06EDE9DF7198948</PropertyValue><PropertyValue name="Item0.Name">1. Initialize Identity &amp; Graph</PropertyValue><PropertyValue name="Item0.UseDefaultName">false</PropertyValue><PropertyValue name="Item0.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item0.OriginalTab">Desktop Graph</PropertyValue><PropertyValue name="Item0.RecordType">1</PropertyValue><PropertyValue name="Item0.Data">            // Create Client Application and Authentication Provider
+            _clientApp = InteractiveAuthenticationProvider.CreateClientApplication(
+                _clientId);
+
+            _clientApp.RedirectUri = "https://login.microsoftonline.com/common/oauth2/nativeclient";
+
+            var authProvider = new InteractiveAuthenticationProvider(_clientApp, _scopes);
+
+            // Create GraphServiceClient with middleware pipeline setup
+            _graph = new GraphServiceClient(authProvider);</PropertyValue><PropertyValue name="Item0.Position">1</PropertyValue><PropertyValue name="Item1.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item1.ID">8FD59461F41286658B20D67DA8B4A6DD</PropertyValue><PropertyValue name="Item1.Name">2. GetUserNameAsync()</PropertyValue><PropertyValue name="Item1.UseDefaultName">false</PropertyValue><PropertyValue name="Item1.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item1.OriginalTab">Desktop Graph</PropertyValue><PropertyValue name="Item1.RecordType">1</PropertyValue><PropertyValue name="Item1.Data">        public async Task&lt;string&gt; GetUserNameAsync()
+        {
+            // Request using default app permissions
+            var user = await _graph.Me.Request().GetAsync();
+
+            return user.DisplayName;
+        }</PropertyValue><PropertyValue name="Item1.Position">2</PropertyValue><PropertyValue name="Item2.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item2.ID">7C1141D0F4A2C957843940C45BC49CCE</PropertyValue><PropertyValue name="Item2.Name">3. Add Connector</PropertyValue><PropertyValue name="Item2.UseDefaultName">false</PropertyValue><PropertyValue name="Item2.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item2.OriginalTab">Desktop Graph</PropertyValue><PropertyValue name="Item2.RecordType">1</PropertyValue><PropertyValue name="Item2.Data">        private Connector connector = new Connector();</PropertyValue><PropertyValue name="Item2.Position">3</PropertyValue><PropertyValue name="Item3.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item3.ID">F5063180C5B21D94F839863D24418BA6</PropertyValue><PropertyValue name="Item3.Name">4. Set UserName Label</PropertyValue><PropertyValue name="Item3.UseDefaultName">false</PropertyValue><PropertyValue name="Item3.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item3.OriginalTabID">General</PropertyValue><PropertyValue name="Item3.OriginalTab">General</PropertyValue><PropertyValue name="Item3.RecordType">1</PropertyValue><PropertyValue name="Item3.Data">            var name = await connector.GetUserNameAsync();
+
+            labelUserName.Text = "User: " + name;</PropertyValue><PropertyValue name="Item3.Position">4</PropertyValue><PropertyValue name="Item4.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item4.ID">1DC66819800166CE53326BEEC7356FF1</PropertyValue><PropertyValue name="Item4.Name">5. Add Token Storage Provider</PropertyValue><PropertyValue name="Item4.UseDefaultName">false</PropertyValue><PropertyValue name="Item4.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item4.OriginalTabID">General</PropertyValue><PropertyValue name="Item4.OriginalTab">General</PropertyValue><PropertyValue name="Item4.RecordType">1</PropertyValue><PropertyValue name="Item4.Data">,
+                FileBasedTokenStorageProvider.Instance</PropertyValue><PropertyValue name="Item4.Position">5</PropertyValue><PropertyValue name="Item5.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item5.ID">FFA73D8C720F14A578C1483D50A0F6C4</PropertyValue><PropertyValue name="Item5.Name">6. GetCalendarEventsAsync()</PropertyValue><PropertyValue name="Item5.UseDefaultName">false</PropertyValue><PropertyValue name="Item5.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item5.OriginalTabID">General</PropertyValue><PropertyValue name="Item5.OriginalTab">General</PropertyValue><PropertyValue name="Item5.RecordType">1</PropertyValue><PropertyValue name="Item5.Data">        public async Task&lt;Event[]&gt; GetCalendarEventsAsync()
+        {
+            // Calendar Data, Today and Next 2 Days (Local)
+            // Between Previous Midnight (of today) and Midnight of 2nd day (3 from now)
+            var today = DateTimeOffset.Now.Date.ToUniversalTime();
+            var events = await _graph.Me.CalendarView.Request(new[] {
+                new QueryOption("startDateTime", today.ToString("o", CultureInfo.InvariantCulture)),
+                new QueryOption("endDateTime", today.AddDays(3).ToString("o", CultureInfo.InvariantCulture)),
+            }).OrderBy("start/dateTime").GetAsync();
+
+            return events.CurrentPage.ToArray();
+        }</PropertyValue><PropertyValue name="Item5.Position">6</PropertyValue><PropertyValue name="Item6.DataProvider">{0A057BAD-6706-45D2-A800-683A29EC6BA3}</PropertyValue><PropertyValue name="Item6.ID">6C62C94B946B8DC7760307520EA1F903</PropertyValue><PropertyValue name="Item6.Name">7. Set Calendar ListViewItems</PropertyValue><PropertyValue name="Item6.UseDefaultName">false</PropertyValue><PropertyValue name="Item6.Tab">Desktop Graph</PropertyValue><PropertyValue name="Item6.OriginalTabID">General</PropertyValue><PropertyValue name="Item6.OriginalTab">General</PropertyValue><PropertyValue name="Item6.RecordType">1</PropertyValue><PropertyValue name="Item6.Data">            var events = await connector.GetCalendarEventsAsync();
+
+            listViewCalendar.Items.AddRange(events.Select(ev =&gt;
+            {
+                var lvi = new ListViewItem(ev.Subject);
+                lvi.SubItems.Add(ev.Start.ToDateTimeOffset().LocalDateTime.ToString("g"));
+                lvi.SubItems.Add(ev.End.ToDateTimeOffset().LocalDateTime.ToString("g"));
+                return lvi;
+            }).ToArray());</PropertyValue><PropertyValue name="Item6.Position">7</PropertyValue><PropertyValue name="ItemCount">7</PropertyValue></Category></Category></UserSettings>
