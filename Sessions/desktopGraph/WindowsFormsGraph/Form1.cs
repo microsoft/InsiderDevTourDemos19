@@ -36,5 +36,14 @@ namespace WindowsFormsGraph
                 return lvi;
             }).ToArray());
         }
+
+        private void labelUserName_Click(object sender, EventArgs e)
+        {
+            connector.LogoutAsync();
+
+            // Restore logged out state.
+            labelUserName.Text = "Not Logged In";
+            listViewCalendar.Items.Clear();
+        }
     }
 }

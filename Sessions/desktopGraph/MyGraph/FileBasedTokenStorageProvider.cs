@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace MyGraph
 {
-    public class FileBasedTokenStorageProvider : ITokenStorageProvider
+    public sealed class FileBasedTokenStorageProvider : ITokenStorageProvider
     {
         private const string CacheFilePath = @"./tokencache.bin";
+
+        public static readonly FileBasedTokenStorageProvider Instance = new FileBasedTokenStorageProvider();
+
+        FileBasedTokenStorageProvider() { }
 
         public Task<byte[]> GetTokenCacheAsync(string cacheId)
         {
@@ -34,6 +38,14 @@ namespace MyGraph
                                       DataProtectionScope.CurrentUser));
 
             return Task.FromResult<object>(null);
+        }
+
+        public void ClearCache()
+        {
+            if (File.Exists(CacheFilePath))
+            {
+                File.Delete(CacheFilePath);
+            }
         }
     }
 }

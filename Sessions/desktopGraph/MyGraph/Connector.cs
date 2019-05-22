@@ -10,7 +10,7 @@ namespace MyGraph
 {
     public class Connector
     {
-        private static string _clientId = "<client id>";
+        private static string _clientId = "<CLIENT ID>";
 
         private static string[] _scopes = { "User.Read", "Calendars.Read" };
 
@@ -23,9 +23,9 @@ namespace MyGraph
             // Create Client Application and Authentication Provider
             _clientApp = InteractiveAuthenticationProvider.CreateClientApplication(
                 _clientId,
-                new FileBasedTokenStorageProvider());
+                FileBasedTokenStorageProvider.Instance);
 
-            _clientApp.RedirectUri = "urn:ietf:wg:oauth:2.0:oob:myappname";
+            _clientApp.RedirectUri = "https://login.microsoftonline.com/common/oauth2/nativeclient";
 
             var authProvider = new InteractiveAuthenticationProvider(_clientApp, _scopes);
 
@@ -52,6 +52,17 @@ namespace MyGraph
             }).OrderBy("start/dateTime").GetAsync();
 
             return events.CurrentPage.ToArray();
+        }
+
+        public async void LogoutAsync()
+        {
+            // Note: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/425
+            foreach (var account in await _clientApp.GetAccountsAsync())
+            {
+                await _clientApp.RemoveAsync(account);
+            }
+
+            FileBasedTokenStorageProvider.Instance.ClearCache();
         }
     }
 }

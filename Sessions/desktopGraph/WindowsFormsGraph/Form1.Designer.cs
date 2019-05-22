@@ -43,6 +43,7 @@
             this.labelUserName.Size = new System.Drawing.Size(110, 20);
             this.labelUserName.TabIndex = 0;
             this.labelUserName.Text = "Not Logged In";
+            this.labelUserName.Click += new System.EventHandler(this.labelUserName_Click);
             // 
             // listViewCalendar
             // 
