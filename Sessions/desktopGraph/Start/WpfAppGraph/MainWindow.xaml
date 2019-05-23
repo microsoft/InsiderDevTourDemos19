@@ -17,8 +17,6 @@
         </Grid.RowDefinitions>
         <Button Content="{Binding UserName}" Margin="8,8,8,0" Padding="8" Width="200" HorizontalAlignment="Left"/>
         <!-- TODO: Add Button to Add User Activity. -->
-        <Button Content="Add Activity" Margin="8,8,8,0" Padding="8" Width="200" HorizontalAlignment="Right"
-                Click="Button_Click"/>
         <ListView x:Name="calendarListView" Margin="8" Grid.Row="2" ItemsSource="{Binding CalendarEvents}"
                   HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>

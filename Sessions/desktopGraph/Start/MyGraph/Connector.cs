@@ -12,7 +12,7 @@ namespace MyGraph
     {
         private static string _clientId = "<CLIENT ID>";
 
-        private static string[] _scopes = { "User.Read", "Calendars.Read" };
+        private static string[] _scopes = { "User.Read", "Calendars.Read", "UserActivity.ReadWrite.CreatedByApp" };
 
         private IPublicClientApplication _clientApp;
 
@@ -26,6 +26,8 @@ namespace MyGraph
         // TODO: Get User Name
 
         // TODO: Get Calendar Events
+
+		// TODO: Add User Activity
 
         public async void LogoutAsync()
         {

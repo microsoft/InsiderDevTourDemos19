@@ -88,7 +88,7 @@
             this.Controls.Add(this.listViewCalendar);
             this.Controls.Add(this.labelUserName);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Graph in WinForms!";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

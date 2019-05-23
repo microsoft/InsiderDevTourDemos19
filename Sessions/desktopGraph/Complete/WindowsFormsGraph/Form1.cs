@@ -13,6 +13,7 @@ namespace WindowsFormsGraph
 {
     public partial class Form1 : Form
     {
+        // TODO: Connect to Graph
         private Connector connector = new Connector();
 
         public Form1()
@@ -22,6 +23,7 @@ namespace WindowsFormsGraph
 
         private async void Form1_Shown(object sender, EventArgs e)
         {
+            // TODO: Initialize UI Component's Data From Graph
             var name = await connector.GetUserNameAsync();
 
             labelUserName.Text = "User: " + name;
@@ -39,6 +41,7 @@ namespace WindowsFormsGraph
 
         private void labelUserName_Click(object sender, EventArgs e)
         {
+            // TODO: Collapse Me Before Demo
             connector.LogoutAsync();
 
             // Restore logged out state.

@@ -24,7 +24,6 @@ namespace WpfAppGraph
     public partial class MainWindow : Window
     {
         // TODO: Connect to Graph
-        private Connector connector = new Connector();
 
         public string UserName
         {
@@ -58,21 +57,6 @@ namespace WpfAppGraph
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // TODO: Initialize UI Component's Data From Graph
-            UserName = await connector.GetUserNameAsync();
-
-            var events = await connector.GetCalendarEventsAsync();
-
-            foreach (var ev in events)
-            {
-                CalendarEvents.Add(ev);
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _ = connector.AddUserActivityAsync("wpfGraphActivity",
-                "Graph in WPF Activity!",
-                "Thanks for joining us at Insider Dev Tour 2019!");
         }
     }
 }
