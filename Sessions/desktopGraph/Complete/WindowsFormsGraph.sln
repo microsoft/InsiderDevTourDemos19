@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsGraph", "WindowsFormsGraph\WindowsFormsGraph.csproj", "{A693EE29-9B12-4E1D-B747-217EA09D4E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGraph", "MyGraph\MyGraph.csproj", "{7CBCC6B6-EF0B-4A2F-B970-1D521A282B51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyGraph", "MyGraph\MyGraph.csproj", "{7CBCC6B6-EF0B-4A2F-B970-1D521A282B51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppGraph", "WpfAppGraph\WpfAppGraph.csproj", "{53B34449-76AE-4BB4-B6A5-0802FD14D5F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7CBCC6B6-EF0B-4A2F-B970-1D521A282B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CBCC6B6-EF0B-4A2F-B970-1D521A282B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CBCC6B6-EF0B-4A2F-B970-1D521A282B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B34449-76AE-4BB4-B6A5-0802FD14D5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B34449-76AE-4BB4-B6A5-0802FD14D5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B34449-76AE-4BB4-B6A5-0802FD14D5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B34449-76AE-4BB4-B6A5-0802FD14D5F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
