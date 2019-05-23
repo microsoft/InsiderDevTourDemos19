@@ -45,7 +45,7 @@ namespace Uwp.App.Pages
 
             HubbleImage.Visibility = Visibility.Collapsed;
 
-            // TODO 5.1: [SceneLoader] - Load the .gltf 3D model into a SceneNode.
+            // TODO 5.1: [SceneLoader] - Load a .gltf 3D model into a SceneNode (new API in Composition).
             var uri = new Uri("ms-appx:///Assets/Models/Telescope.gltf");
             var storageFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
             var buffer = await FileIO.ReadBufferAsync(storageFile);
@@ -56,7 +56,9 @@ namespace Uwp.App.Pages
             //LottiePlayer.Stop();
             //await LottiePlayer.Fade(duration: 600).StartAsync();
 
-            // TODO 5.2: [SceneLoader] - Use a UIElement ModelHost to host _hostVisual that hosts SceneVisual that hosts SceneNode.
+            // TODO 5.2: [SceneLoader] - Host the 3D SceneNode inside a XAML element (ModelHost Rectangle).
+            // NOTE: 3D Xaml Control coming too! It is being tracked here:  
+            // https://github.com/microsoft/microsoft-ui-xaml/issues/686
             _hostVisual.RelativeSizeAdjustment = Vector2.One;
             ElementCompositionPreview.SetElementChildVisual(ModelHost, _hostVisual);
             _sceneVisual.Scale = new Vector3(2.5f, 2.5f, 1.0f);
