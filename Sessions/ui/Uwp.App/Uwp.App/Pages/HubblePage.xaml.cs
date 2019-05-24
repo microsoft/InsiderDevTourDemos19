@@ -29,7 +29,7 @@ namespace Uwp.App.Pages
         private readonly ContainerVisual _hostVisual;
         private readonly SceneVisual _sceneVisual;
 
-        private readonly LabelBuilder _labelBuilder;
+        private readonly LabelBuilder _labelBuilder = new LabelBuilder();
         private List<SceneNode> _labelNodes;
         private List<SceneNode> _labelParentNodes;
         private List<SceneNode> _sphereNodes;
@@ -45,7 +45,6 @@ namespace Uwp.App.Pages
             _compositor = Window.Current.Compositor;
             _hostVisual = _compositor.CreateContainerVisual();
             _sceneVisual = SceneVisual.Create(_compositor);
-            _labelBuilder = new LabelBuilder();
         }
 
         private void ModelHost_SizeChanged(object sender, SizeChangedEventArgs e) =>
