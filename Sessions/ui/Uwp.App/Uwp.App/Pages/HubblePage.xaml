@@ -9,7 +9,9 @@
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent"
+          PointerPressed="LayoutRoot_PointerPressed">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="2*" />
@@ -180,5 +182,51 @@
                                              Duration="0:0:0.6" />
             </animations:Implicit.HideAnimations>
         </Button>
+
+        <StackPanel Grid.RowSpan="4"
+                    Grid.ColumnSpan="4"
+                    IsHitTestVisible="False"
+                    Opacity="0"
+                    Spacing="12">
+            <StackPanel x:Name="Label1"
+                        Width="320"
+                        Padding="32,16"
+                        Background="{StaticResource Brush-Blue-1}"
+                        Spacing="12">
+                <TextBlock FontFamily="{StaticResource Bold}"
+                           Foreground="{StaticResource Brush-Blue-0}"
+                           Text="Primary mirror" />
+                <TextBlock FontFamily="{StaticResource SemiBold}"
+                           FontSize="12"
+                           Text="Hubble's primary mirror is 7.8 feet in diameter. It is made of a special glass coated with aluminum and a compound that reflects ultraviolet light."
+                           TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel x:Name="Label2"
+                        Width="320"
+                        Padding="32,16"
+                        Background="{StaticResource Brush-Blue-1}"
+                        Spacing="12">
+                <TextBlock FontFamily="{StaticResource Bold}"
+                           Foreground="{StaticResource Brush-Blue-0}"
+                           Text="Secondary mirror" />
+                <TextBlock FontFamily="{StaticResource SemiBold}"
+                           FontSize="12"
+                           Text="Like the primary mirror, Hubble's secondary mirroris made of special glass coated with aluminum and a compund to reflect ultraviolet light."
+                           TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel x:Name="Label3"
+                        Width="320"
+                        Padding="32,16"
+                        Background="{StaticResource Brush-Blue-1}"
+                        Spacing="12">
+                <TextBlock FontFamily="{StaticResource Bold}"
+                           Foreground="{StaticResource Brush-Blue-0}"
+                           Text="Solar panels" />
+                <TextBlock FontFamily="{StaticResource SemiBold}"
+                           FontSize="12"
+                           Text="Hubble's current set of rigid solar panels use gallium arsenide photovoltaic cells that produce enough power for all the science instruments to operate simultaneously."
+                           TextWrapping="WrapWholeWords" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
