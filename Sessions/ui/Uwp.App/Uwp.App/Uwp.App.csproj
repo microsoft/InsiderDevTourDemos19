@@ -99,6 +99,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -140,6 +141,9 @@
     <Compile Include="Controls\SpeedGauge.xaml.cs">
       <DependentUpon>SpeedGauge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\LabelHelper.cs" />
+    <Compile Include="Helpers\SceneHelper.cs" />
     <Compile Include="Layouts\VirtualizingUniformCarousalStackLayout.cs" />
     <Compile Include="Controls\MissionItem.xaml.cs">
       <DependentUpon>MissionItem.xaml</DependentUpon>
