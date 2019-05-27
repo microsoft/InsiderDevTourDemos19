@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Northwind Customer Chat</title>
+    <link href="../index.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='../fluentweb.css' />
+    <script src="../fluentweb.js"></script>
+    <style>
+        #notifyButton {
+            width: 300px;
+            height: 100px;
+            font-family: 'Segoe UI';
+            font-size: 36px;
+            position: absolute;
+            top: calc((100% - 100px) /2);
+            left: calc((100% - 300px) /2);
+        }
+    </style>
+</head>
+<body>
+    <button id="notifyButton" class="ResidentalType has-reveal is-dark">Send Notification</button>
+    <!-- <script src="pwabuilder-sw-register.js"></script> -->
+    <script>
+        navigator.serviceWorker.ready
+        .then(function (registration) {
+            // Check if the user has an existing subscription
+            return registration.pushManager.getSubscription()
+                .then(async function (subscription) {
+                    return subscription;
+            });
+        }).then(function (subscription) {
+            document.getElementById('notifyButton').addEventListener('click', function () {
+                fetch('../sendNotification', {
+                    method: 'post',
+                    headers: {
+                    'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                    subscription: subscription
+                    })
+                });
+            });
+        });
+    </script>
+</body>

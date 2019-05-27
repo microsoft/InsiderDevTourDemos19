@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Northwind Customers App</title>
+    <link href="index.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel='stylesheet' href='fluentweb.css' />
+    <script src="fluentweb.js"></script>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="TicketHistory">
+            <div class="CurrentCustomer">
+                <img class="customerImage" src="./images/image2.png" />
+                <h2 class="fontSize24px customerName">Toby Fitch</h2>
+                <p class="fontSize16px">2345 Contoso Rd</p>
+                <p class="fontSize16px">Redmond, Wa 92345</p>
+                <p class="fontSize16px lineHeight4"><strong>(200)-123-4567</strong></p>
+                <button class="roundedButton fas fa-location-arrow"></button>
+                <button class="roundedButton fas fa-phone"></button>
+                <button class="roundedButton fas fa-comment-dots"></button>
+                <button class="roundedButton fas fa-envelope"></button>
+            </div>
+            <div class="TicketNotes">
+                <span class="labelHeader">Ticket History / Notes</span>
+                <div class="TicketsDetails">
+                    <p>MAY 2, 2019</p>
+                    <p>Quote <strong><a href="#">#050219_JP</a></strong> created by <strong>David Rousset</strong></p>
+                    <p>MAY 2, 2019</p>
+                    <p>Measured and checked solar for compatiability. Feasibility survey completed.</p>
+                    <p>MAY 1, 2019</p>
+                    <p>Visited, client wasn’t home. Rescheduled to May 2.</p>
+                    <p>APR 27, 2019</p>
+                    <p>Client reached via email, requested in-home quote for panel upgrade on May 1.</p>
+                </div>
+            </div>
+            <div class="CurrentTicket">
+                <span class="labelHeader">Ticket ID <a href="#">#12345872</a></span>
+                <div>
+                    <p>Client wants to upgrade to a new solar panel as previus solar panel was damaged in a storm. The panel partially works at approximately 57% capacity.</p>
+                    <p>Client wants to know if upgrade is worth it vs repairing. Might be eligible for accidental damages coverage offered by home insurance.</p>
+                </div>
+            </div>
+        </div>
+        <div class="CustomerDetails">
+            <div class="QuoteNumber"><span>Quote </span><span><strong>#050219_JP</strong></span></div>
+            <div class="CustomerDetailsItem">
+                <label>Contact Name</label>
+                <p>Toby Fitch</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Contact Phone Number</label>
+                <p>(200)-123-4567</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Property Address</label>
+                <p>2345 Contoso Rd, Redmond, Wa 92345</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Property Roof Pitch</label>
+                <p>SW - 20 deg</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Roof Shading</label>
+                <p>Part Shade (can improve)</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Roof Type</label>
+                <p>Shingles</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Solar Panel Make/Model (currently installed)</label>
+                <p>Electrifier (2017-ER01)</p>
+            </div>
+            <!-- <div class="CustomerDetailsItem">
+                <label>Inverter Make/Model (currently installed)</label>
+                <p>ES-3458 Microconverter</p>
+            </div> -->
+            <div class="CustomerDetailsItem">
+                <label>Panel Type</label>
+                <p>Photovoltaic (PV)</p>
+            </div>
+            <div class="CustomerDetailsItem">
+                <label>Average kWh Usage (monthly)</label>
+                <p>900 kWh</p>
+            </div>
+            <div class="InvoiceArea">
+                <button id="viewInvoice" class="InvoiceButton has-reveal is-dark">View Invoice</button>
+                <button id="contactCustomer" class="InvoiceButton has-reveal is-dark">Contact Customer</button>
+            </div>
+        </div>
+        <div class="CustomerQuoteDetails">
+            <div id="myMap" class="bingMap"></div>
+            <div class="PropertyPackageTypes">
+                <label class="labelHeader">Property Type</label>
+                <button class="ResidentalType buttonSelected fas fa-home has-reveal is-dark"><p>Residental</p></button>
+                <button class="CommercialType fas fa-building has-reveal is-dark"><p>Commercial</p></button>
+                <button class="OtherType fas fa-tractor has-reveal is-dark"><p>Other</p></button>
+                <label class="labelHeader">Package Type</label>
+                <button class="BronzeType fas fa-award has-reveal is-dark"><p>Bronze</p></button>
+                <button class="SilverType fas fa-medal has-reveal is-dark"><p>Silver</p></button>
+                <button class="PlatinumType buttonSelected fas fa-trophy has-reveal is-dark"><p>Platinum</p></button>
+            </div>
+            <div class="QuoteBreakdown">
+                <label id="quoteBreakdown">Quote Breakdown</label>
+                <div id="listQuoteBreakdown">
+                    <p>
+                        <label>Package type: </label><span>Platinum</span>
+                    </p>
+                    <p>
+                        <label>Property type: </label><span>Residential</span>
+                    </p>
+                    <p>
+                        <label>Compatible with current installation: </label><span>Yes</span>
+                    </p>
+                    <p>
+                        <label>Panel type: </label><span>Photovoltaic (PV)</span>
+                    </p>
+                    <p>
+                        <label>System size: </label><span>17.7 kW</span>
+                    </p>
+                    <p>
+                        <label>Annual Production: </label><span>16,000 kWh</span>
+                    </p>
+                    <p>
+                        <label>Estimated Cost (including installation): </label><span>$18,000 - $22,000</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="Header">
+            <button class="ButtonHamburger fas fa-bars has-reveal-border is-light"></button>
+            <div class="loggedOnUser">
+                <span>3</span>
+                <span>Kevin Gallo</span>
+                <img src="images/image.png" />
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkGhzkFjIEThiHDN70dByXzB2C7AZL686tWK02yaDYYgcZckFEunOB7qRUk-l8HQ' async defer></script>
+    <script src="index.js"></script>
+    <script src="pwabuilder-sw-register.js"></script>
+</body>
+</html>
