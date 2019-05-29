@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Windows.Graphics;
 using Windows.Foundation;
 using Windows.UI.Composition.Scenes;
+using System.Numerics;
 
 namespace Uwp.App.Helpers
 {
@@ -73,6 +74,177 @@ namespace Uwp.App.Helpers
             }
 
             return mb;
+        }
+
+        // Will Create a cylinder with a circle centered at <0,0,0> expanding along x/y axis with supplied radius, 
+        // and then elongated along z-axis with length.
+        //
+        // This can also be known as (x*x + y*y) = radius*radius with a clip restricting the z between 0 and length
+
+        public static void FillMeshWithPipe(
+            SceneMesh mesh,
+            float radius,
+            Vector3 startPoint,
+            Vector3 endPoint,
+            Vector3 forwardAxis,
+            Vector3 upAxis,
+            Vector3 rightAxis,
+            int numRequestedVertices
+            )
+        {
+            int numVerticesAroundCircumference = 16;
+
+            // Need to have vertices going around the circle, that has to happen twice
+            // once for each end of the pipe.  Then we need a 2nd set of all of them
+            // because the end caps will have different normals.
+            int numVerticesTotal = numVerticesAroundCircumference * 2 * 2;
+
+            Vector3[] verticesModelSpace = new Vector3[numVerticesTotal];
+            Vector3[] normalsModelSpace = new Vector3[numVerticesTotal];
+
+            Vector2[] ringVerticesCircleSpace = new Vector2[numVerticesAroundCircumference];
+
+            for (int i = 0; i < numVerticesAroundCircumference; i++)
+            {
+                float angle = (float)i * (2.0f / (float)numVerticesAroundCircumference) * (float)Math.PI;
+
+                ringVerticesCircleSpace[i].X = (float)Math.Cos(angle);
+                ringVerticesCircleSpace[i].Y = (float)Math.Sin(angle);
+            }
+
+            int iCurrentVertex = 0;
+
+            for (int i = 0; i < numVerticesAroundCircumference; i++)
+            {
+                verticesModelSpace[iCurrentVertex] = startPoint +
+                    ringVerticesCircleSpace[i].X * rightAxis * radius +
+                    ringVerticesCircleSpace[i].Y * upAxis * radius;
+
+                normalsModelSpace[iCurrentVertex] =
+                    ringVerticesCircleSpace[i].X * rightAxis +
+                    ringVerticesCircleSpace[i].Y * upAxis;
+
+                normalsModelSpace[iCurrentVertex] = Vector3.Normalize(normalsModelSpace[iCurrentVertex]);
+
+                iCurrentVertex++;
+            }
+
+            for (int i = 0; i < numVerticesAroundCircumference; i++)
+            {
+                verticesModelSpace[iCurrentVertex] = endPoint +
+                    ringVerticesCircleSpace[i].X * rightAxis * radius +
+                    ringVerticesCircleSpace[i].Y * upAxis * radius;
+
+                normalsModelSpace[iCurrentVertex] =
+                    ringVerticesCircleSpace[i].X * rightAxis +
+                    ringVerticesCircleSpace[i].Y * upAxis;
+
+                normalsModelSpace[iCurrentVertex] = Vector3.Normalize(normalsModelSpace[iCurrentVertex]);
+
+                iCurrentVertex++;
+            }
+
+            for (int i = 0; i < numVerticesAroundCircumference; i++)
+            {
+                verticesModelSpace[iCurrentVertex] = startPoint +
+                    ringVerticesCircleSpace[i].X * rightAxis * radius +
+                    ringVerticesCircleSpace[i].Y * upAxis * radius;
+
+                normalsModelSpace[iCurrentVertex] = Vector3.Negate(forwardAxis);
+
+                iCurrentVertex++;
+            }
+
+            for (int i = 0; i < numVerticesAroundCircumference; i++)
+            {
+                verticesModelSpace[iCurrentVertex] = endPoint +
+                    ringVerticesCircleSpace[i].X * rightAxis * radius +
+                    ringVerticesCircleSpace[i].Y * upAxis * radius;
+
+                normalsModelSpace[iCurrentVertex] = forwardAxis;
+
+                iCurrentVertex++;
+            }
+
+            float[] tempFloatArray = new float[numVerticesTotal * 3];
+
+            int iCurrentFloat = 0;
+
+            for (int i = 0; i < numVerticesTotal; i++)
+            {
+                tempFloatArray[iCurrentFloat++] = verticesModelSpace[i].X;
+                tempFloatArray[iCurrentFloat++] = verticesModelSpace[i].Y;
+                tempFloatArray[iCurrentFloat++] = verticesModelSpace[i].Z;
+            }
+
+            mesh.FillMeshAttribute(
+               SceneAttributeSemantic.Vertex,
+               Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Float,
+               SceneHelper.CreateMemoryBufferWithArray(tempFloatArray)
+               );
+
+            iCurrentFloat = 0;
+
+            for (int i = 0; i < numVerticesTotal; i++)
+            {
+                tempFloatArray[iCurrentFloat++] = normalsModelSpace[i].X;
+                tempFloatArray[iCurrentFloat++] = normalsModelSpace[i].Y;
+                tempFloatArray[iCurrentFloat++] = normalsModelSpace[i].Z;
+            }
+
+            mesh.FillMeshAttribute(
+               SceneAttributeSemantic.Normal,
+               Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Float,
+               SceneHelper.CreateMemoryBufferWithArray(tempFloatArray)
+               );
+
+            UInt32[] colors = new UInt32[numVerticesTotal];
+
+            for (int i = 0; i < numVerticesTotal; i++)
+            {
+                colors[i] = 0xffffffff;
+            }
+
+            mesh.FillMeshAttribute(
+               SceneAttributeSemantic.Color,
+               Windows.Graphics.DirectX.DirectXPixelFormat.R32UInt,
+               SceneHelper.CreateMemoryBufferWithArray(colors));
+
+            int numIndices = numVerticesAroundCircumference * 3 * 2;
+
+            UInt16[] indices = new UInt16[numIndices + 3 * 2 * (numVerticesAroundCircumference - 1)];
+
+            int curIndex = 0;
+
+            for (UInt16 i = 0; i < numVerticesAroundCircumference; i++)
+            {
+                indices[curIndex++] = (UInt16)i;
+                indices[curIndex++] = (UInt16)(i + numVerticesAroundCircumference);
+                indices[curIndex++] = (UInt16)((i + 1) % numVerticesAroundCircumference);
+
+                indices[curIndex++] = (UInt16)((i + 1) % numVerticesAroundCircumference);
+                indices[curIndex++] = (UInt16)(i + numVerticesAroundCircumference);
+                indices[curIndex++] = (UInt16)((i + 1) % numVerticesAroundCircumference + numVerticesAroundCircumference);
+            }
+
+            for (UInt16 i = 1; i < numVerticesAroundCircumference; i++)
+            {
+                indices[curIndex++] = (UInt16)(2 * numVerticesAroundCircumference);
+                indices[curIndex++] = (UInt16)(2 * numVerticesAroundCircumference + i);
+                indices[curIndex++] = (UInt16)(2 * numVerticesAroundCircumference + (i + 1) % numVerticesAroundCircumference);
+            }
+
+            for (UInt16 i = 1; i < numVerticesAroundCircumference; i++)
+            {
+                indices[curIndex++] = (UInt16)(2 * numVerticesAroundCircumference + numVerticesAroundCircumference);
+                indices[curIndex++] = (UInt16)(2 * numVerticesAroundCircumference + (i + 1) % numVerticesAroundCircumference + numVerticesAroundCircumference);
+                indices[curIndex++] = (UInt16)(2 * numVerticesAroundCircumference + i + numVerticesAroundCircumference);
+            }
+
+            mesh.FillMeshAttribute(
+               SceneAttributeSemantic.Index,
+               Windows.Graphics.DirectX.DirectXPixelFormat.R16UInt,
+               SceneHelper.CreateMemoryBufferWithArray(indices));
         }
 
         public static void FillMeshWithSphere(SceneMesh mesh, float radius = 200, int numApproxVertices = 9)
@@ -216,8 +388,8 @@ namespace Uwp.App.Helpers
             for (int i = 0; i < numLevels; i++)
             {
                 indices[currentIndex++] = (UInt16)(offsetToRowVertex + i);
-                indices[currentIndex++] = (UInt16)(0);
                 indices[currentIndex++] = (UInt16)(((i + 1) % numLevels) + offsetToRowVertex);
+                indices[currentIndex++] = (UInt16)(0);
             }
 
             for (int iInterior = 0; iInterior < numInteriorRows - 1; iInterior++)
@@ -228,12 +400,12 @@ namespace Uwp.App.Helpers
                 for (int i = 0; i < numLevels; i++)
                 {
                     indices[currentIndex++] = (UInt16)(offsetToNextRowVertex + i);
-                    indices[currentIndex++] = (UInt16)(offsetToRowVertex + i);
                     indices[currentIndex++] = (UInt16)(((i + 1) % numLevels) + offsetToNextRowVertex);
+                    indices[currentIndex++] = (UInt16)(offsetToRowVertex + i);
 
                     indices[currentIndex++] = (UInt16)(offsetToRowVertex + i);
-                    indices[currentIndex++] = (UInt16)(((i + 1) % numLevels) + offsetToRowVertex);
                     indices[currentIndex++] = (UInt16)(((i + 1) % numLevels) + offsetToNextRowVertex);
+                    indices[currentIndex++] = (UInt16)(((i + 1) % numLevels) + offsetToRowVertex);
                 }
             }
 
@@ -243,8 +415,8 @@ namespace Uwp.App.Helpers
             for (int i = 0; i < numLevels; i++)
             {
                 indices[currentIndex++] = (UInt16)(numVertices - 1);
-                indices[currentIndex++] = (UInt16)(offsetToRowVertex + i);
                 indices[currentIndex++] = (UInt16)(((i + 1) % numLevels) + offsetToRowVertex);
+                indices[currentIndex++] = (UInt16)(offsetToRowVertex + i);
             }
 
             mesh.FillMeshAttribute(
