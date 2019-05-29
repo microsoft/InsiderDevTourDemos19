@@ -1,5 +1,6 @@
 ﻿using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Composition;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using SceneLoaderComponent;
 using System;
@@ -59,8 +60,8 @@ namespace Uwp.App.Pages
             if (_hostVisual.Children.Any()) return;
 
             // TODO 6.2: [AnimatedVisualPlayer] - Show the Lottie animation while the 3D model is loading.
-            //LottiePlayer.Visibility = Visibility.Visible;
-            //LottiePlayer.AutoPlay = true;
+            LottiePlayer.Visibility = Visibility.Visible;
+            LottiePlayer.AutoPlay = true;
 
             HubbleImage.Visibility = Visibility.Collapsed;
 
@@ -85,8 +86,8 @@ namespace Uwp.App.Pages
             await BuildLabels();
 
             // TODO 6.3: [AnimatedVisualPlayer] - Hide the Lottie animation after the 3D model finished loading.
-            //LottiePlayer.Stop();
-            //await LottiePlayer.Fade(duration: 600).StartAsync();
+            LottiePlayer.Stop();
+            await LottiePlayer.Fade(duration: 600).StartAsync();
 
             // Auto-rotate the 3D model and its surrounding labels.
             RotateModelAndLabels();

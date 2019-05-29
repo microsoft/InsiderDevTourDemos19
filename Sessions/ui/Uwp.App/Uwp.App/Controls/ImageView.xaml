@@ -54,41 +54,7 @@
             <!--
                 TODO 1.1: [ItemsRepeater] - Replace the ListView with the ScrollViewer/ItemsRepeater below.
             -->
-            <ListView x:Name="ImageList"
-                      Grid.Row="1"
-                      ItemsSource="{x:Bind _photos}"
-                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                      ScrollViewer.HorizontalScrollMode="Enabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollMode="Disabled">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsStackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Padding" Value="0" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Photo">
-                        <RadioButton Width="200"
-                                     Height="120"
-                                     Margin="0,0,6,0"
-                                     Click="OnThumbnailClicked"
-                                     GroupName="Thumbnail"
-                                     Style="{StaticResource Style-RadioButton-Thumbnail}"
-                                     Tag="{x:Bind Title}">
-                            <Image x:Name="Thumbnail"
-                                   Source="{x:Bind Url}"
-                                   Stretch="UniformToFill" />
-                        </RadioButton>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <!--<ScrollViewer x:Name="ImageList"
+            <ScrollViewer x:Name="ImageList"
                           Grid.Row="1"
                           HorizontalScrollBarVisibility="Hidden"
                           HorizontalScrollMode="Enabled"
@@ -117,7 +83,7 @@
                         </DataTemplate>
                     </winui:ItemsRepeater.ItemTemplate>
                 </winui:ItemsRepeater>
-            </ScrollViewer>-->
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

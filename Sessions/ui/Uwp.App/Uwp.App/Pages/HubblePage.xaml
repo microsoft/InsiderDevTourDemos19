@@ -111,14 +111,14 @@
         <!--
             TODO 6.1: [AnimatedVisualPlayer] - Enable the AnimatedVisualPlayer & LottieVisualSource in XAML.
         -->
-        <!--<winui:AnimatedVisualPlayer x:Name="LottiePlayer"
+        <winui:AnimatedVisualPlayer x:Name="LottiePlayer"
                                     Grid.RowSpan="4"
                                     Grid.ColumnSpan="4"
                                     Width="200"
                                     AutoPlay="False"
                                     Visibility="Collapsed">
             <lottie:LottieVisualSource UriSource="ms-appx:///Assets/LottieFiles/PaperPlane.json" />
-        </winui:AnimatedVisualPlayer>-->
+        </winui:AnimatedVisualPlayer>
 
         <TextBlock x:Name="Credits"
                    Grid.Row="2"
