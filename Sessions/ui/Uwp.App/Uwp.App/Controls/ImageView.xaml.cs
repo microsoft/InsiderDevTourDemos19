@@ -75,17 +75,17 @@ namespace Uwp.App.Controls
             ImageUpdated.Invoke(this, new ImageUpdatedEventArgs(Banner.Source));
 
             // TODO 1.2: [ItemsRepeater] - Auto-select first photo when loaded.
-            //Repeater.Loaded += async (s, e) =>
-            //{
-            //    // ChangeView can be called only when the layout has completed, hence waiting in the Loaded event.
-            //    ImageList.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
-            //    ScrollToCenterOfViewport(s);
+            Repeater.Loaded += async (s, e) =>
+            {
+                // ChangeView can be called only when the layout has completed, hence waiting in the Loaded event.
+                ImageList.ChangeView((Layout.ItemWidth + Layout.Spacing) * 500, null, null, true);
+                ScrollToCenterOfViewport(s);
 
-            //    // Auto-select first photo.
-            //    await Task.Delay(1200);
-            //    var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).FirstOrDefault();
-            //    if (first != null) first.IsChecked = true;
-            //};
+                // Auto-select first photo.
+                await Task.Delay(1200);
+                var first = Repeater.FindDescendants<RadioButton>().Where(r => r.Tag.Equals(_photos[0].Title)).FirstOrDefault();
+                if (first != null) first.IsChecked = true;
+            };
         }
 
         private void OnThumbnailClicked(object sender, RoutedEventArgs e)
