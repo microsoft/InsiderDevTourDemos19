@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div id="stream-bar">
+    <b>Start streaming now!</b>      <input type="textbox" id="streamName" value="" placeholder="Stream name..." />
+    <input type="button" id="startStream" value="Start streaming" />
+    <input type="button" id="stopStream" value="Stop streaming" disabled />
+    <input type="button" id="swapCamera" value="Swap Camera" disabled />
+</div>
+
+<div id="container">
+    <div style="width: 620px; height: 480px; text-align:center; margin-right: 20px;">
+        <h3>ASCII Cam</h3>
+        <pre id="myPre"></pre>
+    </div>
+    <div style="width: 200px; height: 113px;text-align:center">
+        <h3>Web cam</h3>
+        <canvas id="myCanvas" width="200" height="113"></canvas>  
+        <div id="toolbar">
+    <b>Watch other streams</b>
+    <div id="streamList">
+        <ul position="absolute" style="margin-bottom: 0;">
+            <li><i>No streams available</i></li>
+        </ul>
+    </div>
+</div>
+    </div>
+</div>
+
+<script src="~/ClientApp/lib/signalr/signalr.js"></script>
+<script src="~/ClientApp/lib/ascii.js"></script>
+<script src="~/ClientApp/lib/camera.js"></script>
+<script src="~/ClientApp/js/site.js"></script>

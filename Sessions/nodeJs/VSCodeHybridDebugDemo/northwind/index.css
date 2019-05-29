@@ -1,0 +1,633 @@
+﻿body {
+    margin: 0
+}
+
+    /* On screens that are 992px or less, set the background color to blue */
+    @media screen and (max-width: 1220px) {
+        .grid-container {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 70px 1fr 1fr 1fr;
+            grid-template-areas: "Header Header" "TicketHistory CustomerDetails" "TicketHistory CustomerDetails" "TicketHistory CustomerDetails";
+        }
+
+        .CustomerQuoteDetails {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 1221px) {
+        .grid-container {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 70px 1fr 1fr 1fr;
+            grid-template-areas: "Header Header Header" "TicketHistory CustomerDetails CustomerQuoteDetails" "TicketHistory CustomerDetails CustomerQuoteDetails" "TicketHistory CustomerDetails CustomerQuoteDetails";
+        }
+
+        .CustomerQuoteDetails {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: "." "PropertyPackageTypes" ".";
+            grid-area: CustomerQuoteDetails;
+        }
+    }
+
+    @media screen and (max-height: 850px) {
+        .customerImage {
+            display: none;
+        }
+
+        .customerName {
+            margin-top: 40px !important;
+        }
+    }
+
+    @media screen and (min-height: 741px) {
+        .TicketHistory {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 4fr 2fr 3fr;
+            grid-template-areas: "." "CurrentTicket" "TicketNotes";
+            grid-area: TicketHistory;
+            border-right: 2px solid lightgrey;
+        }
+    }
+
+@media screen and (max-width: 880px) {
+    .customerImage {
+        display: none;
+    }
+
+    .customerName {
+        margin-top: 40px !important;
+    }
+
+    .TicketHistory {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 0.75fr 1fr;
+        grid-template-areas: "." "CurrentTicket" "TicketNotes";
+        grid-area: TicketHistory;
+        border-right: 2px solid lightgrey;
+    }
+}
+
+@media screen and (max-height: 740px) {
+    .TicketHistory {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 2fr;
+        grid-template-areas: "." "CurrentTicket";
+        grid-area: TicketHistory;
+        border-right: 2px solid lightgrey;
+    }
+
+    .TicketNotes {
+        display: none !important;
+    }
+}
+
+.TicketHistory {
+    background-color: rgba(60, 60, 60, 0.03);
+}
+
+    .TicketNotes {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 28px 1fr;
+        grid-template-areas: ". ." "TicketsDetails TicketsDetails";
+        grid-area: TicketNotes;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-bottom: 3vh;
+    }
+
+    .TicketsDetails {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: ". ." ". ." ". ." ". .";
+        grid-area: TicketsDetails;
+    }
+
+        .TicketsDetails p {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            margin-top: 0;
+        }
+
+.CurrentTicket {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 28px 1fr;
+    grid-template-areas: "." ".";
+    grid-area: CurrentTicket;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+    .CurrentTicket p {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        margin-top: 0;
+    }
+
+.CustomerDetails {
+    grid-area: CustomerDetails;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.ChatArea {
+    grid-area: ChatArea;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #323232;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 56px;
+    grid-template-areas: ".." "..";
+}
+
+.PropertyPackageTypes {
+    display: grid;
+    grid-template-columns: 120px 120px 120px;
+    grid-template-rows: 28px 120px 28px 120px;
+    grid-template-areas: ". . ." ". . ." ". . ." ". . .";
+    grid-area: PropertyPackageTypes;
+    margin-left: 20px;
+    margin-right: 20px;
+    grid-auto-flow: column;
+}
+
+.PropertyPackageTypes label {
+    margin-top: 20px;
+}
+
+    .PropertyPackageTypes button {
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        /*border: 1px solid rgba(60, 60, 60, 0.08);*/
+        border: none;
+        background-color: transparent;
+        /*border-radius: 5px;*/
+        cursor: pointer;
+        color: rgba(60, 60, 60, 0.5);
+        /*transition: color 0.25s ease;*/
+        transition: transform 0.25s ease;
+        /*transition: font-size 0.25s ease;*/
+    }
+
+        .PropertyPackageTypes button:hover {
+            transform: scale(1.05);
+            background-color: rgba(20, 168, 62, 1) !important;
+            color: white;
+            /*border-radius: 10px;*/
+        }
+
+        /*.PropertyPackageTypes button:hover p {
+            transform: scale(1.05);
+        }*/
+
+            /*.PropertyPackageTypes button:hover p {
+                transform: scale(1.1);
+            }
+
+            .PropertyPackageTypes button:hover span {
+                font-size: 32px;
+            }*/
+
+            .PropertyPackageTypes button:focus {
+                outline: none;
+            }
+
+        .PropertyPackageTypes button::before {
+            font-size: 32px;
+        }
+
+        .PropertyPackageTypes button p {
+            font-size: 14px;
+            margin-bottom: 0px;
+            margin-top: 10px;
+            font-family: 'Segoe UI', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+        }
+
+.buttonSelected {
+    background-color: #318C45 !important;
+    color: white !important;
+}
+
+.Header {
+    display: grid;
+    grid-template-columns: 100px 1fr 250px;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". . .";
+    grid-area: Header;
+    background-color: #000000;
+}
+
+    .CurrentCustomer {
+        text-align: center;
+    }
+
+    .fontSize12px {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 12px;
+        margin-top: 0;
+    }
+
+    .fontSize16px {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 1vh;
+    }
+
+    .fontSize24px {
+        font-size: 2.5vh;
+        font-family: 'Segoe UI', sans-serif;
+        margin-top: 5px;
+    }
+
+    .fontColorLightGray {
+        color: #A5A5A5;
+    }
+
+    .fontCondensed {
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .lineHeight4 {
+        line-height: 4vh;
+    }
+
+.labelHeader {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1vh;
+    color: #A5A5A5;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.customerImage {
+    margin-top: 30px;
+    height: 10vh;
+    border-radius: 5vh;
+    transition: all 1s linear 1s;
+}
+
+.roundedButton {
+    border: none;
+    background-color: #F4F4F4;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #3C3C3C;
+    transition: all 0.25s ease;
+}
+
+    .roundedButton:hover {
+        transform: scale(1.1);
+        background-color: #50C170;
+        color: white;
+    }
+
+    .roundedButton:focus {
+        outline: none;
+    }
+
+.CustomerDetailsItem {
+    margin-top: 20px;
+    margin-left: 30px;
+    border-bottom: solid 1px lightgrey;
+}
+
+    .CustomerDetailsItem label {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 1vh;
+        color: #A5A5A5;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    .CustomerDetailsItem p {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 16px;
+        color: #3C3C3C;
+        margin-left: 10px;
+    }
+
+.QuoteNumber {
+    margin-left: 30px;
+    font-size: 24px;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
+
+    .QuoteNumber span:nth-child(2) {
+        color: #318C45;
+    }
+
+.bingMap {
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: unset;
+    height: unset;
+}
+
+.bingMap canvas {
+    border-radius: 10px;
+}
+
+.ResidentalType {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.CommercialType {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.OtherType {
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.BronzeType {
+    grid-row: 4;
+    grid-column: 1;
+}
+
+.SilverType {
+    grid-row: 4;
+    grid-column: 2;
+}
+
+.PlatinumType {
+    grid-row: 4;
+    grid-column: 3;
+}
+
+.QuoteBreakdown {
+    margin-left: 20px;
+    margin-top: 20px;
+    line-height: 16px;
+}
+
+    .QuoteBreakdown p {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .QuoteBreakdown label {
+        font-family: 'Segoe UI', sans-serif;
+        color: #A5A5A5;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+    }
+
+    .QuoteBreakdown:first-child label {
+        font-family: 'Segoe UI', sans-serif;
+        color: #3C3C3C;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: normal;
+    }
+
+#MapStyleSelector {
+    display: none;
+}
+
+#quoteBreakdown {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 24px;
+    color: #3C3C3C;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 42px;
+}
+
+#listQuoteBreakdown {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI';
+}
+
+.CustomerDetails::-webkit-scrollbar {
+    width: 0px;
+    background-color: rgba(60, 60, 60, 0.03);
+}
+
+.ChatMessages {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: center;
+}
+
+    .ChatMessages::-webkit-scrollbar {
+        width: 0px;
+        background-color: rgba(60, 60, 60, 0.03);
+    }
+
+.customerMessage {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+    .customerMessage img {
+        border-radius: 26px;
+        float: left;
+        width: 52px;
+        height: 52px;
+    }
+
+    .customerMessage .customerMessageText {
+        margin-left: 72px;
+        color: white;
+        background-color: #707070;
+        font-family: 'Segoe UI';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 28px;
+        padding-top: 10px;
+    }
+
+        .customerMessage .customerMessageText p {
+            margin-left: 23px;
+            margin-right: 23px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .customerMessage .customerMessageText span {
+            font-family: 'Segoe UI';
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 23px;
+        }
+
+.supportMessage {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+    .supportMessage img {
+        border-radius: 26px;
+        float: right;
+        width: 52px;
+        height: 52px;
+    }
+
+    .supportMessage .customerMessageText {
+        margin-right: 72px;
+        color: white;
+        background-color: #505050;
+        font-family: 'Segoe UI';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 28px;
+        padding-top: 10px;
+    }
+
+        .supportMessage .customerMessageText p {
+            margin-left: 23px;
+            margin-right: 23px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .supportMessage .customerMessageText span {
+            font-family: 'Segoe UI';
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 25px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-left: 23px;
+        }
+
+        .ChatInput {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-family: 'Segoe UI', sans-serif;
+            display: grid;
+            align-items: center;
+            margin-left: 30px;
+            background-color: transparent;
+            border: none;
+        }
+
+input[type=text]:focus {
+    outline: none;
+    /*background-color: #424242;*/
+}
+
+.ButtonHamburger {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: white;
+    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+    .ButtonHamburger:focus {
+        outline: none;
+    }
+
+
+.Header .loggedOnUser {
+    grid-column: 3;
+    color: white;
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    text-align: right;
+    margin-right: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+}
+
+    .Header .loggedOnUser span {
+        align-self: center;
+        margin-right: 24px;
+    }
+
+        .Header .loggedOnUser span:first-child {
+            background-color: #14A83E;
+            width: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+    .Header img {
+        border-radius: 26px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .InvoiceArea {
+        align-self: center;
+        display: flex;
+    }
+
+    .InvoiceButton {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 30px;
+        width: 150px;
+        background-color: #318C45;
+        color: white;
+        font-family: 'Segoe UI';
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.25s ease;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .InvoiceButton:focus {
+        outline: none;
+    }
+
+    .InvoiceButton:hover {
+        transform: scale(1.05);
+    }
+
+    a {
+        color: #318C45;
+    }
+
+    a:visited {
+        color: #318C45;
+    }
+    
