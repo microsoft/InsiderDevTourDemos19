@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Northwind Customer Chat</title>
+    <link href="./index.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel='stylesheet' href='./fluentweb.css' />
+    <script src="./fluentweb.js"></script>
+    <style>
+        #unsubscribeButton {
+            width: 300px;
+            height: 100px;
+            font-family: 'Segoe UI';
+            font-size: 36px;
+            position: absolute;
+            top: calc((100% - 100px) /2);
+            left: calc((100% - 300px) /2);
+        }
+    </style>
+</head>
+<body>
+    <button id="unsubscribeButton" class="ResidentalType has-reveal is-dark">Unsubscribe</button>
+    <script>
+        function getPushSubscription() {
+            return navigator.serviceWorker.ready
+                .then(function(registration) {
+                    return registration.pushManager.getSubscription();
+                });
+        }
+
+        function unsubscribePush() {
+            return getPushSubscription().then(function(subscription) {
+                if (subscription) {
+                    return subscription.unsubscribe();
+                }
+                else {
+                    alert("No push registration found.");
+                    return null;
+                }
+            });
+        }
+        document.getElementById('unsubscribeButton').addEventListener('click', function () {
+                unsubscribePush().then(function(result) {
+                    if (result) {
+                        alert("Unsubscribe done. Please delete subscriptions.db to totally reset the demo.");
+                    }
+                });;
+        });
+    </script>
+</body>

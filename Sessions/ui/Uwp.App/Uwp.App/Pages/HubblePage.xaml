@@ -211,7 +211,7 @@
                            Text="Secondary mirror" />
                 <TextBlock FontFamily="{StaticResource SemiBold}"
                            FontSize="12"
-                           Text="Like the primary mirror, Hubble's secondary mirroris made of special glass coated with aluminum and a compund to reflect ultraviolet light."
+                           Text="Like the primary mirror, Hubble's secondary mirror is made of special glass coated with aluminum and a compound to reflect ultraviolet light."
                            TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel x:Name="Label3"

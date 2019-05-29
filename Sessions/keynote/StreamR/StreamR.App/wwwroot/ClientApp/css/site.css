@@ -1,0 +1,117 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#stream-bar * {
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#streamList li * {
+  margin-top: 10px;
+}
+
+.nav-item {
+  font-size: 1.2rem !important;
+}
+#stream-bar {
+  margin-top: 20px;
+}
+#navigation-bar {
+  background-color: lightblue !important;
+  border-bottom: 1px solid black !important;
+}
+#container {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+#myPre {
+  font-size: 35%;
+  color: lime;
+  border: 1px solid black;
+  display: inline-block;
+  width: 620px;
+  height: 480px;
+  box-shadow: 5px 10px lightblue;
+}
+
+#toolbar {
+  margin-top: 40px;
+}
+
+#toolbar ul {
+  margin-top: 10px;
+  text-align: left;
+}
+
+#toolbar li * {
+  margin-right: 10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.navbar-brand {
+  font-size: 30px;
+  margin-right: 30px;
+}
+canvas {
+  border: 1px solid black;
+  box-shadow: 5px 10px lightblue;
+  
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
