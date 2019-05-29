@@ -29,10 +29,11 @@ namespace Uwp.App.Pages
         private readonly ContainerVisual _hostVisual;
         private readonly SceneVisual _sceneVisual;
 
-        private readonly LabelBuilder _labelBuilder = new LabelBuilder();
+        //        private readonly LabelBuilder _labelBuilder = new LabelBuilder();
         private List<SceneNode> _labelNodes;
         private List<SceneNode> _labelParentNodes;
         private List<SceneNode> _sphereNodes;
+        private List<SceneNode> _pipeNodes;
         private List<SceneMetallicRoughnessMaterial> _labelMaterials;
         private static readonly Vector3 _defaultRotationAxis = new Vector3(0.0f, 1.0f, 0.2f);
         private VisualInteractionSource _interactionSource;
@@ -75,6 +76,7 @@ namespace Uwp.App.Pages
             // https://github.com/microsoft/microsoft-ui-xaml/issues/686
             ElementCompositionPreview.SetElementChildVisual(ModelHost, _hostVisual);
             _sceneVisual.Scale = new Vector3(new Vector2(2.5f), 1.0f);
+            _sceneVisual.Opacity = 0.0f;
             _sceneVisual.Root = SceneNode.Create(_compositor);
             _sceneVisual.Root.Children.Clear();
             _sceneVisual.Root.Children.Add(sceneNode);
@@ -99,15 +101,31 @@ namespace Uwp.App.Pages
             _labelParentNodes = new List<SceneNode>();
             _sphereNodes = new List<SceneNode>();
             _labelMaterials = new List<SceneMetallicRoughnessMaterial>();
+            _pipeNodes = new List<SceneNode>();
 
             await AddLabel(Label1, new Vector3(160.0f, -200.0f, -4.0f), new Vector2(59.0f, 0.0f));
             await AddLabel(Label2, new Vector3(-200.0f, 60.0f, -8.0f), new Vector2(67.0f, 0.0f));
-            await AddLabel(Label3, new Vector3(120.0f, 60.0f, -8.0f), new Vector2(63.0f, 0.0f));
+            await AddLabel(Label3, new Vector3(120.0f, 60.0f, -8.0f), new Vector2(65.0f, 0.0f));
 
             var color = new Vector4(new Vector3(50.0f, 160.0f, 95.0f) / 255.0f, 1.0f);
-            AddSphere(4.0f, new Vector3(-100.0f, 25.0f, -10.0f), color);
-            AddSphere(4.0f, new Vector3(95.0f, -65.0f, 1.0f), color);
-            AddSphere(4.0f, new Vector3(-50.0f, 45.0f, -5.0f), color);
+
+            var solarPanelLabelPin = new Vector3(120.0f, 62.0f, -8.0f);
+            var solarPanelPin = new Vector3(10.0f, -40.0f, 70.0f);
+            AddSphere(2.0f, solarPanelPin, color);
+            //AddSphere(2.0f, solarPanelLabelPin, color);
+            AddPipe(0.25f, solarPanelPin, solarPanelLabelPin, color);
+
+            var secondaryMirrorLabelPin = new Vector3(-200.0f, 61.0f, -8.0f);
+            var secondaryMirrorPin = new Vector3(60.0f, 0.0f, 0.0f);
+            AddSphere(2.0f, secondaryMirrorPin, color);
+            //AddSphere(2.0f, secondaryMirrorLabelPin, color);
+            AddPipe(0.25f, secondaryMirrorPin, secondaryMirrorLabelPin, color);
+
+            var primaryMirrorLabelPin = new Vector3(160.0f, -152.0f, -4.0f);
+            var primaryMirrorPin = new Vector3(122.0f, -50.0f, 0.0f);
+            AddSphere(2.0f, primaryMirrorPin, color);
+            //AddSphere(2.0f, primaryMirrorLabelPin, color);
+            AddPipe(0.25f, primaryMirrorPin, primaryMirrorLabelPin, color);
         }
 
         private void AttachZoomInteractionToModel()
@@ -139,6 +157,7 @@ namespace Uwp.App.Pages
 
         private void RotateModelAndLabels()
         {
+            _sceneVisual.Opacity = 1.0f;
             _sceneVisual.Root.Transform.RotationAxis = _defaultRotationAxis;
 
             var scaleAnimation = _compositor.CreateVector3KeyFrameAnimation();
@@ -158,6 +177,11 @@ namespace Uwp.App.Pages
             inverseRotationAnimation.IterationBehavior = AnimationIterationBehavior.Forever;
 
             foreach (var node in _sphereNodes)
+            {
+                node.Transform.StartAnimation(nameof(SceneNode.Transform.Scale), scaleAnimation);
+            }
+
+            foreach (var node in _pipeNodes)
             {
                 node.Transform.StartAnimation(nameof(SceneNode.Transform.Scale), scaleAnimation);
             }
@@ -291,11 +315,20 @@ namespace Uwp.App.Pages
             _sphereNodes.Add(newSphereNode);
         }
 
+        private void AddPipe(float radius, Vector3 start, Vector3 end, Vector4 color)
+        {
+            var pipeNode = LabelHelper.AddPipe(_sceneVisual.Root, radius, start, end, color);
+
+            _pipeNodes.Add(pipeNode);
+
+            pipeNode.Transform.Scale = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+
         private void LayoutRoot_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             if (e.Pointer.PointerDeviceType != PointerDeviceType.Touch) return;
 
-            _interactionSource.TryRedirectForManipulation(e.GetCurrentPoint(LayoutRoot));
+            _interactionSource?.TryRedirectForManipulation(e.GetCurrentPoint(LayoutRoot));
         }
     }
 }

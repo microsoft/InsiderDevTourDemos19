@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI.Composition;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Graphics;
+using Windows.Graphics.DirectX;
 using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Composition.Scenes;
@@ -38,149 +43,217 @@ namespace Uwp.App.Helpers
         int GetClosedEventHandle();
     }
 
-    public class LabelBuilder
+    public class LabelHelper
     {
-        public LabelBuilder()
-        {
-            _labelLookupTable = new Dictionary<SceneNode, LabelEntry>();
-        }
-
-        private void AddTransformParentComponent(SceneNode node)
-        {
-            // Empty mesh signifies a transform parent component.
-            node.Components.Add(SceneMeshRendererComponent.Create(node.Compositor));
-        }
-
-        private bool HasTransformParentComponent(SceneNode node)
-        {
-            var meshComponent = node.FindFirstComponentOfType(SceneComponentType.MeshRendererComponent) as SceneMeshRendererComponent;
-            return (meshComponent != null) && (meshComponent.Mesh == null);
-        }
-
-        public void AddPositionedLabelNode(
-            UIElement xamlLabelElement,
-            Vector3 positionOfDotInNodeSpace,
-            SceneNode anchorNode,
-            Color labelColor,
-            Vector3 labelOffset
+        // This will add a pipe of designated radius of the base circle and the
+        // specified number of vertices around it's circumference,
+        static public SceneNode AddPipe(
+            SceneNode rootNode,
+            float radius,
+            Vector3 startPoint,
+            Vector3 endPoint,
+            Vector4 color,
+            int numVerticesAroundCircumference = 16
             )
         {
-            var tempNode = SceneNode.Create(anchorNode.Compositor);
+            var newPipeNode = SceneNode.Create(rootNode.Compositor);
+            var newMaterial = SceneMetallicRoughnessMaterial.Create(rootNode.Compositor);
 
-            tempNode.Transform.Translation = positionOfDotInNodeSpace;
+            rootNode.Children.Add(newPipeNode);
 
-            anchorNode.Children.Add(tempNode);
+            var mesh = SceneMesh.Create(rootNode.Compositor);
+            var renderer = SceneMeshRendererComponent.Create(rootNode.Compositor);
 
-            AddLabelNode(
-                xamlLabelElement,
-                tempNode,
-                labelColor,
-                new Vector2(xamlLabelElement.ActualSize.X, xamlLabelElement.ActualSize.Y),
-                labelOffset
+            newPipeNode.Components.Add(renderer);
+
+            renderer.Mesh = mesh;
+            renderer.Material = newMaterial;
+
+            newMaterial.BaseColorFactor = color;
+
+            Vector3 forwardVector = endPoint - startPoint;
+
+            // We need to pick vectors to represent forward, right, and up to orient the pipe
+            // Forward is already supplied to us by the start -> end point.
+            // Up and Right don't really matter to us as long as they form a proper coordinate space
+            // and they are all in directions perpindicular to each other.
+            //
+            // We'll first try using Positive Z as a reference vector to a perpindicular "Right", but
+            // if the vector is already going along the z-axis we need to use a different reference
+            // axis.
+
+            Vector3 referenceVectorToAcquireRightVector;
+
+            if (endPoint.X - startPoint.X != 0.0f || endPoint.Y - startPoint.Y != 0.0f)
+            {
+                // Use Positive Z axis to acquire a "right vector" using a cross product
+                referenceVectorToAcquireRightVector = new Vector3(0.0f, 0.0f, 1.0f);
+            }
+            else
+            {
+                // Positive Z axis is co-linear, let's use the negative y axis
+                referenceVectorToAcquireRightVector = new Vector3(0.0f, -1.0f, 0.0f);
+            }
+
+            Vector3 forwardAxis = Vector3.Normalize(forwardVector);
+
+            // We use the forwardAxis, the referenceVector, and their cross product to get us a rightAxis.
+            // The referenceVector doesn't reallly matter what it is very much, what's important
+            // is the rightAxis from the CrossProduct will be perpendicular to our forward vector.
+            Vector3 rightAxis = Vector3.Cross(forwardAxis, referenceVectorToAcquireRightVector);
+
+            // Now that we have a forward and a right, we can cross again to get an up.
+            Vector3 upAxis = Vector3.Cross(rightAxis, forwardAxis);
+
+            SceneHelper.FillMeshWithPipe(
+                mesh,
+                radius,
+                startPoint,
+                endPoint,
+                forwardAxis,
+                upAxis,
+                rightAxis,
+                numVerticesAroundCircumference
                 );
+
+            return newPipeNode;
         }
 
-        public void AddLabelNode(
-            UIElement xamlLabelElement,
-            SceneNode anchorNode,
-            Color labelColor,
-            Vector2 labelSize,
-            Vector3 labelOffset)
+        static public SceneNode AddSphere(
+            SceneNode rootNode,
+            float radius,
+            Vector3 offset,
+            Vector4 color
+            )
         {
-            var compositor = anchorNode.Compositor;
+            var newSphereNode = SceneNode.Create(rootNode.Compositor);
+            var newMaterial = SceneMetallicRoughnessMaterial.Create(rootNode.Compositor);
 
-            var interopNode = SceneNode.Create(compositor);
-            AddTransformParentComponent(interopNode);
-            anchorNode.Children.Add(interopNode);
+            rootNode.Children.Add(newSphereNode);
 
-            // Create visual that corresponds to the interopNode.
-            // Interop-node will modify this visual's offset.
-            var interopVisual = compositor.CreateContainerVisual();
+            var mesh = SceneMesh.Create(rootNode.Compositor);
+            var renderer = SceneMeshRendererComponent.Create(rootNode.Compositor);
 
-            // Create label box with a line connecting its horizontal midpoint to the anchor node.
-            var labelVisual = compositor.CreateShapeVisual();
+            newSphereNode.Components.Add(renderer);
+
+            renderer.Mesh = mesh;
+            renderer.Material = newMaterial;
+
+            newMaterial.BaseColorFactor = color;
+
+            newSphereNode.Transform.Translation = offset;
+
+            SceneHelper.FillMeshWithSphere(mesh, radius, 64);
+
+            return newSphereNode;
+        }
+
+        static public async void AddLabel(
+            SceneNode rootNode,
+            List<SceneNode> labelNodes,
+            Vector2 labelSize,
+            Vector3 offset,
+            Vector2 anchorPoint,
+            string labelFileName)
+        {
+            var newLabelNode = SceneNode.Create(rootNode.Compositor);
+            var newLabelParentNode = SceneNode.Create(rootNode.Compositor);
+            var newMaterial = SceneMetallicRoughnessMaterial.Create(rootNode.Compositor);
+
+            labelNodes.Add(newLabelNode);
+
+            var newLabelMesh = SceneMesh.Create(rootNode.Compositor);
+            var newLabelRenderer = SceneMeshRendererComponent.Create(rootNode.Compositor);
+
+            newLabelParentNode.Children.Add(newLabelNode);
+
+            SceneHelper.FillMeshWithSquare(newLabelMesh, labelSize.X, labelSize.Y, anchorPoint.X, anchorPoint.Y);
+
+            newLabelRenderer.Mesh = newLabelMesh;
+            newLabelRenderer.Material = newMaterial;
+
+            newLabelNode.Components.Add(newLabelRenderer);
+
+            rootNode.Children.Add(newLabelParentNode);
+
+            newLabelNode.Transform.Translation = offset;
+
+            var compositionGraphicsDevice = CanvasComposition.CreateCompositionGraphicsDevice(rootNode.Compositor, CanvasDevice.GetSharedDevice());
+
+            SizeInt32 maxSize;
+
+            maxSize.Width = (int)labelSize.X;
+            maxSize.Height = (int)labelSize.Y;
+
+            var mipmapSurface = compositionGraphicsDevice.CreateMipmapSurface(
+                maxSize,
+                DirectXPixelFormat.B8G8R8A8UIntNormalized,
+                DirectXAlphaMode.Premultiplied);
+
+            int levelWidth = maxSize.Width;
+            int levelHeight = maxSize.Height;
+
+            var labelColorInput = SceneSurfaceMaterialInput.Create(rootNode.Compositor);
+
+            labelColorInput.Surface = mipmapSurface;
+            labelColorInput.BitmapInterpolationMode = CompositionBitmapInterpolationMode.MagLinearMinLinearMipLinear;
+
+            newMaterial.BaseColorInput = labelColorInput;
+
+            bool fMoreProcessing = true;
+            uint mipLevel = 0;
+
+            while (fMoreProcessing)
             {
-                var strokeBrush = compositor.CreateColorBrush(Colors.Black);
-                float strokeThickness = 2;
+                CompositionDrawingSurface level = mipmapSurface.GetDrawingSurfaceForLevel(mipLevel);
 
-                var labelViewBox = compositor.CreateViewBox();
-                labelViewBox.Offset = new Vector2(
-                    -(0.5f * labelSize.X + strokeThickness + Math.Abs(labelOffset.X)),
-                    -(labelSize.Y + strokeThickness + Math.Abs(labelOffset.Y)));
-                labelViewBox.Size = 2 * Vector2.Abs(labelViewBox.Offset);
-
-                labelVisual.Size = labelViewBox.Size;
-                labelVisual.ParentForTransform = interopVisual;
-                labelVisual.Offset = new Vector3(labelViewBox.Offset, labelOffset.Z);
-                labelVisual.Opacity = 1.0f;
-                labelVisual.ViewBox = labelViewBox;
-
-                var anchorDot = compositor.CreateEllipseGeometry();
-                anchorDot.Center = Vector2.Zero;
-                anchorDot.Radius = new Vector2(3 * strokeThickness);
-
-                var anchorDotShape = compositor.CreateSpriteShape(anchorDot);
-                anchorDotShape.FillBrush = strokeBrush;
-                labelVisual.Shapes.Add(anchorDotShape);
-
-                var labelLine = compositor.CreateLineGeometry();
-                labelLine.Start = Vector2.Zero;
-                labelLine.End = new Vector2(labelOffset.X, labelOffset.Y);
-
-                var labelLineShape = compositor.CreateSpriteShape(labelLine);
-                labelLineShape.StrokeBrush = strokeBrush;
-                labelLineShape.StrokeThickness = strokeThickness;
-                labelLineShape.StrokeDashArray.Add(2 * strokeThickness);
-                labelVisual.Shapes.Add(labelLineShape);
-
-                var xamlVisual = ElementCompositionPreview.GetElementVisual(xamlLabelElement);
-
-                // Need to figure out proper positioning of elements
-                if (labelOffset.X != 0.0f)
                 {
-                    xamlVisual.Offset = new Vector3(labelOffset.X + labelSize.X + labelSize.Y / 2, labelSize.Y / 2.0f, 0.0f);
+                    using (var session = CanvasComposition.CreateDrawingSession(level))
+                    {
+                        CanvasBitmap bitmapFromFile = await CanvasBitmap.LoadAsync(session, labelFileName);
+
+                        try
+                        {
+                            {
+                                session.DrawImage(
+                                    bitmapFromFile,
+                                    new Rect(
+                                        0,
+                                        0,
+                                        levelWidth,
+                                        levelHeight));
+
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
                 }
 
-                labelVisual.Children.InsertAtTop(xamlVisual);
-            }
+                if (levelWidth == 1 && levelHeight == 1)
+                {
+                    fMoreProcessing = false;
+                }
 
-            LabelEntry label;
-            label.LabelVisual = labelVisual;
-            label.InteropVisual = interopVisual;
-            _labelLookupTable.Add(interopNode, label);
+                mipLevel++;
+
+                levelWidth /= 2;
+                levelHeight /= 2;
+
+                if (levelWidth <= 0)
+                {
+                    levelWidth = 1;
+                }
+
+                if (levelHeight <= 0)
+                {
+                    levelHeight = 1;
+                }
+
+            }// For loop
         }
 
-        public void BuildLabels(
-            ContainerVisual labelRoot,
-            SceneVisual sceneVisual)
-        {
-            BuildLabelsWorker(labelRoot, sceneVisual, sceneVisual.Root);
-        }
-
-        private void BuildLabelsWorker(
-            ContainerVisual labelRoot,
-            SceneVisual sceneVisual,
-            SceneNode node)
-        {
-            if (HasTransformParentComponent(node))
-            {
-                var label = _labelLookupTable[node];
-                labelRoot.Children.InsertAtTop(label.LabelVisual);
-                sceneVisual.Children.InsertAtTop(label.InteropVisual);
-            }
-
-            foreach (var child in node.Children)
-            {
-                BuildLabelsWorker(labelRoot, sceneVisual, child);
-            }
-        }
-
-        struct LabelEntry
-        {
-            public Visual LabelVisual;
-            public Visual InteropVisual;
-        }
-
-        private Dictionary<SceneNode, LabelEntry> _labelLookupTable;
     }
 }

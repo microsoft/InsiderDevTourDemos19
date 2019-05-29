@@ -25,8 +25,8 @@ namespace Uwp.App
             var pageType = Type.GetType(pageName);
 
             // TODO 4.2: [Implicit Animations] - Suppress default NavigationView animation.
-            ContentFrame.Navigate(pageType, null, new SuppressNavigationTransitionInfo());
-            //ContentFrame.Navigate(pageType);
+            //ContentFrame.Navigate(pageType, null, new SuppressNavigationTransitionInfo());
+            ContentFrame.Navigate(pageType);
         }
 
         private void NavigateToHome()
