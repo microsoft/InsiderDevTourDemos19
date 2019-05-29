@@ -25,7 +25,7 @@ namespace StreamR
 			
 			// Add before yielding
             // This fixes a race where we tell clients a new stream arrives before adding the stream
-            this._streams.TryAdd(streamName, streamHolder);
+            _streams.TryAdd(streamName, streamHolder);
 
             await Task.Yield();
 
@@ -64,7 +64,7 @@ namespace StreamR
                     throw new HubException("stream doesn't exist");
             }
 
-            var     id = Interlocked.Increment(ref this._globalClientId);
+            var     id = Interlocked.Increment(ref _globalClientId);
 
             var channel = Channel.CreateBounded<string>(options: new BoundedChannelOptions(2)
             {
