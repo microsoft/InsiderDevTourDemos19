@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+</head>
+<body>
+    <!-- THIS IS AN EXAMPLE OF WHAT YOU COULD BUILD UP DURING THE DEMO,
+         FEEL FREE TO DO MORE AS YOU FEEL IS NEEDED-->
+
+    <mgt-msal-provider client-id="[CLIENT ID GOES HERE]"></mgt-msal-provider>
+
+    <mgt-login></mgt-login>
+
+    <mgt-person person-query="alex" show-name show-email></mgt-person>
+
+    <mgt-agenda>
+        <template data-type="event">
+            {{event.subject}}
+            <ul>
+                <li data-for="attendee in event.attendees">
+                    {{attendee.emailAddress.name}}
+                </li>
+            </ul>
+        </template>
+    </mgt-agenda>
+</body>
+</html>
