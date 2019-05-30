@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Northwind Customer Chat</title>
+    <link rel="manifest" href="manifest.json" />
+    <link href="index.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel='stylesheet' href='../fluentweb.css' />
+    <script src="../fluentweb.js"></script>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="ChatArea">
+            <div class="ChatMessages">
+                <div class="customerMessage">
+                    <img src="../images/image2.png" />
+                    <div class="customerMessageText has-reveal-border">
+                        <span>Toby Fitch</span>
+                        <p>Hi! You guys visited us last week and after chatting with my partner, I think we’d definitely like to have an upgrade. We’re not sure what our next steps are?</p>
+                    </div>
+                </div>
+                <div class="supportMessage">
+                    <img src="../images/image.png" />
+                    <div class="customerMessageText has-reveal-border">
+                        <span>You</span>
+                        <p>Hello! My name is Kevin, and I can definitely help you with that.</p>
+                    </div>
+                </div>
+                <div class="customerMessage">
+                    <img src="../images/image2.png" />
+                    <div class="customerMessageText has-reveal-border">
+                        <span>Toby Fitch</span>
+                        <p>Awesome! Can I get a quote of what it would take me to go 100% off the grid?</p>
+                    </div>
+                </div>
+                <div class="supportMessage">
+                    <img src="../images/image.png" />
+                    <div class="customerMessageText has-reveal-border">
+                        <span>You</span>
+                        <p>Sure thing, before I get started on your quote, do you know which package you prefer?</p>
+                    </div>
+                </div>
+                <div class="customerMessage">
+                    <img src="../images/image2.png" />
+                    <div class="customerMessageText has-reveal-border">
+                        <span>Toby Fitch</span>
+                        <p>For now, I think either the Silver or Platinum solar packages work well for us.</p>
+                    </div>
+                </div>
+            </div>
+            <input type="text" class="ChatInput" value="Please enter your message here..."></input>
+        </div>
+        <div class="Header">
+            <button class="ButtonHamburger fas fa-bars has-reveal-border is-light"></button>
+            <div class="loggedOnUser">
+                <span>3</span>
+                <span>Kevin Gallo</span>
+                <img src="../images/image.png" />
+            </div>
+        </div>
+    </div>
+    <!-- <script src="pwabuilder-sw-register.js"></script> -->
+</body>
+</html>

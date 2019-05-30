@@ -1,0 +1,112 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "Northwind Customer Chat",
+  "scope": "./",
+  "display": "standalone",
+  "start_url": "./",
+  "short_name": "Northwind Chat",
+  "theme_color": "black",
+  "description": "",
+  "orientation": "any",
+  "background_color": "black",
+  "related_applications": [],
+  "prefer_related_applications": false,
+     "icons": [
+      {
+        "src": "./images/635f663f-ec7e-feea-0bb3-9850ef0b184b.webPlatform.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      },
+        {
+            "src": "./images/d7f03e68-0f25-0463-cf56-0ceaca6c32e6.webPlatform.png",
+            "sizes": "44x44",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/08fb6445-b3eb-fc05-f699-873411bc49e2.webPlatform.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/1344cc7a-7b12-092a-105b-a4d4836f30da.webPlatform.png",
+            "sizes": "1240x600",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/e3edcee9-688d-8f50-e3f2-7e5625bae76c.webPlatform.png",
+            "sizes": "300x300",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/f4e41982-6d57-65bd-146e-c0e6e9791824.webPlatform.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/ac7f0769-6439-e940-8ad1-74bd6e31b1da.webPlatform.png",
+            "sizes": "88x88",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/55e330a6-4a23-2ff3-267d-af2a449a5220.webPlatform.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/a6892d91-44ff-1b7f-960a-1a6c4cfc9615.webPlatform.png",
+            "sizes": "50x50",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/86222685-04c4-3376-d569-a77552c109bb.webPlatform.png",
+            "sizes": "620x300",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/49c51c0c-1ad9-56bc-327b-791ce38ba65a.webPlatform.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/f78fda56-b66c-c7ab-a23c-4550e3ae5e76.webPlatform.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/4635a465-cc2a-41fc-7c52-bf834aa0a7a3.webPlatform.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/a947b8ae-c744-1a86-d7c4-67101ef63a61.webPlatform.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/afb319df-734a-4974-2b44-42bb6548de28.webPlatform.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        },
+      {
+        "src": "./images/6b9c5784-1aa2-03bc-b919-d6ecca2e1494.webPlatform.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      },
+        {
+            "src": "./images/8516856b-6a93-2b0e-4c67-e1b028ffb951.webPlatform.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/0a0b8e93-27a0-2774-2bb9-dc31f13429e2.webPlatform.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/0583cad4-f754-fb0e-b1d3-52d64745acc5.webPlatform.png",
+            "sizes": "76x76",
+            "type": "image/png"
+        }
+    ]
+}
