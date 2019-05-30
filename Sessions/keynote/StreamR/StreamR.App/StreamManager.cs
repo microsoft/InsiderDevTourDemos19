@@ -25,7 +25,7 @@ namespace StreamR
 			
 			// Add before yielding
             // This fixes a race where we tell clients a new stream arrives before adding the stream
-            _streams.TryAdd(streamName, streamHolder);
+            this._streams.TryAdd(streamName, streamHolder);
 
             await Task.Yield();
 
@@ -50,21 +50,21 @@ namespace StreamR
 
         public void RemoveStream(string streamName)
         {
-            _streams.TryRemove(streamName, out var streamHolder);
+            this._streams.TryRemove(streamName, out var streamHolder);
             foreach (var viewer in streamHolder.Viewers)
             {
-                viewer.Value.Writer.TryComplete();
+				viewer.Value.Writer.TryComplete();
             }
         }
 
         public IAsyncEnumerable<string> Subscribe(string streamName, CancellationToken cancellationToken)
         {
-            if (!_streams.TryGetValue(streamName, out var source))
+            if (!this._streams.TryGetValue(streamName, out var source))
             {
                     throw new HubException("stream doesn't exist");
             }
 
-            var     id = Interlocked.Increment(ref _globalClientId);
+            var     id = Interlocked.Increment(ref this._globalClientId);
 
             var channel = Channel.CreateBounded<string>(options: new BoundedChannelOptions(2)
             {
