@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node app",
-    "debug": "node --inspect app"
+    "debug": "node --inspect app",
+    "build": "xcopy node_modules\\@webcomponents\\webcomponentsjs\\webcomponents-bundle.js public /Y"
   },
   "description": "PWA-push",
   "author": {
     "name": ""
   },
   "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10",
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.0",
     "debug": "^2.2.0",
