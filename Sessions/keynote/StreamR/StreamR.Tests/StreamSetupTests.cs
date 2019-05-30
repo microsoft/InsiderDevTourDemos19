@@ -12,8 +12,7 @@ namespace StreamR.Tests
 			StreamManager streamManager = new StreamManager();
 			_ = streamManager.RunStreamAsync("test", null);
 
-			// Test isn't behaving as expected, but I don't want to
-			// bring in build-break donuts 
+			// 
 			Assert.AreEqual(0, streamManager.ListStreams().Count);
 		}
 	}
