@@ -1,0 +1,34 @@
+{
+    "name": "QnABot",
+    "description": "",
+  "services": [
+    {
+      "type": "endpoint",
+      "endpoint": "https://nitahknowzybotdemo.azurewebsites.net/api/messages",
+      "name": "production",
+      "id": "230",
+      "appId": "33eb6cb1-b620-47d0-8247-cfab608871b4",
+      "appPassword": "uhwedMWLZfsQCA03084#^_-"
+    },
+    {
+      "type": "endpoint",
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "id": "1",
+      "name": "development"
+    },
+    {
+      "type": "qna",
+      "endpointKey": "2a57b534-70f1-4458-a737-c732c1944df5",
+      "hostname": "https://nitahknowzybotqnamaker.azurewebsites.net/qnamaker",
+      "kbId": "a856bead-a450-4428-8c39-de5c9ce8819b",
+      "name": "QnABot",
+      "subscriptionKey": "96ea7e98-2a76-4fb7-9691-89ef42d30a1a"
+    }
+  ],
+    "padlock": "",
+    "version": "2.0",
+    "overrides": null,
+    "path": "C:\\Users\\nionsong\\InsiderDevTour18-Modernize\\src\\Knowzy_Engineering_Win32App\\src\\11.qnamaker\\BotConfiguration.bot"
+}
