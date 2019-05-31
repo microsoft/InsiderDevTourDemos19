@@ -67,7 +67,7 @@ Go back to vscode and show `graph.js`
 
 1. VS Code
 2. [VS Code live server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-    - VS Code live server uses `127.0.0.1` as the default host and `8080` as the default port. You can change both of these in the VS code settings - I recommend `localhost:3000`. The `settings.json` in this folder makes this change for you.
+    - VS Code live server uses `127.0.0.1` as the default host and `8080` as the default port. You can change both of these in the VS code settings - I recommend `localhost:3000`. The `settings.json` in this folder makes this change for you - open this folder in vscode.
 3. [A client id for an AAD app created in the azure portal with the appropriate redirect url](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-spa-app-registration) (the redirect url will depend on your live server settings - for example: `http://localhost:3000` and `http://localhost:3000/index.html`). Make sure both `Access tokens` and `ID tokens` are checked under the `Authentication` tab in the portal.
 
 ### Demo
