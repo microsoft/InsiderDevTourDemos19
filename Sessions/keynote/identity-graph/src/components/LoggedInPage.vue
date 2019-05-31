@@ -47,7 +47,7 @@ export default class LoggedInPage extends Vue {
 
   private logout() {
     const provider = Providers.globalProvider;
-    if (provider) {
+    if (provider && provider.logout) {
       provider.logout();
     }
   }
