@@ -11,9 +11,9 @@ Now you need to register your application in the Microsoft Application Registrat
 2. If your account is present in more than one Azure AD tenant, select **Directory + Subscription** at the top-right corner in the menu on top of the page, and switch your portal session to the desired Azure AD tenant.
 3. Navigate to the Microsoft identity platform for developers <a href= "https://go.microsoft.com/fwlink/?linkid=2083908">App registrations </a> page.
 4. Select **New registration**. 
-  - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `UWP-App-calling-MSGraph`.
-  - In the **Supported account types** section, select **Accounts in any organizational directory and personal Microsoft accounts** (e.g. Skype, Xbox, Outlook.com).
-  - Select **Register** to create the application.
+	- In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `UWP-App-calling-MSGraph`.
+	- In the **Supported account types** section, select **Accounts in any organizational directory and personal Microsoft accounts** (e.g. Skype, Xbox, Outlook.com).
+	- Select **Register** to create the application.
 5. On the app **Overview** page, find the **Application (client) ID value** and record it for later. Go back to Visual Studio, open **MainPage.xaml.cs**, and replace the value of ClientId with the Application ID you just registered:
 
 6. In the list of pages for the app, select **Authentication**. 
@@ -23,11 +23,11 @@ c. Enter `urn:ietf:wg:oauth:2.0:oob` in the **REDIRECT URI** column.
 
 7. Select **Save**.
 8. In the list of pages for the app, select **API permissions**.  
-  - Click the **Add a permission** button
-  - Ensure that the **Microsoft API's** tab is selected
-  - In the **Commonly used Microsoft APIs** section, click on **Microsoft Graph**
-  - In the **Delegated permissions** section, ensure that the right permissions are checked: **User.Read**. Use the search box if necessary.
-  - Select the **Add permissions** button
+	- Click the **Add a permission** button
+	- Ensure that the **Microsoft API's** tab is selected
+	- In the **Commonly used Microsoft APIs** section, click on **Microsoft Graph**
+	- In the **Delegated permissions** section, ensure that the right permissions are checked: **User.Read**. Use the search box if necessary.
+	- Select the **Add permissions** button
 
 ### Choosing the project template
 
