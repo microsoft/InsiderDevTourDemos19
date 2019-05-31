@@ -1,0 +1,76 @@
+﻿<!--
+// ******************************************************************
+
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+
+// ******************************************************************
+-->
+
+<UserControl x:Class="Microsoft.Knowzy.WPF.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Microsoft.Knowzy.WPF.ViewModels"
+             xmlns:localization="clr-namespace:Microsoft.Knowzy.WPF.Localization"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" HorizontalContentAlignment="Stretch"
+             d:DesignHeight="500" d:DesignWidth="1000" d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" IsMainMenu="True" HorizontalAlignment="Stretch"
+              Style="{DynamicResource MenuStyleLeft}" ItemContainerStyle="{DynamicResource MenuItemStyle}">
+            <MenuItem Header="{x:Static localization:Resources.File_Menu}" Template="{DynamicResource MenuItemControlTemplate}" Margin="25,0,0,0">
+                <MenuItem Header="{x:Static localization:Resources.New_Menu}" Template="{StaticResource MenuItemBarControlTemplate}" 
+                          cal:Message.Attach="NewItem()"/>
+                <MenuItem Header="{x:Static localization:Resources.Exit_Menu}" Template="{StaticResource MenuItemBarControlTemplate}"
+                          cal:Message.Attach="Exit()"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static localization:Resources.Menu_Menu}" Template="{DynamicResource MenuItemControlTemplate}"/>
+            <MenuItem Header="{x:Static localization:Resources.View_Menu}" Template="{DynamicResource MenuItemControlTemplate}">
+                <MenuItem Header="{x:Static localization:Resources.ListView_Tab}" Template="{StaticResource MenuItemBarControlTemplate}" 
+                          cal:Message.Attach="ShowListView()"/>
+                <MenuItem Header="Grid view" Template="{StaticResource MenuItemBarControlTemplate}"
+                          cal:Message.Attach="ShowGridView()"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static localization:Resources.Help_Menu}" Template="{DynamicResource MenuItemControlTemplate}"
+                      cal:Message.Attach="About()" />
+        </Menu>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource DialogTextBlockStyle}" Margin="0,0,0,0" Text="{Binding LoggedUser}"/>
+            <Menu Grid.Column="1" IsMainMenu="True" HorizontalAlignment="Right"
+                  Style="{DynamicResource MenuStyleRight}" ItemContainerStyle="{DynamicResource MenuItemStyle}">
+                <MenuItem Header="{x:Static localization:Resources.Login_Menu}"
+                          Template="{DynamicResource MenuItemControlTemplate}" Margin="15,0" 
+                          Visibility="{Binding HasLoggedUser, Converter={StaticResource BoolToVisibilityConverterInverted}}"
+                          cal:Message.Attach="Login()" Click="MenuItem_Click" />
+                <MenuItem Header="{x:Static localization:Resources.Logout_Menu}"
+                          Template="{DynamicResource MenuItemControlTemplate}" Margin="15,0" 
+                          Visibility="{Binding HasLoggedUser, Converter={StaticResource BoolToVisibilityConverter}}"
+                          cal:Message.Attach="Logout()" />
+            </Menu>
+        </Grid>
+
+        <TabControl x:Name="ScreenList" Grid.Row="1" ItemContainerStyle="{DynamicResource TabItemStyle}" Style="{DynamicResource TabControlStyle}"
+                    ItemTemplate="{StaticResource TabItemDataTemplate}"
+                    SelectedIndex="{Binding SelectedIndexTab, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</UserControl>

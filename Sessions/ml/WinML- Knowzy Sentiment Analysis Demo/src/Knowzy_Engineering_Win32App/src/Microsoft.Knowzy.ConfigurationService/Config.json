@@ -1,0 +1,6 @@
+﻿{
+  "JsonFilePath": "Products.json",
+  "JsonFilePathReviews": "Reviews.json",
+  "JsonFilePathSentiments": "Sentiments.json",
+  "DataSourceUrl": "http://"
+}

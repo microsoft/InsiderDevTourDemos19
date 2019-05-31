@@ -1,0 +1,40 @@
+﻿<!--
+// ******************************************************************
+
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+
+// ******************************************************************
+-->
+<Window x:Class="Microsoft.Knowzy.WPF.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localization="clr-namespace:Microsoft.Knowzy.WPF.Localization"
+        xmlns:viewModels="clr-namespace:Microsoft.Knowzy.WPF.ViewModels"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d" MinHeight="260" MinWidth="400" Height="260" Width="400"
+        d:DataContext="{d:DesignInstance viewModels:LoginViewModel}">
+
+    <Border BorderBrush="{StaticResource PrimaryMediumDarkColorBrush}" BorderThickness="2">
+        <Grid Background="{StaticResource PrimaryMediumColorBrush}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Login" FontSize="36" Margin="4" TextAlignment="Center"/>
+                <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
+                <TextBlock Text="Enter your username below" Margin="0,0,0,20" TextWrapping="Wrap" Width="300" TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                <TextBox x:Name="UsernameTextBox" Margin="4" Width="250" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="PasswordTextBox" Margin="4" Width="250" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
+                <Button x:Name="PassportSignInButton" Content="Login" Background="DodgerBlue" Foreground="White" Click="PassportSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
+            </StackPanel>
+            <Button x:Name="DoClose" Width="20" Height="20" Margin="8"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="{StaticResource PrimaryMediumDarkColorBrush}" Content="X" />
+        </Grid>
+    </Border>
+</Window>

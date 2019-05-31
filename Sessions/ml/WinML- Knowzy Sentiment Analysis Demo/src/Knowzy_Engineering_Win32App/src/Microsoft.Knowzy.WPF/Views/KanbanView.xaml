@@ -1,0 +1,90 @@
+﻿<!--
+// ******************************************************************
+
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+
+// ******************************************************************
+-->
+    
+<UserControl x:Class="Microsoft.Knowzy.WPF.Views.KanbanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:models="clr-namespace:Microsoft.Knowzy.WPF.ViewModels.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800" d:DataContext="{d:DesignInstance models:StatusLaneViewModel}">
+
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,25,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+                <ColumnDefinition Width="*" MinWidth="160"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource FirstLaneHeaderBorderStyle}">
+                <TextBlock Text="{Binding Lanes[0].Status, Converter={StaticResource DevelopmentStatusToStringConverter}}"
+                           Style="{StaticResource CenteredTitleTextBlockStyle}"/>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource LaneHeaderBorderStyle}">
+                <TextBlock Text="{Binding Lanes[1].Status, Converter={StaticResource DevelopmentStatusToStringConverter}}"
+                           Style="{StaticResource CenteredTitleTextBlockStyle}"/>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource LaneHeaderBorderStyle}">
+                <TextBlock Text="{Binding Lanes[2].Status, Converter={StaticResource DevelopmentStatusToStringConverter}}"
+                           Style="{StaticResource CenteredTitleTextBlockStyle}"/>
+            </Border>
+            <Border Grid.Column="3" Style="{StaticResource LaneHeaderBorderStyle}">
+                <TextBlock Text="{Binding Lanes[3].Status, Converter={StaticResource DevelopmentStatusToStringConverter}}"
+                           Style="{StaticResource CenteredTitleTextBlockStyle}"/>
+            </Border>
+            <Border Grid.Column="4" Style="{StaticResource LaneHeaderBorderStyle}">
+                <TextBlock Text="{Binding Lanes[4].Status, Converter={StaticResource DevelopmentStatusToStringConverter}}"
+                           Style="{StaticResource CenteredTitleTextBlockStyle}"/>
+            </Border>
+            <Border Grid.Column="5" Style="{StaticResource LaneHeaderBorderStyle}">
+                <TextBlock Text="{Binding Lanes[5].Status, Converter={StaticResource DevelopmentStatusToStringConverter}}"
+                           Style="{StaticResource CenteredTitleTextBlockStyle}"/>
+            </Border>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" Template="{DynamicResource ScrollViewerControlTemplate}">
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="160"/>
+                    <ColumnDefinition Width="*" MinWidth="160"/>
+                    <ColumnDefinition Width="*" MinWidth="160"/>
+                    <ColumnDefinition Width="*" MinWidth="160"/>
+                    <ColumnDefinition Width="*" MinWidth="160"/>
+                    <ColumnDefinition Width="*" MinWidth="160"/>
+                </Grid.ColumnDefinitions>
+
+                <ContentControl Grid.Column="0" Content="{Binding Lanes[0]}" ContentTemplate="{StaticResource FirstLaneTemplate}"/>
+                <ContentControl Grid.Column="1" Content="{Binding Lanes[1]}" ContentTemplate="{StaticResource LaneTemplate}"/>
+                <ContentControl Grid.Column="2" Content="{Binding Lanes[2]}" ContentTemplate="{StaticResource LaneTemplate}"/>
+                <ContentControl Grid.Column="3" Content="{Binding Lanes[3]}" ContentTemplate="{StaticResource LaneTemplate}"/>
+                <ContentControl Grid.Column="4" Content="{Binding Lanes[4]}" ContentTemplate="{StaticResource LaneTemplate}"/>
+                <ContentControl Grid.Column="5" Content="{Binding Lanes[5]}" ContentTemplate="{StaticResource LaneTemplate}"/>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
+

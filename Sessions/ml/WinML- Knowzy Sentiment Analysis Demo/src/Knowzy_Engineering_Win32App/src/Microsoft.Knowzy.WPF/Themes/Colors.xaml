@@ -1,0 +1,43 @@
+﻿<!--
+// ******************************************************************
+
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+
+// ******************************************************************
+-->
+
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="PrimaryDarkColor">#000000</Color>
+    <Color x:Key="PrimaryMediumDarkColor">#BDBDBD</Color>
+    <Color x:Key="PrimaryMediumColor">#F0F0F0</Color>
+    <Color x:Key="PrimaryLightColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryRedColor">#CC0202</Color>
+    <Color x:Key="SecondaryYellowColor">#FFB900</Color>
+    <Color x:Key="SecondaryBlueColor">#0078D7</Color>
+    <Color x:Key="SecondaryRedDarkColor">#950000</Color>
+
+    <SolidColorBrush x:Key="PrimaryDarkColorBrush" Color="{StaticResource PrimaryDarkColor}"/>
+    <SolidColorBrush x:Key="PrimaryMediumDarkColorBrush" Color="{StaticResource PrimaryMediumDarkColor}"/>
+    <SolidColorBrush x:Key="PrimaryMediumColorBrush" Color="{StaticResource PrimaryMediumColor}"/>
+    <SolidColorBrush x:Key="PrimaryLightColorBrush" Color="{StaticResource PrimaryLightColor}"/>
+    <SolidColorBrush x:Key="SecondaryRedColorBrush" Color="{StaticResource SecondaryRedColor}"/>
+    <SolidColorBrush x:Key="SecondaryYellowColorBrush" Color="{StaticResource SecondaryYellowColor}"/>
+    <SolidColorBrush x:Key="SecondaryBlueColorBrush" Color="{StaticResource SecondaryBlueColor}"/>
+    <SolidColorBrush x:Key="SecondaryRedDarkColorBrush" Color="{StaticResource SecondaryRedDarkColor}"/>
+
+    <SolidColorBrush x:Key="TextBoxBackgoundBrush" Color="White"/>
+    <SolidColorBrush x:Key="TextBoxForegoundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="TextBoxBorderBrush" Color="#737474"/>
+    <SolidColorBrush x:Key="TextBoxSelectedBrush" Color="Blue"/>
+</ResourceDictionary>

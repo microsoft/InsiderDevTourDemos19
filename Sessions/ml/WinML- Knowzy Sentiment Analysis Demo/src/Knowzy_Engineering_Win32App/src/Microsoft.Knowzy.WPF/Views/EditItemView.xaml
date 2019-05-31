@@ -1,0 +1,114 @@
+﻿<!--
+// ******************************************************************
+
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+
+// ******************************************************************
+-->
+<Window x:Class="Microsoft.Knowzy.WPF.Views.EditItemView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Microsoft.Knowzy.WPF.ViewModels"
+        xmlns:enums="clr-namespace:Microsoft.Knowzy.Domain.Enums;assembly=Microsoft.Knowzy.Domain"
+        WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow"
+        mc:Ignorable="d" MinHeight="650" MinWidth="920" Height="650" Width="920"
+        d:DataContext="{d:DesignInstance {x:Type viewModels:EditItemViewModel}}">
+
+    <Grid Background="{StaticResource PrimaryMediumColorBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="95"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}"
+                   Text="Item No." />
+        <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}"
+                   Text="Engineer:" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" 
+                   Text="New product name:"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" 
+                   Text="Raw material:"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" 
+                   Text="Development start date:"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" 
+                   Text="Expected completion date:"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" 
+                   Text="Supply management contact:"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" 
+                   Text="Status:"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" Style="{StaticResource DialogTextBlockStyle}" VerticalAlignment="Top" Margin="0,18,0,0" 
+                   Text="Notes:"/>
+
+        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}"
+                 Text="{Binding Id}" />
+        <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}"
+                 Text="{Binding Engineer}" />
+        <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}"
+                 Text="{Binding Name}" />
+        <TextBox Grid.Row="4" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}"
+                 Text="{Binding RawMaterial}" />
+        <TextBox Grid.Row="5" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}"
+                 Text="{Binding DevelopmentStartDate, StringFormat=MM/dd/yyyy}" />
+        <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}"
+                 Text="{Binding ExpectedCompletionDate, StringFormat=MM/dd/yyyy}"/>
+        <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}" TextWrapping="Wrap"  VerticalContentAlignment="Top"
+                 Text="{Binding SupplyManagementContact}" />
+        <ComboBox Grid.Row="8" Grid.Column="2" 
+                  SelectedItem="{Binding Status}" Style="{DynamicResource EditComboBoxStyle}" >
+            <enums:DevelopmentStatus>BreatheTest</enums:DevelopmentStatus>
+            <enums:DevelopmentStatus>ConceptDesign</enums:DevelopmentStatus>
+            <enums:DevelopmentStatus>Production</enums:DevelopmentStatus>
+            <enums:DevelopmentStatus>Prototype</enums:DevelopmentStatus>
+            <enums:DevelopmentStatus>QA</enums:DevelopmentStatus>
+            <enums:DevelopmentStatus>Research</enums:DevelopmentStatus>
+        </ComboBox>
+        <TextBox Grid.Row="9" Grid.Column="2" Style="{StaticResource DialogTextBoxStyle}" Margin="4" TextWrapping="Wrap" VerticalContentAlignment="Top"
+                 Text="{Binding Notes}" />
+
+        <StackPanel Grid.Row="1" Grid.Column="4" Grid.RowSpan="10">
+            <TextBlock Style="{StaticResource DialogTextBlockStyle}" VerticalAlignment="Top" Margin="0,18,0,8" 
+                       Text="Product photo:"/>
+            <Border BorderBrush="Gray" BorderThickness="1" MinHeight="290" MaxHeight="350" Background="White">
+                <Image Stretch="Uniform" 
+                    Source="{Binding ImageSource}" />
+            </Border>
+            <Button x:Name="UploadPhoto" HorizontalAlignment="Right" Margin="0,10" Style="{StaticResource ButtonEditPicStyle}"
+                    Content="Upload new photo"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="11" Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="0,0,11,19" VerticalAlignment="Bottom">
+            <Button x:Name="SaveAndCloseEditWindow" Margin="0,0,15,0" Style="{StaticResource ButtonEditItemStyle}"
+                    Content="Save"/>
+            <Button x:Name="CloseEditWindow" Style="{StaticResource ButtonEditItemStyle}"
+                    Content="Close"/>
+        </StackPanel>
+    </Grid>
+</Window>
