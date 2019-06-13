@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package OrdersHandler;
 
+option csharp_namespace = "BlazorInsider.App";
+
 // The orders service definition.
 service OrdersManager {
   // Gets an order from the database

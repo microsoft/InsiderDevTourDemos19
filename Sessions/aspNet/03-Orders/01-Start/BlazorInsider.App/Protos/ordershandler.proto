@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option csharp_namespace = "BlazorInsider.App";
+
 package OrdersHandler;
 
 // The orders service definition.

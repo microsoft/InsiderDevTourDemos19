@@ -8,15 +8,15 @@
 <table>
     <tr>
         <td>Description:</td>
-        <td><input type="text" bind="@description" /></td>
+        <td><input type="text" @bind="description" /></td>
     </tr>
     <tr>
         <td>Quantity:</td>
-        <td><input type="number" bind="@quantity" /></td>
+        <td><input type="number" @bind="quantity" /></td>
     </tr>
     <tr>
         <td>Total:</td>
-        <td><input type="number" bind="@total" /></td>
+        <td><input type="number" @bind="total" /></td>
     </tr>
 </table>
 
@@ -24,8 +24,8 @@
 
 <table>
     <tr>
-        <td><button class="btn btn-primary" onclick="@SaveOrder">Save order</button></td>
-        <td><button class="btn btn-primary" onclick="@RefreshOrders">Refresh orders</button></td>
+        <td><button class="btn btn-primary" @onclick="@SaveOrder">Save order</button></td>
+        <td><button class="btn btn-primary" @onclick="@RefreshOrders">Refresh orders</button></td>
     </tr>
 </table>
 
@@ -64,7 +64,7 @@ else
     </table>
 }
 
-@functions {
+@code {
     int orderId;
     string description;
     int quantity;

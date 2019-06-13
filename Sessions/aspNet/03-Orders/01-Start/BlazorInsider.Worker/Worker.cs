@@ -1,8 +1,9 @@
 using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorInsider.App.Services;
-using Grpc.Core;
+using Grpc.Net.Client;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OrdersHandler;
@@ -27,11 +28,16 @@ namespace BlazorInsider.Worker
                 _logger.LogInformation($"Checking orders at {DateTimeOffset.Now}");
                 try
                 {
-                    Channel channel = new Channel("localhost:50051", ChannelCredentials.Insecure);
-                    OrdersManager.OrdersManagerClient client = new OrdersManager.OrdersManagerClient(channel);
+                    AppContext.SetSwitch(
+                    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport",
+                    true);
+                    HttpClient httpClient = new HttpClient();
+                    httpClient.BaseAddress = new Uri("http://localhost:50051");
+
+                    var grpcClient = GrpcClient.Create<OrdersManager.OrdersManagerClient>(httpClient);
 
                     OrderRequest request = new OrderRequest();
-                    OrderReply result = await client.GetNewOrderAsync(request);
+                    OrderReply result = await grpcClient.GetNewOrderAsync(request);
                     if (result.OrderId != 0)
                     {
                         _databaseService.UpdateOrder(result.OrderId);
@@ -41,8 +47,6 @@ namespace BlazorInsider.Worker
                     {
                         _logger.LogInformation($"No pending orders at {DateTimeOffset.Now}");
                     }
-
-                    await channel.ShutdownAsync();
                 }
                 catch (Exception exc)
                 {

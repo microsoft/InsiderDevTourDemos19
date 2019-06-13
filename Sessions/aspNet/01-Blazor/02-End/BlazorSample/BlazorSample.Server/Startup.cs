@@ -25,6 +25,7 @@ namespace BlazorSample.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseClientSideBlazorFiles<Client.Startup>();
             app.UseResponseCompression();
 
             if (env.IsDevelopment())
@@ -38,9 +39,8 @@ namespace BlazorSample.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html");
             });
-
-            app.UseBlazor<Client.Startup>();
         }
     }
 }
