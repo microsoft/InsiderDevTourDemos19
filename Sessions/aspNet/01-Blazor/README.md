@@ -1,6 +1,6 @@
 ﻿# Demo 1 - Blazor
 
-1. Launch Visual Studio 2019 Preview
+1. Launch Visual Studio 2019
 2. Choose **Create a new project**
 3. Choose **ASP.NET Core Web Application**
 4. Name it **BlazorSample** and save it in a folder of your preference.
