@@ -38,7 +38,7 @@ export default class LoggedInPage extends Vue {
 
   private async mounted() {
     // TODO: Fire event in person when data loaded from query.
-    setTimeout(this.setDetails, 1000);
+    setTimeout(this.setDetails, 2000);
   }
 
   private setDetails() {
