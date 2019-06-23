@@ -95,7 +95,7 @@ The worker will retrieve the full order, it will change its status and then it w
 26. Now go back to Visual Studio and stop the debugger.
 27. As last step of the demo, let's highlight the flexibility of the solution. Let's say, for example, that we want to run this application on a Windows server, with the worker running as a Windows service.
 28. Right click on the **BlazorInsider.Worker** project and choose **Manage NuGet Packages**.
-29. Show to the audience that the project includes a NuGet package called **Microsoft.Extensions.Hosting.Windows**, which enables the required features to expose the worker as a Windows Service.
+29. Show to the audience that the project includes a NuGet package called **Microsoft.Extensions.Hosting.WindowsServices**, which enables the required features to expose the worker as a Windows Service.
 30. Now double click on the **Program.cs** file. Add **UseWindowService()** in the **CreateHostBuilder()** method. This is how it should look like.
 
     ```csharp
