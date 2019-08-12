@@ -9,17 +9,17 @@
     ![](Images/BlazorTemplates.png)
 
 6. Show to the audience the various projects in Solution Explorer and explain their meaning:
-    - **BlazorGridSample.Client** is the main project and it runs completely client side thanks to WebAssembly
-    - **BlazorGridSample.Server** is the backend, which supports operations that can be performed only server-side, like accessing to a database
-    - **BlazorGridSample.Shared** is a .NET Standard library. Since both are ASP.NET Core projects, you can freely share code between the two. This project contains the definition of an entity, **WeatherForecast**, which is shared across the two.
-7. Make sure **BlazorGridSample.Server** is set as startup project and press F5.
+    - **BlazorSample.Client** is the main project and it runs completely client side thanks to WebAssembly
+    - **BlazorSample.Server** is the backend, which supports operations that can be performed only server-side, like accessing to a database
+    - **BlazorSample.Shared** is a .NET Standard library. Since both are ASP.NET Core projects, you can freely share code between the two. This project contains the definition of an entity, **WeatherForecast**, which is shared across the two.
+7. Make sure **BlazorSample.Server** is set as startup project and press F5.
 8. Once the web application starts, show the various pages of the application, like Counter and Fetch Data. Interact with them, to demonstrate that everything is running client side.
 9. Go back to Visual Studio 2019 and briefly show the code of the **Counter.razor** and **FetchData.razor** files in the **Pages** folder. Highlight how there’s no JavaScript, all the logic is C#.
 10. As a final proof, press F12 in Edge to open the Developer tools and move to the **Network** tab.
 11. Reload the page by pressing CTRL-R
 12. Show to the audience how the web application is not loading only HTML, CSS and JavaScript files, but also .dll and .wasm files:
     - Call out specifically **mono.wasm**, which is the web assembly implementation of Mono leveraged by Blazor.
-    - Call out specifically **BlazorGridSample.Client.dll**, which is the application built in Visual Studio.
+    - Call out specifically **BlazorSample.Client.dll**, which is the application built in Visual Studio.
     
     ![](Images/DeveloperTools.png)
     
@@ -40,7 +40,7 @@
 19. Open the **FetchData.razor** file under **Pages** and show to the audience how the table is manually built using a foreach loop on the weather forecasts collection.
 20. Now right click on the solution in Visual Studio and choose **Add -> Existing project**.
 21. Look for the **BlazorGridComponent.csproj** file inside the folder **01-Blazor\01-Start\BlazorGridComponent** and select it
-22. Now right click on the **BlazorGridSample.Client** project and choose **Add reference**.
+22. Now right click on the **BlazorSample.Client** project and choose **Add reference**.
 23. Choose **Projects -> Solution** and select the **BlazorGridComponent** project you have just added.
 24. Now go back to the **FetchData.razor** file in the **Pages** folder
 25. Add, at the top of the file, the following statement:

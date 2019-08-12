@@ -13,8 +13,8 @@
 </table>
 <div class="pagination">
 
-    <button class="btn pagebutton btn-info" onclick=@(async () => SetPagerSize("back"))>&laquo;</button>
-    <button class="btn pagebutton btn-secondary" onclick=@(async () => NavigateToPage("previous"))>Prev</button>
+    <button class="btn pagebutton btn-info" @onclick=@(async () => SetPagerSize("back"))>&laquo;</button>
+    <button class="btn pagebutton btn-secondary" @onclick=@(async () => NavigateToPage("previous"))>Prev</button>
 
     @for (int i = startPage; i <= endPage; i++)
     {
@@ -24,14 +24,14 @@
         </button>
     }
 
-    <button class="btn pagebutton btn-secondary" onclick=@(async () => NavigateToPage("next"))>Next</button>
-    <button class="btn pagebutton btn-info" onclick=@(async () => SetPagerSize("forward"))>&raquo;</button>
+    <button class="btn pagebutton btn-secondary" @onclick=@(async () => NavigateToPage("next"))>Next</button>
+    <button class="btn pagebutton btn-info" @onclick=@(async () => SetPagerSize("forward"))>&raquo;</button>
 
     <span class="pagebutton btn btn-link disabled">Page @curPage of @totalPages</span>
 
 </div>
 
-@functions {
+@code {
     int totalPages;
     int curPage;
     int pagerSize;
@@ -65,7 +65,7 @@
 
     IEnumerable<TableItem> ItemList { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override Task OnInitAsync()
     {
         pagerSize = 5;
         curPage = 1;
@@ -74,6 +74,7 @@
         totalPages = (int)Math.Ceiling(Items.Count() / (decimal)PageSize);
 
         SetPagerSize("forward");
+        return Task.CompletedTask;
     }
 
     public void updateList(int currentPage)
