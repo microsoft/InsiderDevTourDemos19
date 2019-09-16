@@ -13,19 +13,19 @@
 </table>
 <div class="pagination">
 
-    <button class="btn pagebutton btn-info" onclick=@(async () => SetPagerSize("back"))>&laquo;</button>
-    <button class="btn pagebutton btn-secondary" onclick=@(async () => NavigateToPage("previous"))>Prev</button>
+    <button class="btn pagebutton btn-info" @onclick=@(async () => SetPagerSize("back"))>&laquo;</button>
+    <button class="btn pagebutton btn-secondary" @onclick=@(async () => NavigateToPage("previous"))>Prev</button>
 
     @for (int i = startPage; i <= endPage; i++)
     {
         var currentPage = i;
-        <button class="btn pagebutton @(currentPage==curPage?"currentpage":"")" onclick=@(async () => updateList(currentPage))>
+        <button class="btn pagebutton @(currentPage==curPage?"currentpage":"")" @onclick=@(async () => updateList(currentPage))>
             @currentPage
         </button>
     }
 
-    <button class="btn pagebutton btn-secondary" onclick=@(async () => NavigateToPage("next"))>Next</button>
-    <button class="btn pagebutton btn-info" onclick=@(async () => SetPagerSize("forward"))>&raquo;</button>
+    <button class="btn pagebutton btn-secondary" @onclick=@(async () => NavigateToPage("next"))>Next</button>
+    <button class="btn pagebutton btn-info" @onclick=@(async () => SetPagerSize("forward"))>&raquo;</button>
 
     <span class="pagebutton btn btn-link disabled">Page @curPage of @totalPages</span>
 
@@ -43,29 +43,29 @@
     /// Header for BlazorGrid.
     /// </summary>
     [Parameter]
-    RenderFragment GridHeader { get; set; }
+    public RenderFragment GridHeader { get; set; }
 
     /// <summary>
     /// Rows for BlazorGrid.
     /// </summary>
     [Parameter]
-    RenderFragment<TableItem> GridRow { get; set; }
+    public RenderFragment<TableItem> GridRow { get; set; }
 
     /// <summary>
     /// The list of item supplied to the BlazorGrid.
     /// </summary>
     [Parameter]
-    IEnumerable<TableItem> Items { get; set; }
+    public IEnumerable<TableItem> Items { get; set; }
 
     /// <summary>
     /// Size of each page of BlazorGrid. This is a required field.
     /// </summary>
     [Parameter]
-    int PageSize { get; set; }
+    public int PageSize { get; set; }
 
     IEnumerable<TableItem> ItemList { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override void OnInitialized()
     {
         pagerSize = 5;
         curPage = 1;
