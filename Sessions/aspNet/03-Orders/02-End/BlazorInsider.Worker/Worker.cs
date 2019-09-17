@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorInsider.App.Services;
@@ -32,13 +31,12 @@ namespace BlazorInsider.Worker
                     AppContext.SetSwitch(
                     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport",
                     true);
-                    HttpClient httpClient = new HttpClient();
-                    httpClient.BaseAddress = new Uri("http://localhost:50051");
 
-                    var grpcClient = GrpcClient.Create<OrdersManager.OrdersManagerClient>(httpClient);
+                    var channel = GrpcChannel.ForAddress("http://localhost:50051");
+                    var client = new OrdersManager.OrdersManagerClient(channel);
 
                     OrderRequest request = new OrderRequest();
-                    OrderReply result = await grpcClient.GetNewOrderAsync(request);
+                    OrderReply result = await client.GetNewOrderAsync(request);
                     if (result.OrderId != 0)
                     {
                         _databaseService.UpdateOrder(result.OrderId);

@@ -92,7 +92,7 @@ else
         orders = DatabaseService.GetOrders();
     }
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         RefreshOrders();
     }
