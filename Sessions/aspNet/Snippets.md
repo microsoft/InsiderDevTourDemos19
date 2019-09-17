@@ -21,6 +21,14 @@ To be placed in **Pages/FetchData.razor**
 </BlazorGrid>
 ```
 
+To be placed in **Startup.cs**
+
+```csharp
+services.AddLogging(builder => builder
+.AddBrowserConsole()
+.SetMinimumLevel(LogLevel.Trace));
+```
+
 ### Demo 3
 
 To be placed in **Program.cs** of the **BlazorInsider.Worker** project:
